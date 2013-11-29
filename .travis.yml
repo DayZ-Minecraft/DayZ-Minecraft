@@ -1,0 +1,16 @@
+language: java
+install: TERM=dumb gradle setupCIWorkspace --stacktrace
+script: TERM=dumb gradle build --stacktrace
+after_success:
+- TERM=dumb gradle uploadFTP --stacktrace
+- TERM=dumb gradle updateDownloadPage --stacktrace
+branches:
+  only:
+  - master
+  - development
+env:
+  global:
+  - secure: uR2oHSPlJHSl+y5NRmOETdmRBqS5ByKnK6LcoFfRTcxkbcnjftSoLPkh6EnQgl4w1X6aeNeVn1tM2CzEwMsZXaaVW7joBAkcCk0rawNkqm/7X6n9SIjcaIT6txiI79MNSKmphAuF2ttzGCsf5RDrmUL4TX3ofoC/jM5vECQvRfw=
+  - secure: mwS/cJY3Dte4Mqxn92nMHuRDZsm0PsMhWU+TSBpo0YvuM0zdoCYz1qjhK6Bzjha7b/XGqY0iBj5g+swhiYqDgjjQYl7VqTWGP1GoyM0Jbi1RM8gGFIk0731wuq8osRMYhCZbxmx/FBOVukJYNzaoNawRz2sRAGiL8rzF37mpM+0=
+  - secure: XCZZ9hSfYJliHqKr6rWHMIbRY0gHW2CNcnrur6ZaiJRQH2lqfeRxLLNEFEgPXSH7lBOHZc+gFr24MzlPQXjWlOgD0OJBX7UaJdfMwsMoTmuHWlY8pu3wR3BKdyZ/WUNM1+zAZQ77YBUVfdGgohckua0Lt0Kt50O+YhjqJzbdfYY=
+  - secure: BDeBDsC5G97HQj6s9D48tCTkag0fpVsnVVtFgNIt+iq5V5+uGFe/ya+ttnolIjpfzCQKS1BUSV0SUwl1tRbt/oLUJ0H+P+Qb/YO2LNo2RXnN7NYFi1ec7Q53KJuUe1W+IBT9VdDb3cMSADrzTGn/1mVOjQ64GECikRl6HT1JKnI=

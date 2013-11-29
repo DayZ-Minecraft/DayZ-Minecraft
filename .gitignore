@@ -1,0 +1,11 @@
+environment.properties
+/eclipse
+/minecraft
+/build
+/forge
+*.DS_Store
+/.gradle
+/.idea
+/out
+*iml
+/run

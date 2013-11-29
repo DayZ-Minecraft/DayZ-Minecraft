@@ -1,0 +1,16 @@
+[
+{
+  "modid": "DayZ",
+  "name": "DayZ Minecraft",
+  "description": "The most popular zombie mod for Minecraft!",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "http://files.dayzminecraft.x10.mx",
+  "updateUrl": "",
+  "authors": ["HoBoS_TaCo", "DanteRedgrave"],
+  "credits": "",
+  "logoFile": "logo.png",
+  "screenshots": [],
+  "dependencies": []
+}
+]

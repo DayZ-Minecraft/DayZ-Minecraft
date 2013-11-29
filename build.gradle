@@ -1,0 +1,58 @@
+buildscript {
+  repositories {
+    mavenCentral()
+    maven {
+      name = "hobostaco"
+      url = "http://dayzminecraft.x10.mx/maven"
+    }
+    maven {
+      name = "forge"
+      url = "http://files.minecraftforge.net/maven"
+    }
+  }
+  dependencies {
+    classpath "com.github.hobos_taco.hoborelease:hoborelease:1.0"
+    classpath "net.minecraftforge.gradle:ForgeGradle:1.0-SNAPSHOT"
+  }
+}
+
+apply plugin: "hoborelease"
+apply plugin: "forge"
+
+version = "1.6.4-8.9" + "." + System.getenv("TRAVIS_BUILD_NUMBER")
+group= "com.github.dayzminecraft.dayz"
+archivesBaseName = "DayZ-Minecraft"
+
+minecraft {
+  version = "1.6.4-9.11.1.964"
+}
+
+processResources
+{
+  from(sourceSets.main.resources.srcDirs) {
+    include "mcmod.info"               
+    expand "version":project.version.split("-")[1], "mcversion":project.minecraft.version
+  }       
+  from(sourceSets.main.resources.srcDirs) {
+    exclude "mcmod.info"
+  }
+}
+
+hoboRelease {
+  repositoryUsername = System.getenv("REPO_USERNAME")
+  repositoryPassword = System.getenv("REPO_PASSWORD")
+  repositoryOwner = "DayZ-Minecraft"
+  repositoryName = "DayZ-Minecraft" 
+  commitSha = System.getenv("TRAVIS_COMMIT")
+  ftpUsername = System.getenv("FTP_USERNAME")
+  ftpPassword = System.getenv("FTP_PASSWORD")
+  ftpServer = "ftp.dayzminecraft.x10.mx"
+  ftpPort = 21
+  downloadPage = "http://files.dayzminecraft.x10.mx"
+  latestLine = '          <li class="downloads"><a href="http://files.dayzminecraft.x10.mx/DayZ-Minecraft-VERSION.jar">Latest (VERSION)</a></li>'
+  stableLine = '          <li class="downloads"><a href="http://files.dayzminecraft.x10.mx/DayZ-Minecraft-VERSION.jar">Stable (VERSION)</a></li>' 
+}
+
+task wrapper(type: Wrapper) { 
+  gradleVersion = '1.8' 
+}
