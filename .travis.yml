@@ -6,8 +6,8 @@ after_success:
 - TERM=dumb gradle updateDownloadPage --stacktrace
 branches:
   only:
-  - master
-  - development
+    - master
+    - development
 env:
   global:
   - secure: uR2oHSPlJHSl+y5NRmOETdmRBqS5ByKnK6LcoFfRTcxkbcnjftSoLPkh6EnQgl4w1X6aeNeVn1tM2CzEwMsZXaaVW7joBAkcCk0rawNkqm/7X6n9SIjcaIT6txiI79MNSKmphAuF2ttzGCsf5RDrmUL4TX3ofoC/jM5vECQvRfw=
