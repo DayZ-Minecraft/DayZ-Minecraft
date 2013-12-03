@@ -18,6 +18,11 @@ public class EntityBullet extends EntityThrowable {
   private int bulletdamage;
   public Entity shootingEntity;
 
+  public EntityBullet(World world) {
+    super(world);
+    setSize(0.1F, 0.1F);
+  }
+
   public EntityBullet(World world, EntityLivingBase entityLivingBase, int damage) {
     super(world, entityLivingBase);
     bulletdamage = damage;
@@ -33,6 +38,10 @@ public class EntityBullet extends EntityThrowable {
     motionZ = MathHelper.cos(rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(rotationPitch / 180.0F * (float)Math.PI);
     motionY = (-MathHelper.sin(rotationPitch / 180.0F * (float)Math.PI));
     setThrowableHeading(motionX, motionY, motionZ, 1.5F, 1.0F);
+  }
+
+  public EntityBullet(World world, double xCoord, double yCoord, double zCoord) {
+    super(world, xCoord, yCoord, zCoord);
   }
 
   @Override
