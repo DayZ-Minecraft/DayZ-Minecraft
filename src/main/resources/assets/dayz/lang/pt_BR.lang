@@ -1,0 +1,88 @@
+#DayZ Language File | pt_BR by LionLorena_
+item.drinkCanEmpty.empty_beer.name=Lata Vazia
+item.drinkCanEmpty.empty_lemon_soda.name=Lata Vazia
+item.drinkCanEmpty.empty_cola.name=Lata Vazia
+item.drinkCanEmpty.empty_energy_drink.name=Lata Vazia
+item.drinkCanEmpty.empty_orange_soda.name=Lata Vazia
+ 
+item.drinkCanned.beer.name=Cerveja
+item.drinkCanned.lemon_soda.name=Soda Limonada
+item.drinkCanned.cola.name=Refrigerante de Cola
+item.drinkCanned.energy_drink.name=Energético
+item.drinkCanned.orange_soda.name=Refrigerante de Laranja
+ 
+item.foodCanEmpty.empty_canned_beans.name=Lata Vazia
+item.foodCanEmpty.empty_canned_soup.name=Lata Vazia
+item.foodCanEmpty.empty_canned_pasta.name=Lata Vazia
+item.foodCanEmpty.empty_canned_fish.name=Lata Vazia
+item.foodCanEmpty.empty_canned_pickles.name=Lata Vazia
+item.foodCanEmpty.empty_canned_fruit.name=Lata Vazia
+ 
+item.foodCanned.canned_beans.name=Feijão enlatado
+item.foodCanned.canned_soup.name=Sopa enlatada
+item.foodCanned.canned_pasta.name=Macarrão instantâneo
+item.foodCanned.canned_fish.name=Atum enlatado
+item.foodCanned.canned_pickles.name=Picles enlatado
+item.foodCanned.canned_fruit.name=salada de Frutas
+ 
+item.gunAk74u.name=Rifle Ak-74u
+item.gunMakarov.name=Pistola Makarov
+item.gunRemington.name=Escopeta Remington
+item.gunLeeEnfield.name=Rifle Lee Enfield
+item.gunGlock17.name=Pistola Glock 17
+item.gunDoubleBarreledShotgun.name=Escopeta de Dois Canos
+item.gunUsp.name=Pistola USP
+item.gunAk74.name=Rifle Ak-74
+
+item.ammoAk74u.name=Pente para Ak-74u
+item.ammoMakarov.name=Pente para Makarov
+item.ammoRemington.name=Cartuchos de Remington
+item.ammoLeeEnfield.name=Pente para Lee Enfield
+item.ammoGlock17.name=Pente para Glock 17
+item.ammoDoubleBarreledShotgun.name=Cartuchos para Escopeta de Dois Canos
+item.ammoUsp.name=Pente para USP
+item.ammoAk74.name=Pente para Ak-74
+
+item.itemMatches.name=Caixa de Fósforos
+item.healBandage.name=Atadura(Curativo)
+item.healBandage.description=Controla o Sangramento
+item.healAntibiotics.name=Antibiótico
+item.healAntibiotics.description=Controla a Infecção
+item.healBloodbag.name=Bolsa de Sangue
+item.healBloodbag.description=Precisa que um Amigo use em você.
+item.camoHelmet.name=Touca Camuflada
+item.camoChest.name=Blusa Camuflada
+item.camoLegs.name=Calça Camuflada
+item.camoBoots.name=Botas Camufladas
+ 
+item.drinkWhiskeyBottle.name=Garrafa de Uísque
+item.drinkCiderBottle.name=Garrafa de Cidra
+item.drinkVodkaBottle.name=Garrafa de Vodca
+ 
+item.meleeBaseballBat.name=Taco de Basebol
+item.meleeBaseballBatNailed.name=Taco de Basebol com Pregos
+item.meleePlank.name=Tabua
+item.meleePlankNailed.name=Tabua com Pregos
+item.meleePipe.name=Cano de Aço
+item.meleeCrowbar.name=Pé de Cabra
+item.meleeMachete.name=Facão
+ 
+tile.barbedWire.name=Arame Farpado
+tile.chestLoot.name=Bau de itens
+tile.chainFence.name=Cerca Gradeada
+tile.sandbagBlock.name=Sacos de Areia
+tile.nailBlock.name=Pregos
+ 
+thirst.replentish=Ahh, Muito melhor...
+thirst.thirdwarning=Preciso achar agua e rápido...
+thirst.secondwarning=Um drinque cairia bem...
+thirst.firstwarning=Minha garganta esta começando a ficar seca...
+ 
+entity.Crawler.name=Rastejador
+entity.DayZZombie.name=Zumbi
+generator.DAYZBASE=Day Z Original
+generator.DAYZSNOW=Day Z Neve
+itemGroup.creativeTabDayZ=Day Z
+death.attack.bleedOut=%1$s perdeu muito sangue
+death.attack.zombieInfection=%1$s virou um zumbi
+death.attack.dehydration=%1$s morreu de sede

@@ -9,6 +9,7 @@ import com.github.dayzminecraft.dayzminecraft.common.misc.DamageType;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
+import net.minecraft.util.StatCollector;
 
 public class Thirst {
   public HashMap<String, Integer> thirstMap = new HashMap<String, Integer>();
@@ -32,13 +33,13 @@ public class Thirst {
     if (player == null || player.isDead || player.capabilities.isCreativeMode) {
       return;
     } else if (playerThirst == 20000) {
-      ChatHandler.chatWarning(player, "I should find some water soon...");
+      ChatHandler.chatWarning(player, StatCollector.translateToLocal("thirst.thirdwarning"));
       playerThirst++;
     } else if (playerThirst == 18000) {
-      ChatHandler.chatWarning(player, "I feel quite thirsty now...");
+      ChatHandler.chatWarning(player, StatCollector.translateToLocal("thirst.secondwarning"));
       playerThirst++;
     } else if (playerThirst == 16000) {
-      ChatHandler.chatWarning(player, "My mouth feels a little dry...");
+      ChatHandler.chatWarning(player, StatCollector.translateToLocal("thirst.firstwarning"));
       playerThirst++;
     } else if (playerThirst >= 24000 && FMLCommonHandler.instance().getMinecraftServerInstance().getTickCounter() % 40 == 0) {
       player.attackEntityFrom(DamageType.thirstDeath, 1);
@@ -73,7 +74,7 @@ public class Thirst {
     }
     thirstMap.put(player.username, playerThirst);
     if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
-      ChatHandler.chatConfirmation(player, "Ahh, much better.");
+      ChatHandler.chatConfirmation(player, StatCollector.translateToLocal("thirst.replentish"));
     }
   }
 }

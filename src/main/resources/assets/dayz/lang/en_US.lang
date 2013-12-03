@@ -32,6 +32,7 @@ item.gunLeeEnfield.name=Lee Enfield
 item.gunGlock17.name=Glock 17
 item.gunDoubleBarreledShotgun.name=Double-barreled Shotgun
 item.gunUsp.name=USP
+item.gunAk74.name=Ak-74
 
 item.ammoAk74u.name=Ak-74u Magazine
 item.ammoMakarov.name=Makarov Magazine
@@ -40,11 +41,15 @@ item.ammoLeeEnfield.name=Lee Enfield Magazine
 item.ammoGlock17.name=Glock 17 Magazine
 item.ammoDoubleBarreledShotgun.name=Double-barreled Shotgun Shells
 item.ammoUsp.name=USP Magazine
+item.ammoAk74.name=Ak-74 Magazine
 
 item.itemMatches.name=Book of Matches
 item.healBandage.name=Bandage
+item.healBandage.description=Stops bleeding
 item.healAntibiotics.name=Antibiotics
+item.healAntibiotics.description=Stops Infection
 item.healBloodbag.name=BloodBag
+item.healBloodbag.description=Cannot be self-applied
 item.camoHelmet.name=Camouflage Helmet
 item.camoChest.name=Camouflage Shirt
 item.camoLegs.name=Camouflage Pants
@@ -67,3 +72,17 @@ tile.chestLoot.name=Loot Chest
 tile.chainFence.name=Chain-link Fence
 tile.sandbagBlock.name=Sandbags
 tile.nailBlock.name=Nails
+
+thirst.replentish=Ahh, much better...
+thirst.thirdwarning=I should find some water soon...
+thirst.secondwarning=I feel quite thirsty now...
+thirst.firstwarning=My mouth feels a little dry...
+
+entity.Crawler.name=Crawler
+entity.DayZZombie.name=Zombie
+generator.DAYZBASE=Day Z Original
+generator.DAYZSNOW=Day Z Snow
+itemGroup.creativeTabDayZ=Day Z
+death.attack.bleedOut=%1$s lost too much blood
+death.attack.zombieInfection=%1$s became a zombie
+death.attack.dehydration=%1$s died of dehydration

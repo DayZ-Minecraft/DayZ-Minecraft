@@ -68,15 +68,6 @@ public class CommonProxy {
       EntityRegistry.addSpawn(EntityZombieDayZ.class, 200, 1, 4, EnumCreatureType.creature, WorldType.base12Biomes);
       EntityRegistry.addSpawn(EntityCrawler.class, 100, 1, 4, EnumCreatureType.creature, WorldType.base12Biomes);
     }
-
-    LanguageRegistry.instance().addStringLocalization("entity.Crawler.name", "en_US", "Crawler");
-    LanguageRegistry.instance().addStringLocalization("entity.DayZZombie.name", "en_US", "Zombie");
-    LanguageRegistry.instance().addStringLocalization("generator.DAYZBASE", "en_US", "Day Z Original");
-    LanguageRegistry.instance().addStringLocalization("generator.DAYZSNOW", "en_US", "Day Z Snow");
-    LanguageRegistry.instance().addStringLocalization("itemGroup.creativeTabDayZ", "en_US", "Day Z");
-    LanguageRegistry.instance().addStringLocalization("death.attack.bleedOut", "%1$s lost too much blood");
-    LanguageRegistry.instance().addStringLocalization("death.attack.zombieInfection", "%1$s became a zombie");
-    LanguageRegistry.instance().addStringLocalization("death.attack.thirstDeath", "%1$s ran out of water");
   }
 
   public void postload(FMLPostInitializationEvent event) {
@@ -90,8 +81,8 @@ public class CommonProxy {
       Logger.getLogger("Minecraft").info("Day Z " + DayZ.meta.version + " Loaded.");
 
       Logger.getLogger("Minecraft").info("Make sure your server.properties has one of the lines to create a DayZ world.");
-      Logger.getLogger("Minecraft").info("level-type=DAYZBASE            -           To create the original DayZ world.");
-      Logger.getLogger("Minecraft").info("level-type=DAYZSNOW            -                  To create snowy DayZ world.");
+      Logger.getLogger("Minecraft").info("level-type=DAYZBASE - To create the original DayZ world.");
+      Logger.getLogger("Minecraft").info("level-type=DAYZSNOW - To create snowy DayZ world.");
     }
   }
 

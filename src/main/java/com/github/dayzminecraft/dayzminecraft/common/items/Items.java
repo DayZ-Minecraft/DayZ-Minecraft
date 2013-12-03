@@ -3,6 +3,7 @@ package com.github.dayzminecraft.dayzminecraft.common.items;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.Configuration;
 
 import com.github.dayzminecraft.dayzminecraft.DayZ;
@@ -124,9 +125,9 @@ public class Items {
 
     itemMatches = (new ItemFirestarter(itemMatchesId, 8)).setUnlocalizedName("itemMatches");
 
-    healBandage = new ItemHeal(healBandageId, 0, Effect.bleeding).subNames("Stops bleeding").setUnlocalizedName("healBandage");
-    healAntibiotics = new ItemHeal(healAntibioticsId, 0, Effect.zombification).subNames("Stops infection").setUnlocalizedName("healAntibiotics");
-    healBloodbag = new ItemMod(healBloodbagId).subNames("Cannot be self-applied").setUnlocalizedName("healBloodbag");
+    healBandage = new ItemHeal(healBandageId, 0, Effect.bleeding).subNames(StatCollector.translateToLocal("item.healBandage.description")).setUnlocalizedName("healBandage");
+    healAntibiotics = new ItemHeal(healAntibioticsId, 0, Effect.zombification).subNames(StatCollector.translateToLocal("item.healAntibiotics.description")).setUnlocalizedName("healAntibiotics");
+    healBloodbag = new ItemMod(healBloodbagId).subNames(StatCollector.translateToLocal("item.healBloodbag.description")).setUnlocalizedName("healBloodbag");
 
     camoHelmet = (new ItemCamo(camoHelmetId, DayZ.enumArmorMaterialCamo, 4, 0)).setUnlocalizedName("camoHelmet");
     camoChest = (new ItemCamo(camoChestId, DayZ.enumArmorMaterialCamo, 4, 1)).setUnlocalizedName("camoChest");
