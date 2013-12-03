@@ -77,9 +77,9 @@ public class LootManager {
   }
 
   public static void addLoot(ItemStack itemStack, int itemWorth) {
-    ArrayList<WeightedRandomChestContent> contents = new ArrayList<WeightedRandomChestContent>(Arrays.asList(loot));
+    ArrayList<WeightedRandomChestContent> contents = new ArrayList<>(Arrays.asList(loot));
     contents.add(new WeightedRandomChestContent(itemStack, 1, 1, itemWorth));
-    loot = contents.toArray(new WeightedRandomChestContent[0]);
+    loot = contents.toArray(new WeightedRandomChestContent[contents.size()]);
 
     ChestGenHooks.addItem(ChestGenHooks.BONUS_CHEST, new WeightedRandomChestContent(itemStack, 1, 1, itemWorth));
     ChestGenHooks.addItem(ChestGenHooks.VILLAGE_BLACKSMITH, new WeightedRandomChestContent(itemStack, 1, 1, itemWorth));

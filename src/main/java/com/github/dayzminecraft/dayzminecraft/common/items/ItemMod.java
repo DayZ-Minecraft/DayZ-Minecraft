@@ -1,6 +1,7 @@
 package com.github.dayzminecraft.dayzminecraft.common.items;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -42,11 +43,9 @@ public class ItemMod extends Item {
 
   public Item subNames(String... strings) {
     if (subNames == null) {
-      subNames = new ArrayList<String>();
+      subNames = new ArrayList<>();
     }
-    for (String string : strings) {
-      subNames.add(string);
-    }
+    Collections.addAll(subNames, strings);
     return this;
   }
 }

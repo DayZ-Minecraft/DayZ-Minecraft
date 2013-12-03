@@ -6,7 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class PlayerDataNBT {
-  private static HashMap<String, PlayerDataNBT> playerDataMap = new HashMap<String, PlayerDataNBT>();
+  private static HashMap<String, PlayerDataNBT> playerDataMap = new HashMap<>();
 
   public static PlayerDataNBT getPlayerData(EntityPlayer player) {
     PlayerDataNBT info = playerDataMap.get(player.username);
@@ -24,6 +24,7 @@ public class PlayerDataNBT {
 
   public int thirstLevel;
 
+  @SuppressWarnings("unused")
   private PlayerDataNBT(EntityPlayer player) {
     thirstLevel = 0;
   }

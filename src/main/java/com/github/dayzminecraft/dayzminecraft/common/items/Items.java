@@ -135,14 +135,14 @@ public class Items {
     camoBoots = (new ItemCamo(camoBootsId, DayZ.enumArmorMaterialCamo, 4, 3)).setUnlocalizedName("camoBoots");
 
     foodCanEmpty = new ItemCanEmpty(foodCanEmptyId, true).setUnlocalizedName("foodCanEmpty");
-    foodCanned = new ItemFoodCanned(foodCannedId, 4).setUnlocalizedName("foodCanned");
+    foodCanned = new ItemFoodCanned(foodCannedId, 4, 0.6F).setUnlocalizedName("foodCanned");
 
     drinkCanEmpty = new ItemCanEmpty(drinkCanEmptyId, false).setUnlocalizedName("drinkCanEmpty");
     drinkCanned = new ItemDrinkCanned(drinkCannedId, 4).setUnlocalizedName("drinkCanned");
 
-    drinkWhiskeyBottle = new ItemDrinkBottle(drinkWhiskeyBottleId, 4).isAlcohol(true).setUnlocalizedName("drinkWhiskeyBottle");
-    drinkCiderBottle = new ItemDrinkBottle(drinkCiderBottleId, 4).setUnlocalizedName("drinkCiderBottle");
-    drinkVodkaBottle = new ItemDrinkBottle(drinkVodkaBottleId, 4).isAlcohol(true).setUnlocalizedName("drinkVodkaBottle");
+    drinkWhiskeyBottle = new ItemDrinkBottle(drinkWhiskeyBottleId, 4, true).isAlcohol(true).setUnlocalizedName("drinkWhiskeyBottle");
+    drinkCiderBottle = new ItemDrinkBottle(drinkCiderBottleId, 4, false).setUnlocalizedName("drinkCiderBottle");
+    drinkVodkaBottle = new ItemDrinkBottle(drinkVodkaBottleId, 4, true).isAlcohol(true).setUnlocalizedName("drinkVodkaBottle");
 
     meleeBaseballBat = new ItemMelee(meleeBaseballBatId, 6).setUnlocalizedName("meleeBaseballBat");
     meleeBaseballBatNailed = new ItemMelee(meleeBaseballBatNailedId, 8).setUnlocalizedName("meleeBaseballBatNailed");
@@ -152,13 +152,13 @@ public class Items {
     meleeCrowbar = new ItemMelee(meleeCrowbarId, 8).setUnlocalizedName("meleeCrowbar");
     meleeMachete = new ItemMelee(meleeMacheteId, 7).setUnlocalizedName("meleeMachete");
 
-    GameRegistry.addShapelessRecipe(new ItemStack(meleeBaseballBatNailed, 1), new Object[] {new ItemStack(meleeBaseballBat, 1), new ItemStack(Blocks.nailBlock, 1, 0)});
+    GameRegistry.addShapelessRecipe(new ItemStack(meleeBaseballBatNailed, 1), new ItemStack(meleeBaseballBat, 1), new ItemStack(Blocks.nailBlock, 1, 0));
 
-    GameRegistry.addShapelessRecipe(new ItemStack(meleePlankNailed, 1), new Object[] {new ItemStack(meleePlank, 1), new ItemStack(Blocks.nailBlock, 1, 0)});
+    GameRegistry.addShapelessRecipe(new ItemStack(meleePlankNailed, 1), new ItemStack(meleePlank, 1), new ItemStack(Blocks.nailBlock, 1, 0));
 
-    GameRegistry.addRecipe(new ItemStack(meleePlank, 1), new Object[] {"#", "#", "#", Character.valueOf('#'), Block.planks});
+    GameRegistry.addRecipe(new ItemStack(meleePlank, 1), "#", "#", "#", '#', Block.planks);
 
-    GameRegistry.addRecipe(new ItemStack(meleeBaseballBat, 1), new Object[] {"##!", Character.valueOf('#'), Block.planks, Character.valueOf('!'), Item.stick});
+    GameRegistry.addRecipe(new ItemStack(meleeBaseballBat, 1), "##!", '#', Block.planks, '!', Item.stick);
   }
 
   public static void itemConfig(Configuration config) {

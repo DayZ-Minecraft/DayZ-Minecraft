@@ -97,30 +97,30 @@ public class EntityCrawler extends EntityMob {
       int j = rand.nextInt(10);
       int k = rand.nextInt(20);
       if (j == 0) {
-        ((EntityLivingBase)entity).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 120, 1));
+        ((EntityLivingBase)entity).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 300, 1));
       }
       if (k == 0) {
-        ((EntityLivingBase)entity).addPotionEffect(new EnactEffect(Effect.zombification.getId(), 20 * 120, 1));
+        ((EntityLivingBase)entity).addPotionEffect(new EnactEffect(Effect.zombification.getId(), 20 * 300, 1));
       }
       return entity.attackEntityFrom(DamageSource.causeMobDamage(this), 2);
     } else if (worldObj.difficultySetting == 2) {
       int j = rand.nextInt(5);
       int k = rand.nextInt(10);
       if (j == 0) {
-        ((EntityLivingBase)entity).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 120, 1));
+        ((EntityLivingBase)entity).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 300, 1));
       }
       if (k == 0) {
-        ((EntityLivingBase)entity).addPotionEffect(new EnactEffect(Effect.zombification.getId(), 20 * 120, 1));
+        ((EntityLivingBase)entity).addPotionEffect(new EnactEffect(Effect.zombification.getId(), 20 * 300, 1));
       }
       return entity.attackEntityFrom(DamageSource.causeMobDamage(this), 3);
     } else if (worldObj.difficultySetting == 3) {
       int j = rand.nextInt(3);
       int k = rand.nextInt(6);
       if (j == 0) {
-        ((EntityLivingBase)entity).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 120, 1));
+        ((EntityLivingBase)entity).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 300, 1));
       }
       if (k == 0) {
-        ((EntityLivingBase)entity).addPotionEffect(new EnactEffect(Effect.zombification.getId(), 20 * 120, 1));
+        ((EntityLivingBase)entity).addPotionEffect(new EnactEffect(Effect.zombification.getId(), 20 * 300, 1));
       }
       return entity.attackEntityFrom(DamageSource.causeMobDamage(this), 6);
     } else {

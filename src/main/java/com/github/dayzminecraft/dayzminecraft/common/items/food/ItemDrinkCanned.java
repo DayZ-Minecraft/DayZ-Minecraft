@@ -73,21 +73,13 @@ public class ItemDrinkCanned extends ItemMod {
     return itemStack;
   }
 
-  public ItemDrinkCanned setPotionEffect(int potionId, int potionDuration, int potionAmplifier, float potionEffectProbability) {
-    this.potionId = potionId;
-    this.potionDuration = potionDuration;
-    this.potionAmplifier = potionAmplifier;
-    this.potionEffectProbability = potionEffectProbability;
-    return this;
-  }
-
   @Override @SideOnly(Side.CLIENT)
   public Icon getIconFromDamage(int damage) {
     int j = MathHelper.clamp_int(damage, 0, 5);
     return icons[j];
   }
 
-  @Override @SideOnly(Side.CLIENT)
+  @Override @SideOnly(Side.CLIENT) @SuppressWarnings("unchecked")
   public void getSubItems(int itemId, CreativeTabs creativeTab, List containerList) {
     for (int damage = 0; damage < 6; ++damage) {
       containerList.add(new ItemStack(itemId, 1, damage));
@@ -99,7 +91,7 @@ public class ItemDrinkCanned extends ItemMod {
     icons = new Icon[6];
 
     for (int damage = 0; damage < 6; ++damage) {
-      icons[damage] = register.registerIcon(DayZ.meta.modId + ":" + new String("drinkCanned").substring(new String("drinkCanned").indexOf(".") + 1) + damage);
+      icons[damage] = register.registerIcon(DayZ.meta.modId + ":" + "drinkCanned".substring("drinkCanned".indexOf(".") + 1) + damage);
     }
   }
 }

@@ -3,8 +3,6 @@ package com.github.dayzminecraft.dayzminecraft.common.entities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.*;
-import net.minecraft.entity.ai.attributes.Attribute;
-import net.minecraft.entity.ai.attributes.RangedAttribute;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,8 +16,6 @@ import com.github.dayzminecraft.dayzminecraft.common.effects.EnactEffect;
 
 public class EntityZombieDayZ extends EntityMob {
   public String texture;
-
-  protected static final Attribute field_110186_bp = (new RangedAttribute("zombie.spawnReinforcements", 0.0D, 0.0D, 1.0D)).func_111117_a("Spawn Reinforcements Chance");
 
   public EntityZombieDayZ(World par1World) {
     super(par1World);
@@ -113,30 +109,30 @@ public class EntityZombieDayZ extends EntityMob {
       int j = rand.nextInt(10);
       int k = rand.nextInt(20);
       if (j == 0) {
-        ((EntityLivingBase)entity).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 120, 1));
+        ((EntityLivingBase)entity).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 300, 1));
       }
       if (k == 0) {
-        ((EntityLivingBase)entity).addPotionEffect(new EnactEffect(Effect.zombification.getId(), 20 * 120, 1));
+        ((EntityLivingBase)entity).addPotionEffect(new EnactEffect(Effect.zombification.getId(), 20 * 300, 1));
       }
       return entity.attackEntityFrom(DamageSource.causeMobDamage(this), 1);
     } else if (worldObj.difficultySetting == 2) {
       int j = rand.nextInt(5);
       int k = rand.nextInt(10);
       if (j == 0) {
-        ((EntityLivingBase)entity).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 120, 1));
+        ((EntityLivingBase)entity).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 300, 1));
       }
       if (k == 0) {
-        ((EntityLivingBase)entity).addPotionEffect(new EnactEffect(Effect.zombification.getId(), 20 * 120, 1));
+        ((EntityLivingBase)entity).addPotionEffect(new EnactEffect(Effect.zombification.getId(), 20 * 300, 1));
       }
       return entity.attackEntityFrom(DamageSource.causeMobDamage(this), 2);
     } else if (worldObj.difficultySetting == 3) {
       int j = rand.nextInt(3);
       int k = rand.nextInt(6);
       if (j == 0) {
-        ((EntityLivingBase)entity).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 120, 1));
+        ((EntityLivingBase)entity).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 300, 1));
       }
       if (k == 0) {
-        ((EntityLivingBase)entity).addPotionEffect(new EnactEffect(Effect.zombification.getId(), 20 * 120, 1));
+        ((EntityLivingBase)entity).addPotionEffect(new EnactEffect(Effect.zombification.getId(), 20 * 300, 1));
       }
       return entity.attackEntityFrom(DamageSource.causeMobDamage(this), 4);
     } else {

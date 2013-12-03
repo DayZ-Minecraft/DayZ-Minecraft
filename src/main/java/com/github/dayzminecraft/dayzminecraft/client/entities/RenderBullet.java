@@ -8,7 +8,6 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 import com.github.dayzminecraft.dayzminecraft.DayZ;
-import com.github.dayzminecraft.dayzminecraft.common.entities.EntityBullet;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -21,7 +20,7 @@ public class RenderBullet extends Render {
     modelBullet = modelBase;
   }
 
-  public void renderBullet(EntityBullet entityBullet, double x, double y, double z, float yaw, float partialTickTime) {
+  public void renderBullet(Entity entity, double x, double y, double z) {
     GL11.glPushMatrix();
     GL11.glDisable(GL11.GL_CULL_FACE);
     GL11.glTranslatef((float)x, (float)y, (float)z);
@@ -29,8 +28,8 @@ public class RenderBullet extends Render {
     GL11.glEnable(GL12.GL_RESCALE_NORMAL);
     GL11.glScalef(-1.0F, -1.0F, 1.0F);
     GL11.glEnable(GL11.GL_ALPHA_TEST);
-    bindEntityTexture(entityBullet);
-    modelBullet.render(entityBullet, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, f2);
+    bindEntityTexture(entity);
+    modelBullet.render(entity, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, f2);
     GL11.glPopMatrix();
   }
 
@@ -41,7 +40,7 @@ public class RenderBullet extends Render {
 
   @Override
   public void doRender(Entity entity, double x, double y, double z, float yaw, float partialTickTime) {
-    renderBullet((EntityBullet)entity, x, y, z, yaw, partialTickTime);
+    renderBullet(entity, x, y, z);
   }
 
 

@@ -17,7 +17,7 @@ import com.github.dayzminecraft.dayzminecraft.common.misc.DamageType;
 import com.github.dayzminecraft.dayzminecraft.common.misc.LootManager;
 
 public class CommonEvents {
-  @ForgeSubscribe
+  @ForgeSubscribe @SuppressWarnings("unused")
   public void worldLoad(WorldEvent.Load event) {
     for (Object obj : event.world.loadedTileEntityList) {
       if (obj instanceof TileEntityChest) {
@@ -25,7 +25,7 @@ public class CommonEvents {
         if (event.world.getBlockId(chest.xCoord, chest.yCoord, chest.zCoord) == Blocks.chestLoot.blockID) {
           boolean continueChecking = true;
           int slotNumber = 0;
-          while (continueChecking == true) {
+          while (continueChecking) {
             if (chest.getStackInSlot(slotNumber) == null && slotNumber < 27) {
               if (slotNumber == 26) {
                 WeightedRandomChestContent.generateChestContents(event.world.rand, LootManager.loot, chest, event.world.rand.nextInt(5) + 1);
@@ -43,7 +43,7 @@ public class CommonEvents {
     }
   }
 
-  @ForgeSubscribe
+  @ForgeSubscribe @SuppressWarnings("unused")
   public void playerInteract(EntityInteractEvent event) {
     if (event.target != null && event.target instanceof EntityPlayer && event.entityPlayer.getCurrentEquippedItem().itemID == Items.healBloodbag.itemID) {
       ((EntityPlayer)event.target).heal(20F);
@@ -51,14 +51,14 @@ public class CommonEvents {
     }
   }
 
-  @ForgeSubscribe
+  @ForgeSubscribe @SuppressWarnings("unused")
   public void onEntityUpdate(LivingUpdateEvent event) {
     if (event.entityLiving.isPotionActive(Effect.bleeding)) {
       if (event.entityLiving.getActivePotionEffect(Effect.bleeding).getDuration() == 0) {
         event.entityLiving.removePotionEffect(Effect.bleeding.id);
         return;
       }
-      if (event.entityLiving.worldObj.rand.nextInt(20) == 0) {
+      if (event.entityLiving.worldObj.rand.nextInt(100) == 0) {
         event.entityLiving.attackEntityFrom(DamageType.bleedOut, 2);
       }
     }
@@ -67,7 +67,7 @@ public class CommonEvents {
         event.entityLiving.removePotionEffect(Effect.zombification.id);
         return;
       }
-      if (event.entityLiving.worldObj.rand.nextInt(20) == 0) {
+      if (event.entityLiving.worldObj.rand.nextInt(100) == 0) {
         if (event.entityLiving.getHealth() > 1.0F) {
           event.entityLiving.attackEntityFrom(DamageType.zombieInfection, 1.0F);
         } else {

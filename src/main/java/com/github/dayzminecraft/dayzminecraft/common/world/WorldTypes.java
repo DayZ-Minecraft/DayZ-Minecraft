@@ -7,7 +7,6 @@ import net.minecraft.world.biome.WorldChunkManager;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.ChunkProviderGenerate;
 import net.minecraft.world.gen.layer.GenLayer;
-import net.minecraft.world.gen.layer.GenLayerHills;
 import net.minecraftforge.common.Configuration;
 
 import com.github.dayzminecraft.dayzminecraft.common.world.biomes.Biomes;
@@ -42,11 +41,7 @@ public class WorldTypes extends WorldType {
     return new ChunkProviderGenerate(world, world.getSeed(), world.getWorldInfo().isMapFeaturesEnabled());
   }
 
-  /**
-   * Returns an array of large, "major" biomes, such as forest, desert, or taiga in the overworld.
-   *
-   * @see GenLayerBiomes (for the array of biomes used in the overworld)
-   */
+  /** Returns an array of large, "major" biomes, such as forest, desert, or taiga in the overworld. */
   public BiomeGenBase[] setMajorBiomes() {
     if (this == DAYZ) {
       return new BiomeGenBase[] {Biomes.biomeForest};
@@ -60,12 +55,8 @@ public class WorldTypes extends WorldType {
    * Returns a "minor" biome based on conditions of modder's choosing. Examples of such biomes in the overworld include
    * the hilly or mountainous areas within larger biomes such as tundra or jungle, as well as the splotches of forest
    * across the plains.
-   *
-   * @param biomegenbase the "major" biome(s) on top of which this biome generates
-   * @param genlayer the GenLayer generating these biomes; use to retrieve the genlayer.nextInt() method for random
-   * biome generation instead of random.nextInt()
-   * @see GenLayerHills (for the overworld's minor biome generation)
    */
+  @SuppressWarnings("unused")
   public BiomeGenBase setMinorBiomes(BiomeGenBase biome, GenLayer genLayer) {
     if (this == DAYZ) {
       return Biomes.biomePlains;
@@ -81,6 +72,7 @@ public class WorldTypes extends WorldType {
    *
    * @params See the "setMinorBiomes" method.
    */
+  @SuppressWarnings("unused")
   public BiomeGenBase setOceanBiomes(BiomeGenBase biome, GenLayer genLayer) {
     return null;
   }
@@ -91,6 +83,7 @@ public class WorldTypes extends WorldType {
    *
    * @params See the "setMinorBiomes" method.
    */
+  @SuppressWarnings("unused")
   public BiomeGenBase setRiverBiomes(BiomeGenBase biome, GenLayer genLayer) {
     if (this == DAYZ) {
       return Biomes.biomeRiver;
@@ -100,13 +93,8 @@ public class WorldTypes extends WorldType {
     return null;
   }
 
-  /**
-   * Returns a biome generated consistently along the border of two separate biomes.
-   *
-   * @param biomegenbase the biome on one side of the border
-   * @param biomegenbase1 the biome on the other side of the border
-   * @param genlayer See the "setMinorBiomes" method.
-   */
+  /** Returns a biome generated consistently along the border of two separate biomes. */
+  @SuppressWarnings("unused")
   public BiomeGenBase setBorderBiomes(BiomeGenBase biome1, BiomeGenBase biome2, GenLayer genLayer) {
     return null;
   }
@@ -114,9 +102,8 @@ public class WorldTypes extends WorldType {
   /**
    * Returns a biome that can be generated anywhere; only the rarity of the biome, not its generation overtop of other
    * biomes, can be defined.
-   *
-   * @param genlayer See the "setMinorBiomes" method.
    */
+  @SuppressWarnings("unused")
   public BiomeGenBase setMiscellaneousBiomes(GenLayer genLayer) {
     return null;
   }

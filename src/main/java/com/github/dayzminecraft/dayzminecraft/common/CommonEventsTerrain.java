@@ -11,14 +11,14 @@ import com.github.dayzminecraft.dayzminecraft.common.world.generation.StructureH
 import com.github.dayzminecraft.dayzminecraft.common.world.genlayer.GenLayerDayZ;
 
 public class CommonEventsTerrain {
-  @ForgeSubscribe
+  @ForgeSubscribe @SuppressWarnings("unused")
   public void initBiomeGens(WorldTypeEvent.InitBiomeGens event) {
     if (event.worldType instanceof WorldTypes) {
       event.newBiomeGens = GenLayerDayZ.getGenLayers(event.seed, (WorldTypes)event.worldType);
     }
   }
 
-  @ForgeSubscribe
+  @ForgeSubscribe @SuppressWarnings("unused")
   public void populateChunk(PopulateChunkEvent.Populate event) {
     if (event.world.getWorldInfo().getTerrainType() instanceof WorldTypes) {
       if (event.type == PopulateChunkEvent.Populate.EventType.LAKE) {

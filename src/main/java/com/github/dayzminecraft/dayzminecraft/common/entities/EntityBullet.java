@@ -18,11 +18,6 @@ public class EntityBullet extends EntityThrowable {
   private int bulletdamage;
   public Entity shootingEntity;
 
-  public EntityBullet(World world) {
-    super(world);
-    setSize(0.1F, 0.1F);
-  }
-
   public EntityBullet(World world, EntityLivingBase entityLivingBase, int damage) {
     super(world, entityLivingBase);
     bulletdamage = damage;
@@ -38,11 +33,6 @@ public class EntityBullet extends EntityThrowable {
     motionZ = MathHelper.cos(rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(rotationPitch / 180.0F * (float)Math.PI);
     motionY = (-MathHelper.sin(rotationPitch / 180.0F * (float)Math.PI));
     setThrowableHeading(motionX, motionY, motionZ, 1.5F, 1.0F);
-  }
-
-  public EntityBullet(World world, double xCoord, double yCoord, double zCoord) {
-    super(world, xCoord, yCoord, zCoord);
-
   }
 
   @Override
@@ -72,24 +62,24 @@ public class EntityBullet extends EntityThrowable {
       int var2 = bulletdamage;
 
       if (movingObjectPosition.entityHit instanceof EntityLivingBase) {
-        ((EntityLivingBase)movingObjectPosition.entityHit).attackEntityFrom(DamageSource.causeThrownDamage(this, shootingEntity), var2);
+        movingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, shootingEntity), var2);
       }
 
       if (movingObjectPosition.entityHit instanceof EntityPlayer) {
         if (worldObj.difficultySetting == 1) {
           int j = rand.nextInt(10);
           if (j == 0) {
-            ((EntityLivingBase)movingObjectPosition.entityHit).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 120, 1));
+            ((EntityLivingBase)movingObjectPosition.entityHit).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 300, 1));
           }
         } else if (worldObj.difficultySetting == 2) {
           int j = rand.nextInt(5);
           if (j == 0) {
-            ((EntityLivingBase)movingObjectPosition.entityHit).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 120, 1));
+            ((EntityLivingBase)movingObjectPosition.entityHit).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 300, 1));
           }
         } else if (worldObj.difficultySetting == 3) {
           int j = rand.nextInt(3);
           if (j == 0) {
-            ((EntityLivingBase)movingObjectPosition.entityHit).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 120, 1));
+            ((EntityLivingBase)movingObjectPosition.entityHit).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 300, 1));
           }
         }
       }

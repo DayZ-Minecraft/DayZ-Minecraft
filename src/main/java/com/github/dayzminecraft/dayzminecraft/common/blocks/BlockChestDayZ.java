@@ -27,7 +27,6 @@ public class BlockChestDayZ extends BlockChest {
       if (tileEntity != null && (isEmpty((TileEntityChest)tileEntity))) {
         WeightedRandomChestContent.generateChestContents(random, LootManager.loot, (TileEntityChest)tileEntity, random.nextInt(5) + 1);
       }
-      ChatHandler.logInfo("Chest update!");
     }
   }
 

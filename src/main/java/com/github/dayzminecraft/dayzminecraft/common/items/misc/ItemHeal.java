@@ -25,9 +25,7 @@ public class ItemHeal extends ItemMod {
   public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer entityPlayer) {
     itemStack.stackSize--;
     entityPlayer.heal(healAmount);
-    for (Potion potion : potionsToStop) {
-      entityPlayer.clearActivePotions();
-    }
+    entityPlayer.clearActivePotions();
     return itemStack;
   }
 }

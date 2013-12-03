@@ -19,20 +19,20 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemFoodCanned extends ItemMod {
-  public ItemFoodCanned(int id, int healAmount) {
-    super(id);
-    setHasSubtypes(true);
-    this.healAmount = healAmount;
-    setHasSubtypes(true);
-  }
-
   @SideOnly(Side.CLIENT)
   private Icon[] icons;
   private String[] names = new String[] {"Canned_Beans", "Canned_Soup", "Canned_Pasta", "Canned_Fish", "Canned_Pickles", "Canned_Fruit"};
 
   private float saturationModifier;
   private int healAmount;
-  private boolean alwaysEdible;
+
+  public ItemFoodCanned(int id, int healAmount, float saturationModifier) {
+    super(id);
+    setHasSubtypes(true);
+    this.healAmount = healAmount;
+    this.saturationModifier = saturationModifier;
+    setHasSubtypes(true);
+  }
 
   @Override
   public ItemStack onEaten(ItemStack itemStack, World world, EntityPlayer entityPlayer) {
@@ -40,11 +40,11 @@ public class ItemFoodCanned extends ItemMod {
     --itemStack.stackSize;
     entityPlayer.getFoodStats().addStats(healAmount, saturationModifier);
     world.playSoundAtEntity(entityPlayer, "random.burp", 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
-    onFoodEaten(itemStack, world, entityPlayer);
+    onFoodEaten(itemStack, entityPlayer);
     return itemStack;
   }
 
-  protected void onFoodEaten(ItemStack itemStack, World world, EntityPlayer entityPlayer) {
+  protected void onFoodEaten(ItemStack itemStack, EntityPlayer entityPlayer) {
     entityPlayer.inventory.addItemStackToInventory(new ItemStack(Items.foodCanEmpty, getDamage(itemStack)));
   }
 
@@ -66,10 +66,7 @@ public class ItemFoodCanned extends ItemMod {
 
   @Override
   public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer entityPlayer) {
-    if (entityPlayer.canEat(alwaysEdible)) {
-      entityPlayer.setItemInUse(itemStack, getMaxItemUseDuration(itemStack));
-    }
-
+    entityPlayer.setItemInUse(itemStack, getMaxItemUseDuration(itemStack));
     return itemStack;
   }
 
@@ -79,7 +76,7 @@ public class ItemFoodCanned extends ItemMod {
     return icons[j];
   }
 
-  @Override @SideOnly(Side.CLIENT)
+  @Override @SideOnly(Side.CLIENT) @SuppressWarnings("unchecked")
   public void getSubItems(int itemId, CreativeTabs creativeTab, List containerList) {
     for (int damage = 0; damage < 6; ++damage) {
       containerList.add(new ItemStack(itemId, 1, damage));
@@ -91,7 +88,7 @@ public class ItemFoodCanned extends ItemMod {
     icons = new Icon[6];
 
     for (int damage = 0; damage < 6; ++damage) {
-      icons[damage] = register.registerIcon(DayZ.meta.modId + ":" + new String("foodCanned").substring(new String("foodCanned").indexOf(".") + 1) + damage);
+      icons[damage] = register.registerIcon(DayZ.meta.modId + ":" + "foodCanned".substring("foodCanned".indexOf(".") + 1) + damage);
     }
   }
 }

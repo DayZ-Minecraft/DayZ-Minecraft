@@ -7,10 +7,10 @@ import net.minecraft.world.gen.layer.IntCache;
 import com.github.dayzminecraft.dayzminecraft.common.world.WorldTypes;
 
 public class GenLayerDayZOcean1 extends GenLayer {
-  public GenLayerDayZOcean1(long l, GenLayer genlayer, WorldTypes worldtype) {
+  public GenLayerDayZOcean1(long l, GenLayer genlayer, WorldTypes worldType) {
     super(l);
     parent = genlayer;
-    worldType = worldtype;
+    this.worldType = worldType;
   }
 
   @Override
@@ -24,8 +24,8 @@ public class GenLayerDayZOcean1 extends GenLayer {
 
     for (int i1 = 0; i1 < par4; i1++) {
       for (int j1 = 0; j1 < par3; j1++) {
-        int k1 = ai[j1 + 0 + (i1 + 0) * k];
-        int l1 = ai[j1 + 2 + (i1 + 0) * k];
+        int k1 = ai[j1 + 0 + (i1) * k];
+        int l1 = ai[j1 + 2 + (i1) * k];
         int i2 = ai[j1 + 0 + (i1 + 2) * k];
         int j2 = ai[j1 + 2 + (i1 + 2) * k];
         int k2 = ai[j1 + 1 + (i1 + 1) * k];
@@ -56,7 +56,7 @@ public class GenLayerDayZOcean1 extends GenLayer {
             continue;
           }
 
-          BiomeGenBase ocean = null;
+          BiomeGenBase ocean;
           if (i3 >= 0) {
             ocean = worldType.setOceanBiomes(BiomeGenBase.biomeList[i3], this);
           } else {

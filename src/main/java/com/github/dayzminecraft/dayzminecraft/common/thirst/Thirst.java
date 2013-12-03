@@ -3,16 +3,16 @@ package com.github.dayzminecraft.dayzminecraft.common.thirst;
 import java.util.HashMap;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.StatCollector;
 
 import com.github.dayzminecraft.dayzminecraft.common.misc.ChatHandler;
 import com.github.dayzminecraft.dayzminecraft.common.misc.DamageType;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
-import net.minecraft.util.StatCollector;
 
 public class Thirst {
-  public HashMap<String, Integer> thirstMap = new HashMap<String, Integer>();
+  public HashMap<String, Integer> thirstMap = new HashMap<>();
 
   /** Performs the thirst changes for all players in the thirst map */
   public void handleThirst() {
@@ -52,20 +52,7 @@ public class Thirst {
     thirstMap.put(username, playerThirst);
   }
 
-  public int getPlayerThirst(EntityPlayer player) {
-    return thirstMap.get(player.username);
-  }
-
-  public int getPlayerThirst(String username) {
-    return thirstMap.get(username);
-  }
-
-  /**
-   * Subtracts the thirst for the specified player Used on drinking
-   *
-   * @param player
-   * @param amount
-   */
+  /** Subtracts the thirst for the specified player Used on drinking */
   public void subtractThirst(EntityPlayer player, int amount) {
     int playerThirst = thirstMap.get(player.username);
     playerThirst = playerThirst - amount;

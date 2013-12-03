@@ -30,7 +30,7 @@ public class ItemCanEmpty extends ItemMod {
     return icons[j];
   }
 
-  @Override @SideOnly(Side.CLIENT)
+  @Override @SideOnly(Side.CLIENT) @SuppressWarnings("unchecked")
   public void getSubItems(int itemId, CreativeTabs creativeTab, List containerList) {
     for (int damage = 0; damage < 6; ++damage) {
       containerList.add(new ItemStack(itemId, 1, damage));

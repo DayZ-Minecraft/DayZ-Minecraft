@@ -16,10 +16,10 @@ public class ItemDrinkBottle extends ItemMod {
 
   private boolean isAlcohol;
 
-  public ItemDrinkBottle(int itemId, int healAmount) {
+  public ItemDrinkBottle(int itemId, int healAmount, boolean isAlcohol) {
     super(itemId);
     this.healAmount = healAmount;
-    isAlcohol = false;
+    this.isAlcohol = isAlcohol;
     setMaxDamage(3);
   }
 
@@ -27,7 +27,7 @@ public class ItemDrinkBottle extends ItemMod {
   public ItemStack onEaten(ItemStack itemStack, World world, EntityPlayer entityPlayer) {
     DayZ.thirst().subtractThirst(entityPlayer, healAmount);
     itemStack.damageItem(1, entityPlayer);
-    if (isAlcohol == true) {
+    if (isAlcohol) {
       entityPlayer.addPotionEffect(new PotionEffect(Potion.confusion.id, 30 * 20, 1));
     }
     world.playSoundAtEntity(entityPlayer, "random.burp", 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);

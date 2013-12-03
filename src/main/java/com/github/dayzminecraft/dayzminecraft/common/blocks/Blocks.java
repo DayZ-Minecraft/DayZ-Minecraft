@@ -31,8 +31,7 @@ public class Blocks {
     GameRegistry.registerBlock(sandbagBlock, "sandbagBlock");
     nailBlock = new BlockNails(nailBlockId, Material.circuits).setUnlocalizedName("nailBlock").setHardness(1F).setResistance(1F);
     GameRegistry.registerBlock(nailBlock, "nailBlock");
-
-    GameRegistry.addRecipe(new ItemStack(nailBlock, 8), new Object[] {"#", "#", Character.valueOf('#'), Item.ingotIron});
+    GameRegistry.addRecipe(new ItemStack(nailBlock, 8), "#", "#", '#', Item.ingotIron);
   }
 
   public static void blockConfig(Configuration config) {
