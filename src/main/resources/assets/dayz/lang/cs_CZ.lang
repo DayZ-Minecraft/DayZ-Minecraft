@@ -1,0 +1,88 @@
+#DayZ Language File - AirazzNigeen
+item.drinkCanEmpty.empty_beer.name=Prázdná Plechovka Piva
+item.drinkCanEmpty.empty_lemon_soda.name=Prázdná Plechovka Limonády
+item.drinkCanEmpty.empty_cola.name=Prázdná Plechovka Koly
+item.drinkCanEmpty.empty_energy_drink.name=Prázdná Plechovka Energetického Nápoje
+item.drinkCanEmpty.empty_orange_soda.name=Prázdná Plechovka Pomeranèového Džusu
+
+item.drinkCanned.beer.name=Plechovka Piva
+item.drinkCanned.lemon_soda.name=Plechovka Limonády
+item.drinkCanned.cola.name=Plechovka Koly
+item.drinkCanned.energy_drink.name=Plechovka Energetického Nápoje
+item.drinkCanned.orange_soda.name=Plechovka Pomeranèového Džusu
+
+item.foodCanEmpty.empty_canned_beans.name=Prázdná Plechovka Fazolí
+item.foodCanEmpty.empty_canned_soup.name=Prázdná Plechovka Polévky
+item.foodCanEmpty.empty_canned_pasta.name=Prázdná Plechovka Tìstovin
+item.foodCanEmpty.empty_canned_fish.name=Prázdná Plechovka Sardinek
+item.foodCanEmpty.empty_canned_pickles.name=Prázdná Plechovka Nekládané Zeleniny
+item.foodCanEmpty.empty_canned_fruit.name=Prázdná Plechovka Nakládaného Ovoce
+
+item.foodCanned.canned_beans.name=Plechovka Fazolí
+item.foodCanned.canned_soup.name=Plechovka Polévky
+item.foodCanned.canned_pasta.name=Plechovka Tìstovin
+item.foodCanned.canned_fish.name=Plechovka Sardinek
+item.foodCanned.canned_pickles.name=Plechovka Nekládané Zeleniny
+item.foodCanned.canned_fruit.name=Plechovka Nakládaného Ovoce
+
+item.gunAk74u.name=Ak-74u
+item.gunMakarov.name=Makarov
+item.gunRemington.name=Brokovnice Remington
+item.gunLeeEnfield.name=Lee Enfield
+item.gunGlock17.name=Glock 17
+item.gunDoubleBarreledShotgun.name=Dvouhlavòová Brokovnice
+item.gunUsp.name=USP
+item.gunAk74.name=Ak-74
+
+item.ammoAk74u.name=Zásobník Ak-74u
+item.ammoMakarov.name=Zásobník Makarov
+item.ammoRemington.name=Patrony Remington
+item.ammoLeeEnfield.name=Zásobník Lee Enfield
+item.ammoGlock17.name=Zásobník Glock 17
+item.ammoDoubleBarreledShotgun.name=Patrony Dvouhlavòové Brokovnice
+item.ammoUsp.name=Zásobník USP
+item.ammoAk74.name=Zásobník Ak-74
+
+item.itemMatches.name=Krabièka Sirek
+item.healBandage.name=Obvaz
+item.healBandage.description=Zastaví Krvácení
+item.healAntibiotics.name=Antibiotika
+item.healAntibiotics.description=Zastaví infekci
+item.healBloodbag.name=Krevní Sáèek
+item.healBloodbag.description=Nemùže být použit sám na sebe
+item.camoHelmet.name=Kamuflovaná Helma
+item.camoChest.name=Kamuflované Tìlo
+item.camoLegs.name=Kamuflované Kalhoty
+item.camoBoots.name=Kamuflované Boty
+
+item.drinkWhiskeyBottle.name=Láhev Whiskey
+item.drinkCiderBottle.name=Láhev Moštu
+item.drinkVodkaBottle.name=Láhev Vodky
+
+item.meleeBaseballBat.name=Baseballová Pálka
+item.meleeBaseballBatNailed.name=Baseballová Pálka s Høebíky
+item.meleePlank.name=Prkno
+item.meleePlankNailed.name=Prkno s Høebíky
+item.meleePipe.name=Ocelová Trubice
+item.meleeCrowbar.name=Páèidlo
+item.meleeMachete.name=Maèeta
+
+tile.barbedWire.name=Ostnatý Drát
+tile.chestLoot.name=Truhla s Koøistí
+tile.chainFence.name=Kroužkový Plot
+tile.sandbagBlock.name=Pytle s Pískem
+tile.nailBlock.name=Høebíky
+
+thirst.replentish=Ahh, mnohem lepší...
+thirst.thirdwarning=Mìl bych zaèít hledat vodu...
+thirst.secondwarning=Cítím se žíznivím...
+thirst.firstwarning=Moje pusa je trošku vyschlá...
+
+entity.Crawler.name=Plaziè
+entity.DayZZombie.name=Zombie
+generator.DAYZBASE=Day Z Originál
+generator.DAYZSNOW=Day Z Plánì Snìhu
+itemGroup.creativeTabDayZ=Day Z
+death.attack.bleedOut=%1$s ztratil moc krve.
+death.attack.zombieInfection=%1$s se promìnil v Zombie.
+death.attack.dehydration=%1$s zemøel na dehydrataci.
