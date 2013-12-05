@@ -1,0 +1,88 @@
+#DayZ Language File - DoktorKroete
+item.drinkCanEmpty.empty_beer.name=Leere Bier-Dose
+item.drinkCanEmpty.empty_lemon_soda.name=Leere Zitronenlimonade
+item.drinkCanEmpty.empty_cola.name=Leere Cola
+item.drinkCanEmpty.empty_energy_drink.name=Leeres Energy Drink
+item.drinkCanEmpty.empty_orange_soda.name=Leere Orangenlimonade
+
+item.drinkCanned.beer.name=Bier
+item.drinkCanned.lemon_soda.name=Zitronenlimonade
+item.drinkCanned.cola.name=Cola
+item.drinkCanned.energy_drink.name=Energy Drink
+item.drinkCanned.orange_soda.name=Orangenlimonade
+
+item.foodCanEmpty.empty_canned_beans.name=Bohnen in der Dose
+item.foodCanEmpty.empty_canned_soup.name=Konserven Suppe
+item.foodCanEmpty.empty_canned_pasta.name=Pastakonserve
+item.foodCanEmpty.empty_canned_fish.name=Fischkonserve
+item.foodCanEmpty.empty_canned_pickles.name=Essiggurkenkonserve
+item.foodCanEmpty.empty_canned_fruit.name=Obstkonserve
+
+item.foodCanned.canned_beans.name=Bohnen in der Dose
+item.foodCanned.canned_soup.name=Konserven Suppe
+item.foodCanned.canned_pasta.name=Pastakonserve
+item.foodCanned.canned_fish.name=Fischkonserve
+item.foodCanned.canned_pickles.name=Essiggurkenkonserve
+item.foodCanned.canned_fruit.name=Obstkonserve
+
+item.gunAk74u.name=Ak-74u
+item.gunMakarov.name=Makarov
+item.gunRemington.name=Remington
+item.gunLeeEnfield.name=Lee Enfield
+item.gunGlock17.name=Glock 17
+item.gunDoubleBarreledShotgun.name=Doppelläufige Schrotflinte
+item.gunUsp.name=USP
+item.gunAk74.name=Ak-74
+
+item.ammoAk74u.name=Ak-74u Magazin
+item.ammoMakarov.name=Makarov Magazin
+item.ammoRemington.name=Remington Shells
+item.ammoLeeEnfield.name=Lee Enfield Magazin
+item.ammoGlock17.name=Glock 17 Magazin
+item.ammoDoubleBarreledShotgun.name=Double-barreled Shotgun Shells
+item.ammoUsp.name=USP Magazin
+item.ammoAk74.name=Ak-74 Magazin
+
+item.itemMatches.name=Streichhölzer
+item.healBandage.name=Verband
+item.healBandage.description=stoppt Blutungen
+item.healAntibiotics.name=Antibiotika
+item.healAntibiotics.description=stoppt Infektion
+item.healBloodbag.name=Blutbeutel
+item.healBloodbag.description=Kann selbst nicht angewendet werden
+item.camoHelmet.name=Tarnungs Helm
+item.camoChest.name=Tarnungs-Hemd
+item.camoLegs.name=Tarnungs-Hosen
+item.camoBoots.name=Tarnungs Stiefel
+
+item.drinkWhiskeyBottle.name=Flasche Whiskey
+item.drinkCiderBottle.name=Flasche Apfelwein
+item.drinkVodkaBottle.name=Flasche Vodka
+
+item.meleeBaseballBat.name=Baseballschläger
+item.meleeBaseballBatNailed.name=Genagelter Baseballschläger
+item.meleePlank.name=Brett
+item.meleePlankNailed.name=Genageltes Brett
+item.meleePipe.name=Stahlrohr
+item.meleeCrowbar.name=Brecheisen
+item.meleeMachete.name=Machete
+
+tile.barbedWire.name=Stacheldraht
+tile.chestLoot.name=Beute Truhe
+tile.chainFence.name=Maschendrahtzaun
+tile.sandbagBlock.name=Sandsäcke
+tile.nailBlock.name=Nägel
+
+thirst.replentish=Ahh, viel besser...
+thirst.thirdwarning=Ich sollte etwas Wasser bald finden...
+thirst.secondwarning=Ich glaube ich bin jetzt ziemlich durstig geworden...
+thirst.firstwarning=Mein Mund fühlt sich ein wenig trocken an...
+
+entity.Crawler.name=Kriecher
+entity.DayZZombie.name=zombie
+generator.DAYZBASE=Day Z Original
+generator.DAYZSNOW=Day Z Schnee
+itemGroup.creativeTabDayZ=Day Z
+death.attack.bleedOut=%1$s zu viel Blut verloren
+death.attack.zombieInfection=%1$s wurde ein Zombie
+death.attack.dehydration=%1$s starb an Austrocknung
