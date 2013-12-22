@@ -7,6 +7,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -14,38 +15,41 @@ import net.minecraft.world.World;
 import com.github.dayzminecraft.dayzminecraft.DayZ;
 import com.github.dayzminecraft.dayzminecraft.common.items.ItemMod;
 import com.github.dayzminecraft.dayzminecraft.common.items.Items;
+import com.github.dayzminecraft.dayzminecraft.common.thirst.PlayerData;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemFoodCanned extends ItemMod {
+public class ItemDrink extends ItemMod {
+  private final int healAmount;
+  private int potionId;
+  private int potionDuration;
+  private int potionAmplifier;
+  private float potionEffectProbability;
   @SideOnly(Side.CLIENT)
   private Icon[] icons;
-  private String[] names = new String[] {"Canned_Beans", "Canned_Soup", "Canned_Pasta", "Canned_Fish", "Canned_Pickles", "Canned_Fruit"};
+  private String[] names = new String[] {"Beer", "Lemon_Soda", "Cola", "Cola", "Energy_Drink", "Orange_Soda"};
 
-  private float saturationModifier;
-  private int healAmount;
-
-  public ItemFoodCanned(int id, int healAmount, float saturationModifier) {
-    super(id);
-    setHasSubtypes(true);
+  public ItemDrinkCanned(int itemId, int healAmount) {
+    super(itemId);
     this.healAmount = healAmount;
-    this.saturationModifier = saturationModifier;
     setHasSubtypes(true);
   }
 
   @Override
   public ItemStack onEaten(ItemStack itemStack, World world, EntityPlayer entityPlayer) {
-    entityPlayer.inventory.addItemStackToInventory(new ItemStack(Items.foodCanEmpty, 1, itemStack.getItemDamage()));
+    entityPlayer.inventory.addItemStackToInventory(new ItemStack(Items.drinkCanEmpty, 1, itemStack.getItemDamage()));
     --itemStack.stackSize;
-    entityPlayer.getFoodStats().addStats(healAmount, saturationModifier);
-    world.playSoundAtEntity(entityPlayer, "random.burp", 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
-    onFoodEaten(itemStack, entityPlayer);
+    PlayerData.get(entityPlayer).drink(healAmount);
+    onFoodEaten(itemStack, world, entityPlayer);
     return itemStack;
   }
 
-  protected void onFoodEaten(ItemStack itemStack, EntityPlayer entityPlayer) {
-    entityPlayer.inventory.addItemStackToInventory(new ItemStack(Items.foodCanEmpty, getDamage(itemStack)));
+  protected void onFoodEaten(ItemStack itemStack, World world, EntityPlayer entityPlayer) {
+    if (!world.isRemote && potionId > 0 && world.rand.nextFloat() < potionEffectProbability) {
+      entityPlayer.addPotionEffect(new PotionEffect(potionId, potionDuration * 20, potionAmplifier));
+      entityPlayer.inventory.addItemStackToInventory(new ItemStack(Items.drinkCanEmpty, getDamage(itemStack)));
+    }
   }
 
   @Override
@@ -55,7 +59,7 @@ public class ItemFoodCanned extends ItemMod {
 
   @Override
   public EnumAction getItemUseAction(ItemStack itemStack) {
-    return EnumAction.eat;
+    return EnumAction.drink;
   }
 
   @Override
@@ -88,7 +92,7 @@ public class ItemFoodCanned extends ItemMod {
     icons = new Icon[6];
 
     for (int damage = 0; damage < 6; ++damage) {
-      icons[damage] = register.registerIcon(DayZ.meta.modId + ":" + "foodCanned".substring("foodCanned".indexOf(".") + 1) + damage);
+      icons[damage] = register.registerIcon(DayZ.meta.modId + ":" + "drinkCanned".substring("drinkCanned".indexOf(".") + 1) + damage);
     }
   }
 }
