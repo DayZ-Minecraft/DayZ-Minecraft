@@ -1,29 +1,29 @@
 #DayZ Language File
-item.drinkCanEmpty.empty_beer.name=Empty Beer
-item.drinkCanEmpty.empty_lemon_soda.name=Empty Lemon Soda
-item.drinkCanEmpty.empty_cola.name=Empty Cola
-item.drinkCanEmpty.empty_energy_drink.name=Empty Energy Drink
-item.drinkCanEmpty.empty_orange_soda.name=Empty Orange Soda
+item.drinkCanBeer-empty.name=Empty Beer
+item.drinkCanLemonSoda-empty.name=Empty Lemon Soda
+item.drinkCanCola-empty.name=Empty Cola
+item.drinkCanEnergyDrink-empty.name=Empty Energy Drink
+item.drinkCanOrangeSoda-empty.name=Empty Orange Soda
 
-item.drinkCanned.beer.name=Beer
-item.drinkCanned.lemon_soda.name=Lemon Soda
-item.drinkCanned.cola.name=Cola
-item.drinkCanned.energy_drink.name=Energy Drink
-item.drinkCanned.orange_soda.name=Orange Soda
+item.drinkCanBeer.name=Beer
+item.drinkCanLemonSoda.name=Lemon Soda
+item.drinkCanCola.name=Cola
+item.drinkCanEnergyDrink.name=Energy Drink
+item.drinkCanOrangeSoda.name=Orange Soda
 
-item.foodCanEmpty.empty_canned_beans.name=Canned Beans
-item.foodCanEmpty.empty_canned_soup.name=Canned Soup
-item.foodCanEmpty.empty_canned_pasta.name=Canned Pasta
-item.foodCanEmpty.empty_canned_fish.name=Canned Fish
-item.foodCanEmpty.empty_canned_pickles.name=Canned Pickles
-item.foodCanEmpty.empty_canned_fruit.name=Canned Fruit
+item.cannedBeans-empty.name=Empty Canned Beans
+item.cannedSoup-empty.name=Empty Canned Soup
+item.cannedPasta-empty.name=Empty Canned Pasta
+item.cannedFish-empty.name=Empty Canned Fish
+item.cannedPickles-empty.name=Empty Canned Pickles
+item.cannedFruit-empty.name=Empty Canned Fruit
 
-item.foodCanned.canned_beans.name=Canned Beans
-item.foodCanned.canned_soup.name=Canned Soup
-item.foodCanned.canned_pasta.name=Canned Pasta
-item.foodCanned.canned_fish.name=Canned Fish
-item.foodCanned.canned_pickles.name=Canned Pickles
-item.foodCanned.canned_fruit.name=Canned Fruit
+item.cannedBeans.name=Canned Beans
+item.cannedSoup.name=Canned Soup
+item.cannedPasta.name=Canned Pasta
+item.cannedFish.name=Canned Fish
+item.cannedPickles.name=Canned Pickles
+item.cannedFruit.name=Canned Fruit
 
 item.gunAk74u.name=Ak-74u
 item.gunMakarov.name=Makarov

@@ -128,12 +128,27 @@ public class LootManager {
     addLoot(new ItemStack(Item.cookie), 9);
     addLoot(new ItemStack(Item.bakedPotato), 9);
     addLoot(new ItemStack(Items.healAntibiotics), 9);
-
-    for (int i = 0; i < 7; i++) {
-      addLoot(new ItemStack(Items.foodCanned, 1, i), 9);
-      addLoot(new ItemStack(Items.drinkCanned, 1, i), 9);
-      addLoot(new ItemStack(Items.drinkCanEmpty, 1, i), 11);
-      addLoot(new ItemStack(Items.foodCanEmpty, 1, i), 11);
-    }
+    addLoot(new ItemStack(Items.cannedBeans), 9);
+    addLoot(new ItemStack(Items.cannedSoup), 9);
+    addLoot(new ItemStack(Items.cannedPasta), 9);
+    addLoot(new ItemStack(Items.cannedFish), 9);
+    addLoot(new ItemStack(Items.cannedPickles), 9);
+    addLoot(new ItemStack(Items.cannedFruit), 9);
+    addLoot(new ItemStack(Items.drinkCanBeer), 9);
+    addLoot(new ItemStack(Items.drinkCanLemonSoda), 9);
+    addLoot(new ItemStack(Items.drinkCanCola), 9);
+    addLoot(new ItemStack(Items.drinkCanEnergyDrink), 9);
+    addLoot(new ItemStack(Items.drinkCanOrangeSoda), 9);
+    addLoot(new ItemStack(Items.cannedBeans, 1, 1), 11);
+    addLoot(new ItemStack(Items.cannedSoup, 1, 1), 11);
+    addLoot(new ItemStack(Items.cannedPasta, 1, 1), 11);
+    addLoot(new ItemStack(Items.cannedFish, 1, 1), 11);
+    addLoot(new ItemStack(Items.cannedPickles, 1, 1), 11);
+    addLoot(new ItemStack(Items.cannedFruit, 1, 1), 11);
+    addLoot(new ItemStack(Items.drinkCanBeer, 1, 1), 11);
+    addLoot(new ItemStack(Items.drinkCanLemonSoda, 1, 1), 11);
+    addLoot(new ItemStack(Items.drinkCanCola, 1, 1), 11);
+    addLoot(new ItemStack(Items.drinkCanEnergyDrink, 1, 1), 11);
+    addLoot(new ItemStack(Items.drinkCanOrangeSoda, 1, 1), 11);
   }
 }

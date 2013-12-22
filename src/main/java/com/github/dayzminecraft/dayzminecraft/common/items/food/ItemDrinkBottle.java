@@ -10,14 +10,15 @@ import net.minecraft.world.World;
 
 import com.github.dayzminecraft.dayzminecraft.DayZ;
 import com.github.dayzminecraft.dayzminecraft.common.items.ItemMod;
+import com.github.dayzminecraft.dayzminecraft.common.items.Items;
 import com.github.dayzminecraft.dayzminecraft.common.thirst.PlayerData;
 
-public class ItemDrink extends ItemMod {
+public class ItemDrinkBottle extends ItemMod {
   private final int healAmount;
 
   private boolean isAlcohol;
 
-  public ItemDrink(int itemId, int healAmount, boolean isAlcohol) {
+  public ItemDrinkBottle(int itemId, int healAmount, boolean isAlcohol) {
     super(itemId);
     this.healAmount = healAmount;
     this.isAlcohol = isAlcohol;

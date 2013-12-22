@@ -1,29 +1,29 @@
 #DayZ Language File - AirazzNigeen
-item.drinkCanEmpty.empty_beer.name=Prázdná Plechovka Piva
-item.drinkCanEmpty.empty_lemon_soda.name=Prázdná Plechovka Limonády
-item.drinkCanEmpty.empty_cola.name=Prázdná Plechovka Koly
-item.drinkCanEmpty.empty_energy_drink.name=Prázdná Plechovka Energetického Nápoje
-item.drinkCanEmpty.empty_orange_soda.name=Prázdná Plechovka Pomeranèového Džusu
+item.drinkCanBeer-empty.name=Prázdná Plechovka Piva
+item.drinkCanLemonSoda-empty.name=Prázdná Plechovka Limonády
+item.drinkCanCola-empty.name=Prázdná Plechovka Koly
+item.drinkCanEnergyDrink-empty.name=Prázdná Plechovka Energetického Nápoje
+item.drinkCanOrangeSoda-empty.name=Prázdná Plechovka Pomeranèového Džusu
 
-item.drinkCanned.beer.name=Plechovka Piva
-item.drinkCanned.lemon_soda.name=Plechovka Limonády
-item.drinkCanned.cola.name=Plechovka Koly
-item.drinkCanned.energy_drink.name=Plechovka Energetického Nápoje
-item.drinkCanned.orange_soda.name=Plechovka Pomeranèového Džusu
+item.drinkCanBeer.name=Plechovka Piva
+item.drinkCanLemonSoda.name=Plechovka Limonády
+item.drinkCanCola.name=Plechovka Koly
+item.drinkCanEnergyDrink.name=Plechovka Energetického Nápoje
+item.drinkCanOrangeSoda.name=Plechovka Pomeranèového Džusu
 
-item.foodCanEmpty.empty_canned_beans.name=Prázdná Plechovka Fazolí
-item.foodCanEmpty.empty_canned_soup.name=Prázdná Plechovka Polévky
-item.foodCanEmpty.empty_canned_pasta.name=Prázdná Plechovka Tìstovin
-item.foodCanEmpty.empty_canned_fish.name=Prázdná Plechovka Sardinek
-item.foodCanEmpty.empty_canned_pickles.name=Prázdná Plechovka Nekládané Zeleniny
-item.foodCanEmpty.empty_canned_fruit.name=Prázdná Plechovka Nakládaného Ovoce
+item.cannedBeans-empty.name=Prázdná Plechovka Fazolí
+item.cannedSoup-empty.name=Prázdná Plechovka Polévky
+item.cannedPasta-empty.name=Prázdná Plechovka Tìstovin
+item.cannedFish-empty.name=Prázdná Plechovka Sardinek
+item.cannedPickles-empty.name=Prázdná Plechovka Nekládané Zeleniny
+item.cannedFruit-empty.name=Prázdná Plechovka Nakládaného Ovoce
 
-item.foodCanned.canned_beans.name=Plechovka Fazolí
-item.foodCanned.canned_soup.name=Plechovka Polévky
-item.foodCanned.canned_pasta.name=Plechovka Tìstovin
-item.foodCanned.canned_fish.name=Plechovka Sardinek
-item.foodCanned.canned_pickles.name=Plechovka Nekládané Zeleniny
-item.foodCanned.canned_fruit.name=Plechovka Nakládaného Ovoce
+item.cannedBeans.name=Plechovka Fazolí
+item.cannedSoup.name=Plechovka Polévky
+item.cannedPasta.name=Plechovka Tìstovin
+item.cannedFish.name=Plechovka Sardinek
+item.cannedPickles.name=Plechovka Nekládané Zeleniny
+item.cannedFruit.name=Plechovka Nakládaného Ovoce
 
 item.gunAk74u.name=Ak-74u
 item.gunMakarov.name=Makarov

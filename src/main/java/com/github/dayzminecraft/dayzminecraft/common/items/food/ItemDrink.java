@@ -1,60 +1,47 @@
 package com.github.dayzminecraft.dayzminecraft.common.items.food;
 
-import java.util.List;
-
 import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.Icon;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import com.github.dayzminecraft.dayzminecraft.DayZ;
 import com.github.dayzminecraft.dayzminecraft.common.items.ItemMod;
-import com.github.dayzminecraft.dayzminecraft.common.items.Items;
 import com.github.dayzminecraft.dayzminecraft.common.thirst.PlayerData;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemDrink extends ItemMod {
   private final int healAmount;
-  private int potionId;
-  private int potionDuration;
-  private int potionAmplifier;
-  private float potionEffectProbability;
-  @SideOnly(Side.CLIENT)
-  private Icon[] icons;
-  private String[] names = new String[] {"Beer", "Lemon_Soda", "Cola", "Cola", "Energy_Drink", "Orange_Soda"};
+  private final boolean isAlcohol;
+  private Icon emptyCanIcon;
 
-  public ItemDrinkCanned(int itemId, int healAmount) {
+  public ItemDrink(int itemId, int healAmount, boolean isAlcohol) {
     super(itemId);
     this.healAmount = healAmount;
-    setHasSubtypes(true);
+    this.isAlcohol = isAlcohol;
+    setMaxDamage(1);
+  }
+
+  public ItemDrink(int itemId, int healAmount) {
+    this(itemId, healAmount, false);
+  }
+
+  public ItemDrink(int itemId) {
+    this(itemId, 4000, false);
   }
 
   @Override
   public ItemStack onEaten(ItemStack itemStack, World world, EntityPlayer entityPlayer) {
-    entityPlayer.inventory.addItemStackToInventory(new ItemStack(Items.drinkCanEmpty, 1, itemStack.getItemDamage()));
-    --itemStack.stackSize;
     PlayerData.get(entityPlayer).drink(healAmount);
-    onFoodEaten(itemStack, world, entityPlayer);
-    return itemStack;
-  }
-
-  protected void onFoodEaten(ItemStack itemStack, World world, EntityPlayer entityPlayer) {
-    if (!world.isRemote && potionId > 0 && world.rand.nextFloat() < potionEffectProbability) {
-      entityPlayer.addPotionEffect(new PotionEffect(potionId, potionDuration * 20, potionAmplifier));
-      entityPlayer.inventory.addItemStackToInventory(new ItemStack(Items.drinkCanEmpty, getDamage(itemStack)));
+    if (isAlcohol) {
+      entityPlayer.addPotionEffect(new PotionEffect(Potion.confusion.id, 30 * 20, 1));
     }
-  }
-
-  @Override
-  public int getMaxItemUseDuration(ItemStack itemStack) {
-    return 32;
+    world.playSoundAtEntity(entityPlayer, "random.burp", 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
+    itemStack.damageItem(1, entityPlayer);
+    return itemStack;
   }
 
   @Override
@@ -63,36 +50,36 @@ public class ItemDrink extends ItemMod {
   }
 
   @Override
-  public String getUnlocalizedName(ItemStack itemStack) {
-    int i = MathHelper.clamp_int(itemStack.getItemDamage(), 0, 5);
-    return super.getUnlocalizedName() + "." + names[i].toLowerCase();
+  public int getMaxItemUseDuration(ItemStack itemStack) {
+    return 32;
   }
 
   @Override
   public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer entityPlayer) {
-    entityPlayer.setItemInUse(itemStack, getMaxItemUseDuration(itemStack));
+    if (itemStack.getItemDamage() != itemStack.getMaxDamage()) {
+      entityPlayer.setItemInUse(itemStack, getMaxItemUseDuration(itemStack));
+    }
     return itemStack;
   }
 
-  @Override @SideOnly(Side.CLIENT)
+  @Override
   public Icon getIconFromDamage(int damage) {
-    int j = MathHelper.clamp_int(damage, 0, 5);
-    return icons[j];
-  }
-
-  @Override @SideOnly(Side.CLIENT) @SuppressWarnings("unchecked")
-  public void getSubItems(int itemId, CreativeTabs creativeTab, List containerList) {
-    for (int damage = 0; damage < 6; ++damage) {
-      containerList.add(new ItemStack(itemId, 1, damage));
-    }
+    if (damage != getMaxDamage()) return this.itemIcon;
+    else return emptyCanIcon;
   }
 
   @Override
   public void registerIcons(IconRegister register) {
-    icons = new Icon[6];
+    itemIcon = register.registerIcon(DayZ.meta.modId + ":" + getUnlocalizedName().substring(getUnlocalizedName().indexOf(".") + 1));
+    emptyCanIcon = register.registerIcon(DayZ.meta.modId + ":" + getUnlocalizedName().substring(getUnlocalizedName().indexOf(".") + 1) + "-empty");
+  }
 
-    for (int damage = 0; damage < 6; ++damage) {
-      icons[damage] = register.registerIcon(DayZ.meta.modId + ":" + "drinkCanned".substring("drinkCanned".indexOf(".") + 1) + damage);
+  @Override
+  public String getUnlocalizedName(ItemStack itemStack)
+  {
+    if (itemStack.getItemDamage() == itemStack.getMaxDamage()) {
+      return getUnlocalizedName() + "-empty";
     }
+    return getUnlocalizedName();
   }
 }

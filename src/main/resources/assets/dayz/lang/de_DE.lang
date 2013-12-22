@@ -1,29 +1,29 @@
 #DayZ Language File - DoktorKroete
-item.drinkCanEmpty.empty_beer.name=Leere Bier-Dose
-item.drinkCanEmpty.empty_lemon_soda.name=Leere Zitronenlimonade
-item.drinkCanEmpty.empty_cola.name=Leere Cola
-item.drinkCanEmpty.empty_energy_drink.name=Leeres Energy Drink
-item.drinkCanEmpty.empty_orange_soda.name=Leere Orangenlimonade
+item.drinkCanBeer-empty.name=Leere Bier-Dose
+item.drinkCanLemonSoda-empty.name=Leere Zitronenlimonade
+item.drinkCanCola-empty.name=Leere Cola
+item.drinkCanEnergyDrink-empty.name=Leeres Energy Drink
+item.drinkCanOrangeSoda-empty.name=Leere Orangenlimonade
 
-item.drinkCanned.beer.name=Bier
-item.drinkCanned.lemon_soda.name=Zitronenlimonade
-item.drinkCanned.cola.name=Cola
-item.drinkCanned.energy_drink.name=Energy Drink
-item.drinkCanned.orange_soda.name=Orangenlimonade
+item.drinkCanBeer.name=Bier
+item.drinkCanLemonSoda.name=Zitronenlimonade
+item.drinkCanCola.name=Cola
+item.drinkCanEnergyDrink.name=Energy Drink
+item.drinkCanOrangeSoda.name=Orangenlimonade
 
-item.foodCanEmpty.empty_canned_beans.name=Bohnen in der Dose
-item.foodCanEmpty.empty_canned_soup.name=Konserven Suppe
-item.foodCanEmpty.empty_canned_pasta.name=Pastakonserve
-item.foodCanEmpty.empty_canned_fish.name=Fischkonserve
-item.foodCanEmpty.empty_canned_pickles.name=Essiggurkenkonserve
-item.foodCanEmpty.empty_canned_fruit.name=Obstkonserve
+item.cannedBeans-empty.name=Bohnen in der Dose
+item.cannedSoup-empty.name=Konserven Suppe
+item.cannedPasta-empty.name=Pastakonserve
+item.cannedFish-empty.name=Fischkonserve
+item.cannedPickles-empty.name=Essiggurkenkonserve
+item.cannedFruit-empty.name=Obstkonserve
 
-item.foodCanned.canned_beans.name=Bohnen in der Dose
-item.foodCanned.canned_soup.name=Konserven Suppe
-item.foodCanned.canned_pasta.name=Pastakonserve
-item.foodCanned.canned_fish.name=Fischkonserve
-item.foodCanned.canned_pickles.name=Essiggurkenkonserve
-item.foodCanned.canned_fruit.name=Obstkonserve
+item.cannedBeans.name=Bohnen in der Dose
+item.cannedSoup.name=Konserven Suppe
+item.cannedPasta.name=Pastakonserve
+item.cannedFish.name=Fischkonserve
+item.cannedPickles.name=Essiggurkenkonserve
+item.cannedFruit.name=Obstkonserve
 
 item.gunAk74u.name=Ak-74u
 item.gunMakarov.name=Makarov

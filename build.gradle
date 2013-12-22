@@ -19,7 +19,7 @@ buildscript {
 apply plugin: "hoborelease"
 apply plugin: "forge"
 
-version = "1.6.4-8.9" + "." + System.getenv("TRAVIS_BUILD_NUMBER")
+version = "1.6.4-8.10" + "." + System.getenv("TRAVIS_BUILD_NUMBER")
 group= "com.github.dayzminecraft.dayz"
 archivesBaseName = "DayZ-Minecraft"
 targetCompatibility = '1.7'

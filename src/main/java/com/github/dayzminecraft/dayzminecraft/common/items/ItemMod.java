@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 
 import com.github.dayzminecraft.dayzminecraft.DayZ;
+import com.github.dayzminecraft.dayzminecraft.common.misc.LootManager;
 
 public class ItemMod extends Item {
   public List<String> subNames;

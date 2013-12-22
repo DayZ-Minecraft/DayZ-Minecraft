@@ -3,37 +3,28 @@ package com.github.dayzminecraft.dayzminecraft.common.misc;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.network.packet.Packet3Chat;
 import net.minecraft.util.ChatMessageComponent;
 import net.minecraft.util.EnumChatFormatting;
+
+import cpw.mods.fml.common.network.PacketDispatcher;
+import cpw.mods.fml.common.network.Player;
 
 public final class ChatHandler {
   public static Logger log;
 
   @SuppressWarnings("unused")
-  public static void chatError(ICommandSender sender, String msg) {
-    if (sender instanceof EntityPlayer) {
-      sender.sendChatToPlayer(ChatMessageComponent.createFromText(EnumChatFormatting.RED + msg));
-    } else {
-      sender.sendChatToPlayer(ChatMessageComponent.createFromText(msg));
-    }
+  public static void chatError(EntityPlayer player, String msg) {
+    PacketDispatcher.sendPacketToPlayer(new Packet3Chat(ChatMessageComponent.createFromText(EnumChatFormatting.RED + msg)), (Player)player);
   }
 
-  public static void chatConfirmation(ICommandSender sender, String msg) {
-    if (sender instanceof EntityPlayer) {
-      sender.sendChatToPlayer(ChatMessageComponent.createFromText(EnumChatFormatting.GREEN + msg));
-    } else {
-      sender.sendChatToPlayer(ChatMessageComponent.createFromText(msg));
-    }
+  public static void chatConfirmation(EntityPlayer player, String msg) {
+    PacketDispatcher.sendPacketToPlayer(new Packet3Chat(ChatMessageComponent.createFromText(EnumChatFormatting.GREEN + msg)), (Player)player);
   }
 
-  public static void chatWarning(ICommandSender sender, String msg) {
-    if (sender instanceof EntityPlayer) {
-      sender.sendChatToPlayer(ChatMessageComponent.createFromText(EnumChatFormatting.YELLOW + msg));
-    } else {
-      sender.sendChatToPlayer(ChatMessageComponent.createFromText(msg));
-    }
+  public static void chatWarning(EntityPlayer player, String msg) {
+    PacketDispatcher.sendPacketToPlayer(new Packet3Chat(ChatMessageComponent.createFromText(EnumChatFormatting.YELLOW + msg)), (Player)player);
   }
 
   @SuppressWarnings("unused")

@@ -1,5 +1,8 @@
 package com.github.dayzminecraft.dayzminecraft.common.items;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -9,10 +12,9 @@ import net.minecraftforge.common.Configuration;
 import com.github.dayzminecraft.dayzminecraft.DayZ;
 import com.github.dayzminecraft.dayzminecraft.common.blocks.Blocks;
 import com.github.dayzminecraft.dayzminecraft.common.effects.Effect;
-import com.github.dayzminecraft.dayzminecraft.common.items.food.ItemCanEmpty;
+import com.github.dayzminecraft.dayzminecraft.common.items.food.ItemDrink;
 import com.github.dayzminecraft.dayzminecraft.common.items.food.ItemDrinkBottle;
-import com.github.dayzminecraft.dayzminecraft.common.items.food.ItemDrinkCanned;
-import com.github.dayzminecraft.dayzminecraft.common.items.food.ItemFoodCanned;
+import com.github.dayzminecraft.dayzminecraft.common.items.food.ItemFood;
 import com.github.dayzminecraft.dayzminecraft.common.items.misc.ItemFirestarter;
 import com.github.dayzminecraft.dayzminecraft.common.items.misc.ItemHeal;
 import com.github.dayzminecraft.dayzminecraft.common.items.weapons.*;
@@ -20,6 +22,8 @@ import com.github.dayzminecraft.dayzminecraft.common.items.weapons.*;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class Items {
+  private static List<Integer> idResolverUsedIds = new ArrayList<>();
+
   public static Item itemMatches;
   private static int itemMatchesId;
   public static Item healBandage;
@@ -72,14 +76,29 @@ public class Items {
   public static Item camoBoots;
   private static int camoBootsId;
 
-  public static Item foodCanned;
-  private static int foodCannedId;
-  public static Item foodCanEmpty;
-  private static int foodCanEmptyId;
-  public static Item drinkCanEmpty;
-  private static int drinkCanEmptyId;
-  public static Item drinkCanned;
-  private static int drinkCannedId;
+  public static Item cannedBeans;
+  private static int cannedBeansId;
+  public static Item cannedSoup;
+  private static int cannedSoupId;
+  public static Item cannedPasta;
+  private static int cannedPastaId;
+  public static Item cannedFish;
+  private static int cannedFishId;
+  public static Item cannedPickles;
+  private static int cannedPicklesId;
+  public static Item cannedFruit;
+  private static int cannedFruitId;
+
+  public static Item drinkCanBeer;
+  private static int drinkCanBeerId;
+  public static Item drinkCanLemonSoda;
+  private static int drinkCanLemonSodaId;
+  public static Item drinkCanCola;
+  private static int drinkCanColaId;
+  public static Item drinkCanEnergyDrink;
+  private static int drinkCanEnergyDrinkId;
+  public static Item drinkCanOrangeSoda;
+  private static int drinkCanOrangeSodaId;
 
   public static Item drinkWhiskeyBottle;
   private static int drinkWhiskeyBottleId;
@@ -111,8 +130,6 @@ public class Items {
     gunGlock17 = new ItemGunAuto(gunGlock17Id, new ItemGlock17()).setUnlocalizedName("gunGlock17");
     gunDoubleBarreledShotgun = new ItemGunSemi(gunDoubleBarreledShotgunId, new ItemDbShotgun()).setUnlocalizedName("gunDoubleBarreledShotgun");
     gunUsp = new ItemGunSemi(gunUspId, new ItemUsp()).setUnlocalizedName("gunUsp");
-    //gunAk74 = new ItemGunAuto(gunAk74Id, new ItemAk74()).setUnlocalizedName("gunAk74");
-    //LanguageRegistry.addName(gunAk74, "Ak-74");
 
     ammoAk74u = new ItemAmmo(ammoAk74uId).setUnlocalizedName("ammoAk74u");
     ammoMakarov = new ItemAmmo(ammoMakarovId).setUnlocalizedName("ammoMakarov");
@@ -121,7 +138,6 @@ public class Items {
     ammoGlock17 = new ItemAmmo(ammoGlock17Id).setUnlocalizedName("ammoGlock17");
     ammoDoubleBarreledShotgun = new ItemAmmo(ammoDoubleBarreledShotgunId).setUnlocalizedName("ammoDoubleBarreledShotgun");
     ammoUsp = new ItemAmmo(ammoUspId).setUnlocalizedName("ammoUsp");
-    //ammoAk74 = new ItemAmmo(ammoAk74Id).setUnlocalizedName("ammoAk74");
 
     itemMatches = (new ItemFirestarter(itemMatchesId, 8)).setUnlocalizedName("itemMatches");
 
@@ -134,15 +150,22 @@ public class Items {
     camoLegs = (new ItemCamo(camoLegsId, DayZ.enumArmorMaterialCamo, 4, 2)).setUnlocalizedName("camoLegs");
     camoBoots = (new ItemCamo(camoBootsId, DayZ.enumArmorMaterialCamo, 4, 3)).setUnlocalizedName("camoBoots");
 
-    foodCanEmpty = new ItemCanEmpty(foodCanEmptyId, true).setUnlocalizedName("foodCanEmpty");
-    foodCanned = new ItemFoodCanned(foodCannedId, 4, 0.6F).setUnlocalizedName("foodCanned");
+    cannedBeans = new ItemFood(cannedBeansId).setUnlocalizedName("cannedBeans");
+    cannedSoup = new ItemFood(cannedSoupId).setUnlocalizedName("cannedSoup");
+    cannedPasta = new ItemFood(cannedPastaId).setUnlocalizedName("cannedPasta");
+    cannedFish = new ItemFood(cannedFishId).setUnlocalizedName("cannedFish");
+    cannedPickles = new ItemFood(cannedPicklesId).setUnlocalizedName("cannedPickles");
+    cannedFruit = new ItemFood(cannedFruitId).setUnlocalizedName("cannedFruit");
 
-    drinkCanEmpty = new ItemCanEmpty(drinkCanEmptyId, false).setUnlocalizedName("drinkCanEmpty");
-    drinkCanned = new ItemDrinkCanned(drinkCannedId, 4).setUnlocalizedName("drinkCanned");
+    drinkCanBeer = new ItemDrink(drinkCanBeerId).setUnlocalizedName("drinkCanBeer");
+    drinkCanLemonSoda = new ItemDrink(drinkCanLemonSodaId).setUnlocalizedName("drinkCanLemonSoda");
+    drinkCanCola = new ItemDrink(drinkCanColaId).setUnlocalizedName("drinkCanCola");
+    drinkCanEnergyDrink = new ItemDrink(drinkCanEnergyDrinkId).setUnlocalizedName("drinkCanEnergyDrink");
+    drinkCanOrangeSoda = new ItemDrink(drinkCanOrangeSodaId).setUnlocalizedName("drinkCanOrangeSoda");
 
-    drinkWhiskeyBottle = new ItemDrinkBottle(drinkWhiskeyBottleId, 4, true).isAlcohol(true).setUnlocalizedName("drinkWhiskeyBottle");
-    drinkCiderBottle = new ItemDrinkBottle(drinkCiderBottleId, 4, false).setUnlocalizedName("drinkCiderBottle");
-    drinkVodkaBottle = new ItemDrinkBottle(drinkVodkaBottleId, 4, true).isAlcohol(true).setUnlocalizedName("drinkVodkaBottle");
+    drinkWhiskeyBottle = new ItemDrinkBottle(drinkWhiskeyBottleId, 4000, true).isAlcohol(true).setUnlocalizedName("drinkWhiskeyBottle");
+    drinkCiderBottle = new ItemDrinkBottle(drinkCiderBottleId, 4000, false).setUnlocalizedName("drinkCiderBottle");
+    drinkVodkaBottle = new ItemDrinkBottle(drinkVodkaBottleId, 4000, true).isAlcohol(true).setUnlocalizedName("drinkVodkaBottle");
 
     meleeBaseballBat = new ItemMelee(meleeBaseballBatId, 6).setUnlocalizedName("meleeBaseballBat");
     meleeBaseballBatNailed = new ItemMelee(meleeBaseballBatNailedId, 8).setUnlocalizedName("meleeBaseballBatNailed");
@@ -153,59 +176,75 @@ public class Items {
     meleeMachete = new ItemMelee(meleeMacheteId, 7).setUnlocalizedName("meleeMachete");
 
     GameRegistry.addShapelessRecipe(new ItemStack(meleeBaseballBatNailed, 1), new ItemStack(meleeBaseballBat, 1), new ItemStack(Blocks.nailBlock, 1, 0));
-
     GameRegistry.addShapelessRecipe(new ItemStack(meleePlankNailed, 1), new ItemStack(meleePlank, 1), new ItemStack(Blocks.nailBlock, 1, 0));
-
     GameRegistry.addRecipe(new ItemStack(meleePlank, 1), "#", "#", "#", '#', Block.planks);
-
     GameRegistry.addRecipe(new ItemStack(meleeBaseballBat, 1), "##!", '#', Block.planks, '!', Item.stick);
   }
 
   public static void itemConfig(Configuration config) {
-    itemMatchesId = config.get(Configuration.CATEGORY_ITEM, "itemMatchesId", 7100).getInt();
-    healBandageId = config.get(Configuration.CATEGORY_ITEM, "healBandageId", 7101).getInt();
-    healAntibioticsId = config.get(Configuration.CATEGORY_ITEM, "healAntibioticsId", 7102).getInt();
-    healBloodbagId = config.get(Configuration.CATEGORY_ITEM, "healBloodbagId", 7103).getInt();
+    itemMatchesId = config.get(Configuration.CATEGORY_ITEM, "itemMatchesId", getNextId()).getInt();
+    healBandageId = config.get(Configuration.CATEGORY_ITEM, "healBandageId", getNextId()).getInt();
+    healAntibioticsId = config.get(Configuration.CATEGORY_ITEM, "healAntibioticsId", getNextId()).getInt();
+    healBloodbagId = config.get(Configuration.CATEGORY_ITEM, "healBloodbagId", getNextId()).getInt();
 
-    gunAk74uId = config.get(Configuration.CATEGORY_ITEM, "gunAk74uId", 7104).getInt();
-    gunMakarovId = config.get(Configuration.CATEGORY_ITEM, "gunMakarovId", 7105).getInt();
-    gunRemingtonId = config.get(Configuration.CATEGORY_ITEM, "gunRemingtonId", 7106).getInt();
-    gunLeeEnfieldId = config.get(Configuration.CATEGORY_ITEM, "gunLeeEnfieldId", 7107).getInt();
-    gunGlock17Id = config.get(Configuration.CATEGORY_ITEM, "gunGlock17Id", 7108).getInt();
-    gunDoubleBarreledShotgunId = config.get(Configuration.CATEGORY_ITEM, "gunDoubleBarreledShotgunId", 7109).getInt();
+    gunAk74uId = config.get(Configuration.CATEGORY_ITEM, "gunAk74uId", getNextId()).getInt();
+    gunMakarovId = config.get(Configuration.CATEGORY_ITEM, "gunMakarovId", getNextId()).getInt();
+    gunRemingtonId = config.get(Configuration.CATEGORY_ITEM, "gunRemingtonId", getNextId()).getInt();
+    gunLeeEnfieldId = config.get(Configuration.CATEGORY_ITEM, "gunLeeEnfieldId", getNextId()).getInt();
+    gunGlock17Id = config.get(Configuration.CATEGORY_ITEM, "gunGlock17Id", getNextId()).getInt();
+    gunDoubleBarreledShotgunId = config.get(Configuration.CATEGORY_ITEM, "gunDoubleBarreledShotgunId", getNextId()).getInt();
 
-    ammoAk74uId = config.get(Configuration.CATEGORY_ITEM, "ammoAk74uId", 7110).getInt();
-    ammoMakarovId = config.get(Configuration.CATEGORY_ITEM, "ammoMakarovId", 7111).getInt();
-    ammoRemingtonId = config.get(Configuration.CATEGORY_ITEM, "ammoRemingtonId", 7112).getInt();
-    ammoLeeEnfieldId = config.get(Configuration.CATEGORY_ITEM, "ammoLeeEnfieldId", 7113).getInt();
-    ammoGlock17Id = config.get(Configuration.CATEGORY_ITEM, "ammoGlock17Id", 7114).getInt();
-    ammoDoubleBarreledShotgunId = config.get(Configuration.CATEGORY_ITEM, "ammoDoubleBarreledShotgunId", 7115).getInt();
+    ammoAk74uId = config.get(Configuration.CATEGORY_ITEM, "ammoAk74uId", getNextId()).getInt();
+    ammoMakarovId = config.get(Configuration.CATEGORY_ITEM, "ammoMakarovId", getNextId()).getInt();
+    ammoRemingtonId = config.get(Configuration.CATEGORY_ITEM, "ammoRemingtonId", getNextId()).getInt();
+    ammoLeeEnfieldId = config.get(Configuration.CATEGORY_ITEM, "ammoLeeEnfieldId", getNextId()).getInt();
+    ammoGlock17Id = config.get(Configuration.CATEGORY_ITEM, "ammoGlock17Id", getNextId()).getInt();
+    ammoDoubleBarreledShotgunId = config.get(Configuration.CATEGORY_ITEM, "ammoDoubleBarreledShotgunId", getNextId()).getInt();
 
-    camoHelmetId = config.get(Configuration.CATEGORY_ITEM, "camoHelmetId", 7116).getInt();
-    camoChestId = config.get(Configuration.CATEGORY_ITEM, "camoChestId", 7117).getInt();
-    camoLegsId = config.get(Configuration.CATEGORY_ITEM, "camoLegsId", 7118).getInt();
-    camoBootsId = config.get(Configuration.CATEGORY_ITEM, "camoBootsId", 7119).getInt();
+    camoHelmetId = config.get(Configuration.CATEGORY_ITEM, "camoHelmetId", getNextId()).getInt();
+    camoChestId = config.get(Configuration.CATEGORY_ITEM, "camoChestId", getNextId()).getInt();
+    camoLegsId = config.get(Configuration.CATEGORY_ITEM, "camoLegsId", getNextId()).getInt();
+    camoBootsId = config.get(Configuration.CATEGORY_ITEM, "camoBootsId", getNextId()).getInt();
 
-    foodCannedId = config.get(Configuration.CATEGORY_ITEM, "foodCannedId", 7120).getInt();
-    foodCanEmptyId = config.get(Configuration.CATEGORY_ITEM, "foodCanEmptyId", 7121).getInt();
-    drinkCanEmptyId = config.get(Configuration.CATEGORY_ITEM, "drinkCanEmptyId", 7122).getInt();
-    drinkCannedId = config.get(Configuration.CATEGORY_ITEM, "drinkCannedId", 7123).getInt();
+    cannedBeansId = config.get(Configuration.CATEGORY_ITEM, "cannedBeansId", getNextId()).getInt();
+    cannedSoupId = config.get(Configuration.CATEGORY_ITEM, "cannedSoupId", getNextId()).getInt();
+    cannedPastaId = config.get(Configuration.CATEGORY_ITEM, "cannedPastaId", getNextId()).getInt();
+    cannedFishId = config.get(Configuration.CATEGORY_ITEM, "cannedFishId", getNextId()).getInt();
+    cannedPicklesId = config.get(Configuration.CATEGORY_ITEM, "cannedPicklesId", getNextId()).getInt();
+    cannedFruitId = config.get(Configuration.CATEGORY_ITEM, "cannedFruitId", getNextId()).getInt();
 
-    drinkWhiskeyBottleId = config.get(Configuration.CATEGORY_ITEM, "drinkWhiskeyBottleId", 7124).getInt();
-    drinkCiderBottleId = config.get(Configuration.CATEGORY_ITEM, "drinkCiderBottleId", 7125).getInt();
-    drinkVodkaBottleId = config.get(Configuration.CATEGORY_ITEM, "drinkVodkaBottleId", 7126).getInt();
+    drinkCanBeerId = config.get(Configuration.CATEGORY_ITEM, "drinkCanBeerId", getNextId()).getInt();
+    drinkCanLemonSodaId = config.get(Configuration.CATEGORY_ITEM, "drinkCanLemonSodaId", getNextId()).getInt();
+    drinkCanColaId = config.get(Configuration.CATEGORY_ITEM, "drinkCanColaId", getNextId()).getInt();
+    drinkCanEnergyDrinkId = config.get(Configuration.CATEGORY_ITEM, "drinkCanEnergyDrinkId", getNextId()).getInt();
+    drinkCanOrangeSodaId = config.get(Configuration.CATEGORY_ITEM, "drinkCanOrangeSodaId", getNextId()).getInt();
 
-    meleeBaseballBatId = config.get(Configuration.CATEGORY_ITEM, "meleeBaseballBatId", 7127).getInt();
-    meleeBaseballBatNailedId = config.get(Configuration.CATEGORY_ITEM, "meleeBaseballBatNailedId", 7128).getInt();
-    meleePlankId = config.get(Configuration.CATEGORY_ITEM, "meleePlankId", 7129).getInt();
-    meleePlankNailedId = config.get(Configuration.CATEGORY_ITEM, "meleePlankNailedId", 7130).getInt();
-    meleePipeId = config.get(Configuration.CATEGORY_ITEM, "meleePipeId", 7131).getInt();
-    meleeCrowbarId = config.get(Configuration.CATEGORY_ITEM, "meleeCrowbarId", 7132).getInt();
-    meleeMacheteId = config.get(Configuration.CATEGORY_ITEM, "meleeMacheteId", 7133).getInt();
+    drinkWhiskeyBottleId = config.get(Configuration.CATEGORY_ITEM, "drinkWhiskeyBottleId", getNextId()).getInt();
+    drinkCiderBottleId = config.get(Configuration.CATEGORY_ITEM, "drinkCiderBottleId", getNextId()).getInt();
+    drinkVodkaBottleId = config.get(Configuration.CATEGORY_ITEM, "drinkVodkaBottleId", getNextId()).getInt();
 
-    gunUspId = config.get(Configuration.CATEGORY_ITEM, "gunUspId", 7134).getInt();
+    meleeBaseballBatId = config.get(Configuration.CATEGORY_ITEM, "meleeBaseballBatId", getNextId()).getInt();
+    meleeBaseballBatNailedId = config.get(Configuration.CATEGORY_ITEM, "meleeBaseballBatNailedId", getNextId()).getInt();
+    meleePlankId = config.get(Configuration.CATEGORY_ITEM, "meleePlankId", getNextId()).getInt();
+    meleePlankNailedId = config.get(Configuration.CATEGORY_ITEM, "meleePlankNailedId", getNextId()).getInt();
+    meleePipeId = config.get(Configuration.CATEGORY_ITEM, "meleePipeId", getNextId()).getInt();
+    meleeCrowbarId = config.get(Configuration.CATEGORY_ITEM, "meleeCrowbarId", getNextId()).getInt();
+    meleeMacheteId = config.get(Configuration.CATEGORY_ITEM, "meleeMacheteId", getNextId()).getInt();
+
+    gunUspId = config.get(Configuration.CATEGORY_ITEM, "gunUspId", getNextId()).getInt();
     //gunAk74Id = config.get(Configuration.CATEGORY_ITEM, "gunAk74Id", 7135).getInt();
-    ammoUspId = config.get(Configuration.CATEGORY_ITEM, "ammoUspId", 7136).getInt();
+    ammoUspId = config.get(Configuration.CATEGORY_ITEM, "ammoUspId", getNextId()).getInt();
     //ammoAk74Id = config.get(Configuration.CATEGORY_ITEM, "ammoAk74Id", 7137).getInt();
+  }
+
+  private static int getNextId() {
+    int startId = 7100;
+    for (int slot = startId; slot < Item.itemsList.length; slot++) {
+      if (Item.itemsList[slot] == null && !idResolverUsedIds.contains(slot)) {
+        idResolverUsedIds.add(slot);
+        return slot;
+      }
+    }
+    return 1;
   }
 }

@@ -1,29 +1,29 @@
-#DayZ Language File | pt_BR by LionLorena_
-item.drinkCanEmpty.empty_beer.name=Lata Vazia
-item.drinkCanEmpty.empty_lemon_soda.name=Lata Vazia
-item.drinkCanEmpty.empty_cola.name=Lata Vazia
-item.drinkCanEmpty.empty_energy_drink.name=Lata Vazia
-item.drinkCanEmpty.empty_orange_soda.name=Lata Vazia
+#DayZ Language File - pt_BR by LionLorena_
+item.drinkCanBeer-empty.name=Lata Vazia
+item.drinkCanLemonSoda-empty.name=Lata Vazia
+item.drinkCanCola-empty.name=Lata Vazia
+item.drinkCanEnergyDrink-empty.name=Lata Vazia
+item.drinkCanOrangeSoda-empty.name=Lata Vazia
  
-item.drinkCanned.beer.name=Cerveja
-item.drinkCanned.lemon_soda.name=Soda Limonada
-item.drinkCanned.cola.name=Refrigerante de Cola
-item.drinkCanned.energy_drink.name=Energético
-item.drinkCanned.orange_soda.name=Refrigerante de Laranja
+item.drinkCanBeer.name=Cerveja
+item.drinkCanLemonSoda.name=Soda Limonada
+item.drinkCanCola.name=Refrigerante de Cola
+item.drinkCanEnergyDrink.name=Energético
+item.drinkCanOrangeSoda.name=Refrigerante de Laranja
  
-item.foodCanEmpty.empty_canned_beans.name=Lata Vazia
-item.foodCanEmpty.empty_canned_soup.name=Lata Vazia
-item.foodCanEmpty.empty_canned_pasta.name=Lata Vazia
-item.foodCanEmpty.empty_canned_fish.name=Lata Vazia
-item.foodCanEmpty.empty_canned_pickles.name=Lata Vazia
-item.foodCanEmpty.empty_canned_fruit.name=Lata Vazia
+item.cannedBeans-empty.name=Lata Vazia
+item.cannedSoup-empty.name=Lata Vazia
+item.cannedPasta-empty.name=Lata Vazia
+item.cannedFish-empty.name=Lata Vazia
+item.cannedPickles-empty.name=Lata Vazia
+item.cannedFruit-empty.name=Lata Vazia
  
-item.foodCanned.canned_beans.name=Feijão enlatado
-item.foodCanned.canned_soup.name=Sopa enlatada
-item.foodCanned.canned_pasta.name=Macarrão instantâneo
-item.foodCanned.canned_fish.name=Atum enlatado
-item.foodCanned.canned_pickles.name=Picles enlatado
-item.foodCanned.canned_fruit.name=salada de Frutas
+item.cannedBeans.name=Feijão enlatado
+item.cannedSoup.name=Sopa enlatada
+item.cannedPasta.name=Macarrão instantâneo
+item.cannedFish.name=Atum enlatado
+item.cannedPickles.name=Picles enlatado
+item.cannedFruit.name=salada de Frutas
  
 item.gunAk74u.name=Rifle Ak-74u
 item.gunMakarov.name=Pistola Makarov
