@@ -12,7 +12,7 @@ import net.minecraftforge.common.Configuration;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class Blocks {
-  private static List<Integer> idResolverUsedIds = new ArrayList<>();
+  private static List<Integer> idResolverUsedIds = new ArrayList<Integer>();
 
   public static Block barbedWire;
   private static int barbedWireId;

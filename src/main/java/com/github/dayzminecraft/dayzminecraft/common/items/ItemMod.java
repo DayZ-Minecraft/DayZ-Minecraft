@@ -44,7 +44,7 @@ public class ItemMod extends Item {
 
   public Item subNames(String... strings) {
     if (subNames == null) {
-      subNames = new ArrayList<>();
+      subNames = new ArrayList<String>();
     }
     Collections.addAll(subNames, strings);
     return this;

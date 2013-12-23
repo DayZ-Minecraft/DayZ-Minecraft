@@ -11,7 +11,7 @@ import com.github.dayzminecraft.dayzminecraft.common.world.generation.structures
 import com.github.dayzminecraft.dayzminecraft.common.world.generation.structures.StructureHouse;
 
 public class StructureHandler {
-  private static List<IStructure> structures = new ArrayList<>();
+  private static List<IStructure> structures = new ArrayList<IStructure>();
 
   public static boolean generateStructure(World world, Random rand, int xCoord, int yCoord, int zCoord) {
     return structures.get(rand.nextInt(structures.size())).generate(world, rand, xCoord, yCoord, zCoord);

@@ -22,7 +22,7 @@ import com.github.dayzminecraft.dayzminecraft.common.items.weapons.*;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class Items {
-  private static List<Integer> idResolverUsedIds = new ArrayList<>();
+  private static List<Integer> idResolverUsedIds = new ArrayList<Integer>();
 
   public static Item itemMatches;
   private static int itemMatchesId;
