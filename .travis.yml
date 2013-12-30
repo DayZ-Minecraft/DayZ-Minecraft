@@ -2,8 +2,8 @@ language: java
 install: TERM=dumb gradle setupCIWorkspace --stacktrace
 script: TERM=dumb gradle build --stacktrace
 after_success:
-- TERM=dumb gradle uploadFTP --stacktrace
-- TERM=dumb gradle updateDownloadPage --stacktrace
+- TERM=dumb gradle uploadFtp --stacktrace
+- TERM=dumb gradle updateJson --stacktrace
 branches:
   only:
     - master

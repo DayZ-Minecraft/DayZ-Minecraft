@@ -11,7 +11,7 @@ buildscript {
     }
   }
   dependencies {
-    classpath "com.github.hobos_taco.hoborelease:hoborelease:1.0"
+    classpath "com.github.hobos_taco.hoborelease:hoborelease:1.1"
     classpath "net.minecraftforge.gradle:ForgeGradle:1.0-SNAPSHOT"
   }
 }
@@ -50,9 +50,8 @@ hoboRelease {
   ftpPassword = System.getenv("FTP_PASSWORD")
   ftpServer = "ftp.dayzminecraft.x10.mx"
   ftpPort = 21
-  downloadPage = "http://files.dayzminecraft.x10.mx"
-  latestLine = '          <li class="downloads"><a href="http://files.dayzminecraft.x10.mx/DayZ-Minecraft-VERSION.jar">Latest (VERSION)</a></li>'
-  stableLine = '          <li class="downloads"><a href="http://files.dayzminecraft.x10.mx/DayZ-Minecraft-VERSION.jar">Stable (VERSION)</a></li>' 
+  modJsonDirectory = "http://files.dayzminecraft.x10.mx"
+  downloadLocation = "http://files.dayzminecraft.x10.mx/files/"
 }
 
 task wrapper(type: Wrapper) { 
