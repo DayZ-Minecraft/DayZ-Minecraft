@@ -11,7 +11,7 @@ buildscript {
     }
   }
   dependencies {
-    classpath "com.github.hobos_taco.hoborelease:hoborelease:1.1"
+    classpath "com.github.hobos_taco.hoborelease:HoboRelease:1.1"
     classpath "net.minecraftforge.gradle:ForgeGradle:1.0-SNAPSHOT"
   }
 }
