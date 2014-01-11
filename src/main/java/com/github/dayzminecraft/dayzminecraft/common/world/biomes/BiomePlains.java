@@ -1,6 +1,5 @@
 package com.github.dayzminecraft.dayzminecraft.common.world.biomes;
 
-import net.minecraft.entity.passive.*;
 import net.minecraft.world.biome.BiomeGenBase;
 
 public class BiomePlains extends BiomeGenBase {
@@ -16,11 +15,7 @@ public class BiomePlains extends BiomeGenBase {
     spawnableMonsterList.clear();
     spawnableCreatureList.clear();
     spawnableWaterCreatureList.clear();
-    spawnableCreatureList.add(new SpawnListEntry(EntitySheep.class, 4, 4, 4));
-    spawnableCreatureList.add(new SpawnListEntry(EntityPig.class, 4, 4, 4));
-    spawnableCreatureList.add(new SpawnListEntry(EntityCow.class, 4, 4, 4));
-    spawnableCreatureList.add(new SpawnListEntry(EntityChicken.class, 4, 4, 4));
-    spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 4, 4, 4));
+    Biomes.addVanillaSpawns(spawnableCreatureList);
     theBiomeDecorator.flowersPerChunk = 4;
     theBiomeDecorator.deadBushPerChunk = 4;
     theBiomeDecorator.treesPerChunk = -999;

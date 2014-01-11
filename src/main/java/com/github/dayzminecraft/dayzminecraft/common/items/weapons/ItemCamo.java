@@ -1,18 +1,17 @@
 package com.github.dayzminecraft.dayzminecraft.common.items.weapons;
-
+/*
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
-import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 
 import com.github.dayzminecraft.dayzminecraft.DayZ;
 import com.github.dayzminecraft.dayzminecraft.common.items.ModItems;
 
-public class ItemCamo extends ItemArmor {
+public class ItemCamo extends net.minecraft.item.ItemArmor {
   private String[] armourTypes = new String[] {"camoHelmet", "camoChest","camoLegs", "camoBoots"};
 
-  public ItemCamo(ArmorMaterial armorMaterial, int renderIndex, int armourType) {
-    super(armorMaterial, renderIndex, armourType);
+  public ItemCamo(Object armorMaterial, int renderIndex, int armourType) {
+    super((ArmorMaterial)armorMaterial, renderIndex, armourType);
     maxStackSize = 1;
     setCreativeTab(DayZ.creativeTab);
   }
@@ -31,3 +30,4 @@ public class ItemCamo extends ItemArmor {
     itemIcon = register.registerIcon(DayZ.meta.modId + ":" + armourTypes[armorType]);
   }
 }
+*/

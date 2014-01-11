@@ -8,6 +8,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
@@ -92,7 +93,7 @@ public class EntityBullet extends EntityThrowable {
           }
         }
       }
-    } else if (movingObjectPosition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) {
+    } else if (movingObjectPosition.typeOfHit == MovingObjectType.BLOCK) {
       if (!worldObj.isRemote) {
         setDead();
       }

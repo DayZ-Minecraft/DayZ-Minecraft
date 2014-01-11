@@ -92,12 +92,12 @@ public class ModItems {
     registerItem(healBandage = new ItemHeal(0, Effect.bleeding).subNames(StatCollector.translateToLocal("item.healBandage.description")).setUnlocalizedName("healBandage"));
     registerItem(healAntibiotics = new ItemHeal(0, Effect.zombification).subNames(StatCollector.translateToLocal("item.healAntibiotics.description")).setUnlocalizedName("healAntibiotics"));
     registerItem(healBloodbag = new ItemMod().subNames(StatCollector.translateToLocal("item.healBloodbag.description")).setUnlocalizedName("healBloodbag"));
-
+    /*
     registerItem(camoHelmet = (new ItemCamo(DayZ.enumArmorMaterialCamo, 4, 0)).setUnlocalizedName("camoHelmet"));
     registerItem(camoChest = (new ItemCamo(DayZ.enumArmorMaterialCamo, 4, 1)).setUnlocalizedName("camoChest"));
     registerItem(camoLegs = (new ItemCamo(DayZ.enumArmorMaterialCamo, 4, 2)).setUnlocalizedName("camoLegs"));
     registerItem(camoBoots = (new ItemCamo(DayZ.enumArmorMaterialCamo, 4, 3)).setUnlocalizedName("camoBoots"));
-
+    */
     registerItem(cannedBeans = new ItemFood().setUnlocalizedName("cannedBeans"));
     registerItem(cannedSoup = new ItemFood().setUnlocalizedName("cannedSoup"));
     registerItem(cannedPasta = new ItemFood().setUnlocalizedName("cannedPasta"));

@@ -2,7 +2,6 @@ package com.github.dayzminecraft.dayzminecraft.common.world.biomes;
 
 import java.util.Random;
 
-import net.minecraft.entity.passive.*;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenTaiga1;
@@ -24,11 +23,7 @@ public class BiomeForest extends BiomeGenBase {
     spawnableMonsterList.clear();
     spawnableCreatureList.clear();
     spawnableWaterCreatureList.clear();
-    spawnableCreatureList.add(new SpawnListEntry(EntitySheep.class, 4, 4, 4));
-    spawnableCreatureList.add(new SpawnListEntry(EntityPig.class, 4, 4, 4));
-    spawnableCreatureList.add(new SpawnListEntry(EntityCow.class, 4, 4, 4));
-    spawnableCreatureList.add(new SpawnListEntry(EntityChicken.class, 4, 4, 4));
-    spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 4, 4, 4));
+    Biomes.addVanillaSpawns(spawnableCreatureList);
     theBiomeDecorator.treesPerChunk = 7;
     theBiomeDecorator.flowersPerChunk = 4;
     theBiomeDecorator.grassPerChunk = 10;

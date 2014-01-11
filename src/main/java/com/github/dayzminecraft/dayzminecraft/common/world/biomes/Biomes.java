@@ -1,6 +1,11 @@
 package com.github.dayzminecraft.dayzminecraft.common.world.biomes;
 
+import java.util.List;
+
+import net.minecraft.entity.passive.*;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.BiomeGenBase.Height;
+import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.config.Configuration;
 
@@ -16,9 +21,8 @@ public class Biomes {
   public static BiomeGenBase biomeSnowMountains;
   private static int biomeSnowMountainsId;
 
-  private static final BiomeGenBase.Height biomeSnowPlainsHeight = new BiomeGenBase.Height(0.0F, 0.0F);
-  private static final BiomeGenBase.Height biomeSnowMountainsHeight = new BiomeGenBase.Height(0.0F, 0.5F);
-
+  private static final Height biomeSnowPlainsHeight = new Height(0.0F, 0.0F);
+  private static final Height biomeSnowMountainsHeight = new Height(0.0F, 0.5F);
 
   public static void loadBiomes() {
     biomeForest = (new BiomeForest(biomeForestId));
@@ -42,5 +46,13 @@ public class Biomes {
     BiomeManager.addVillageBiome(Biomes.biomeRiver, true);
     BiomeManager.addVillageBiome(Biomes.biomeSnowPlains, true);
     BiomeManager.addVillageBiome(Biomes.biomeSnowMountains, true);
+  }
+
+  public static void addVanillaSpawns(List<SpawnListEntry> spawnableCreatureList) {
+    spawnableCreatureList.add(new SpawnListEntry(EntitySheep.class, 4, 4, 4));
+    spawnableCreatureList.add(new SpawnListEntry(EntityPig.class, 4, 4, 4));
+    spawnableCreatureList.add(new SpawnListEntry(EntityCow.class, 4, 4, 4));
+    spawnableCreatureList.add(new SpawnListEntry(EntityChicken.class, 4, 4, 4));
+    spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 4, 4, 4));
   }
 }
