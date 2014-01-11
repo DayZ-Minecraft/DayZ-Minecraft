@@ -2,18 +2,18 @@ package com.github.dayzminecraft.dayzminecraft.common.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 
 import com.github.dayzminecraft.dayzminecraft.DayZ;
 
 public class BlockMod extends Block {
-  public BlockMod(int blockId, Material material) {
-    super(blockId, material);
-    setCreativeTab(DayZ.creativeTab);
+  public BlockMod(Material material) {
+    super(material);
+    func_149647_a(DayZ.creativeTab);
   }
 
   @Override
-  public void registerIcons(IconRegister register) {
-    blockIcon = register.registerIcon(DayZ.meta.modId + ":" + getUnlocalizedName().substring(getUnlocalizedName().indexOf(".") + 1));
+  public void func_149651_a(IIconRegister register) {
+    field_149761_L = register.registerIcon(DayZ.meta.modId + ":" + func_149739_a().substring(func_149739_a ().indexOf(".") + 1));
   }
 }

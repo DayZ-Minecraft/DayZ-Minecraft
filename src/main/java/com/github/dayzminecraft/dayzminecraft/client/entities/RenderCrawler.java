@@ -14,7 +14,7 @@ public class RenderCrawler extends RenderLiving {
   }
 
   public void renderCrawler(EntityCrawler entityCrawler, double x, double y, double z, float yaw, float partialTickTime) {
-    super.doRenderLiving(entityCrawler, x, y, z, yaw, partialTickTime);
+    super.doRender(entityCrawler, x, y, z, yaw, partialTickTime);
   }
 
   @Override

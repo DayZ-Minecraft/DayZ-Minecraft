@@ -4,31 +4,30 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 
 import com.github.dayzminecraft.dayzminecraft.DayZ;
-import com.github.dayzminecraft.dayzminecraft.common.misc.LootManager;
 
 public class ItemMod extends Item {
   public List<String> subNames;
 
-  public ItemMod(int itemId) {
-    super(itemId);
+  public ItemMod() {
+    super();
     maxStackSize = 1;
     setCreativeTab(DayZ.creativeTab);
   }
 
   @Override
-  public void registerIcons(IconRegister register) {
+  public void registerIcons(IIconRegister register) {
     itemIcon = register.registerIcon(DayZ.meta.modId + ":" + getUnlocalizedName().substring(getUnlocalizedName().indexOf(".") + 1));
   }
 
   @Override
-  public Icon getIcon(ItemStack stack, int pass) {
+  public IIcon getIcon(ItemStack stack, int pass) {
     return itemIcon;
   }
 

@@ -1,11 +1,12 @@
 package com.github.dayzminecraft.dayzminecraft;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.EnumArmorMaterial;
-import net.minecraftforge.common.EnumHelper;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraftforge.common.util.EnumHelper;
 
 import com.github.dayzminecraft.dayzminecraft.common.CommonProxy;
-import com.github.dayzminecraft.dayzminecraft.common.misc.CreativeTab;
+import com.github.dayzminecraft.dayzminecraft.common.items.ModItems;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
@@ -14,14 +15,20 @@ import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.Metadata;
 import cpw.mods.fml.common.ModMetadata;
 import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.*;
-import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartedEvent;
 
-@NetworkMod(clientSideRequired = true, serverSideRequired = false) @Mod(modid = "DayZ", name = "DayZ Minecraft")
+@Mod(modid = "DayZ", name = "DayZ Minecraft")
 public class DayZ {
-  public static EnumArmorMaterial enumArmorMaterialCamo = EnumHelper.addArmorMaterial("camo", 29, new int[] {2, 6, 5, 2}, 9);
+  public static ArmorMaterial enumArmorMaterialCamo = EnumHelper.addArmorMaterial("camo", 29, new int[] {2, 6, 5, 2}, 9);
 
-  public static CreativeTabs creativeTab = new CreativeTab();
+  public static CreativeTabs creativeTab = new CreativeTabs("creativeTabDayZ") {
+    @Override public Item getTabIconItem() {
+      return ModItems.gunAk74u;
+    }
+  };
 
   @Instance("DayZ")
   public static DayZ INSTANCE;
@@ -29,7 +36,7 @@ public class DayZ {
   @Metadata
   public static ModMetadata meta;
 
-  @SidedProxy(modId = "DayZ", clientSide = "com.github.dayzminecraft.dayzminecraft.client.ClientProxy", serverSide = "com.github.dayzminecraft.dayzminecraft.common.CommonProxy")
+  @SidedProxy(clientSide = "com.github.dayzminecraft.dayzminecraft.client.ClientProxy", serverSide = "com.github.dayzminecraft.dayzminecraft.common.CommonProxy")
   public static CommonProxy proxy;
 
   @EventHandler

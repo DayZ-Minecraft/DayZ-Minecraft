@@ -7,34 +7,34 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
 public class BlockNails extends BlockMod {
-  public BlockNails(int blockId, Material material) {
-    super(blockId, material);
+  public BlockNails(Material material) {
+    super(material);
   }
 
   @Override
-  public void onEntityCollidedWithBlock(World world, int xCoord, int yCoord, int zCoord, Entity entity) {
+  public void func_149670_a(World world, int xCoord, int yCoord, int zCoord, Entity entity) {
     entity.attackEntityFrom(DamageSource.generic, 6);
     world.playSoundEffect(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, "random.break", 0.3F, 0.6F);
-    world.setBlock(xCoord, yCoord, zCoord, 0);
+    world.func_147468_f(xCoord, yCoord, zCoord);
   }
 
   @Override
-  public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int xCoord, int yCoord, int zCoord) {
+  public AxisAlignedBB func_149668_a(World world, int xCoord, int yCoord, int zCoord) {
     return null;
   }
 
   @Override
-  public boolean isOpaqueCube() {
+  public boolean func_149662_c() {
     return false;
   }
 
   @Override
-  public boolean renderAsNormalBlock() {
+  public boolean func_149686_d() {
     return false;
   }
 
   @Override
-  public int getRenderType() {
+  public int func_149645_b() {
     return 6;
   }
 }

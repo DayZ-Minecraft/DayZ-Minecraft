@@ -6,11 +6,11 @@ after_success:
 - TERM=dumb gradle updateJson --stacktrace
 branches:
   only:
-    - master
-    - development
+  - master
+  - development
 env:
   global:
-  - secure: uR2oHSPlJHSl+y5NRmOETdmRBqS5ByKnK6LcoFfRTcxkbcnjftSoLPkh6EnQgl4w1X6aeNeVn1tM2CzEwMsZXaaVW7joBAkcCk0rawNkqm/7X6n9SIjcaIT6txiI79MNSKmphAuF2ttzGCsf5RDrmUL4TX3ofoC/jM5vECQvRfw=
-  - secure: mwS/cJY3Dte4Mqxn92nMHuRDZsm0PsMhWU+TSBpo0YvuM0zdoCYz1qjhK6Bzjha7b/XGqY0iBj5g+swhiYqDgjjQYl7VqTWGP1GoyM0Jbi1RM8gGFIk0731wuq8osRMYhCZbxmx/FBOVukJYNzaoNawRz2sRAGiL8rzF37mpM+0=
-  - secure: XCZZ9hSfYJliHqKr6rWHMIbRY0gHW2CNcnrur6ZaiJRQH2lqfeRxLLNEFEgPXSH7lBOHZc+gFr24MzlPQXjWlOgD0OJBX7UaJdfMwsMoTmuHWlY8pu3wR3BKdyZ/WUNM1+zAZQ77YBUVfdGgohckua0Lt0Kt50O+YhjqJzbdfYY=
-  - secure: BDeBDsC5G97HQj6s9D48tCTkag0fpVsnVVtFgNIt+iq5V5+uGFe/ya+ttnolIjpfzCQKS1BUSV0SUwl1tRbt/oLUJ0H+P+Qb/YO2LNo2RXnN7NYFi1ec7Q53KJuUe1W+IBT9VdDb3cMSADrzTGn/1mVOjQ64GECikRl6HT1JKnI=
+  - secure: BsEv2ZXQoTPrNLrMN746bVJUDFZXBfCD4+g/7jGMurEoV1YsLuoFVdH0j8JE4CD3PkCpvC5cmKJBcynHCBBltmJCBqxdtbC8nYa8QC1t1K6PfHLnrJ2VhXgMrER8iHgsKR2sl6VT9txqlyXlmdWCIC/PakNJn8dwiPH5ZYcw5lg=
+  - secure: sl9IoVHp+ovXyemeenorc5ak2J+gx2xNyd5SEEh6pQvBV7nYgTLdZT6B+yAq8uydGsfvuYyuAbWkASmSX7oS+z6ksd38aiGjwi33kHYu1z1SmqZZl2SFgOCzJC7Oves1uq6w6vqhtkkdxmBMTe3a920tbyxRszhTyv5iqrT+ZPg=
+  - secure: ck2110iqnx8loTEjpiyxgbOHdhnY+UYWWaurRZHURH2ivrqNMfonkgwMxMYhY0pmssZSINFEb9bkWKJBMxovsOsjdyYfezFX7CQsdS92gO2zY886fCcYapBbd2WM5Utf3quyUUSmz7G59NhGSCAo7pfwDFGMlk5/s6i113Zg5Eg=
+  - secure: puD21uZn603i7qGDVAi79WRnomaKdPtJjDOXWMH+9RSq1r2pq8qmU4VATFrdY43mMEXQLiWxbR/9T0z7bqjnC6oapC3kQcUDMljQLG6SAJyMrU2etwigTdYs2HTO/pMPUer/gRHUtC8sd38VG6LyKsatBKdgiCbTawLr5HzF4Ng=

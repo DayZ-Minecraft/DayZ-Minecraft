@@ -2,12 +2,9 @@ package com.github.dayzminecraft.dayzminecraft.common.misc;
 
 import java.io.File;
 
-import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.config.Configuration;
 
-import com.github.dayzminecraft.dayzminecraft.common.blocks.Blocks;
 import com.github.dayzminecraft.dayzminecraft.common.effects.Effect;
-import com.github.dayzminecraft.dayzminecraft.common.items.Items;
-import com.github.dayzminecraft.dayzminecraft.common.world.WorldTypes;
 import com.github.dayzminecraft.dayzminecraft.common.world.biomes.Biomes;
 
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -24,10 +21,7 @@ public class Config {
 
     config.load();
 
-    Blocks.blockConfig(config);
-    Items.itemConfig(config);
     Biomes.biomeConfig(config);
-    WorldTypes.worldTypeConfig(config);
     Effect.effectConfig(config);
 
     debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false, "Should DayZ log extra information?").getBoolean(false);

@@ -2,26 +2,23 @@ package com.github.dayzminecraft.dayzminecraft.common.misc;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Random;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.WorldServer;
-import net.minecraft.world.gen.structure.ComponentVillageHouse2;
+import net.minecraft.world.gen.structure.StructureVillagePieces;
 import net.minecraftforge.common.ChestGenHooks;
 
-import com.github.dayzminecraft.dayzminecraft.common.blocks.Blocks;
-import com.github.dayzminecraft.dayzminecraft.common.items.Items;
-
-import cpw.mods.fml.common.Loader;
+import com.github.dayzminecraft.dayzminecraft.common.blocks.ModBlocks;
+import com.github.dayzminecraft.dayzminecraft.common.items.ModItems;
 
 public class LootManager {
   public static WeightedRandomChestContent[] loot = new WeightedRandomChestContent[] {};
 
   public static void init() {
-    for (WeightedRandomChestContent content : ComponentVillageHouse2.villageBlacksmithChestContents) {
+    for (WeightedRandomChestContent content : StructureVillagePieces.House2.villageBlacksmithChestContents) {
       ChestGenHooks.removeItem(ChestGenHooks.VILLAGE_BLACKSMITH, content.theItemId);
     }
 
@@ -31,49 +28,24 @@ public class LootManager {
 
     registerAllItems();
 
-    if (Loader.isModLoaded("FlansMod")) {
-      loadFlans();
-    } else {
-      loadDayZ();
-    }
+    loadDayZ();
   }
 
   private static void loadDayZ() {
-    addLoot(new ItemStack(Items.gunMakarov), 7);
-    addLoot(new ItemStack(Items.gunGlock17), 7);
-    addLoot(new ItemStack(Items.ammoUsp), 7);
-    addLoot(new ItemStack(Items.gunMakarov), 5);
-    addLoot(new ItemStack(Items.gunGlock17), 5);
-    addLoot(new ItemStack(Items.gunUsp), 5);
-    addLoot(new ItemStack(Items.ammoAk74u), 5);
-    addLoot(new ItemStack(Items.ammoLeeEnfield), 5);
-    addLoot(new ItemStack(Items.ammoDoubleBarreledShotgun), 5);
-    addLoot(new ItemStack(Items.ammoRemington), 5);
-    addLoot(new ItemStack(Items.gunLeeEnfield), 1);
-    addLoot(new ItemStack(Items.gunDoubleBarreledShotgun), 1);
-    addLoot(new ItemStack(Items.gunAk74u), 1);
-    addLoot(new ItemStack(Items.gunRemington), 1);
-  }
-
-  private static void loadFlans() {
-    Random rand = new Random();
-    for (Item item : Item.itemsList) {
-      if (item == null) {
-        return;
-      }
-      if (item.getClass().getSimpleName().equals("ItemGun")) {
-        addLoot(new ItemStack(item), 1);
-      }
-      if (item.getClass().getSimpleName().equals("ItemGrenade")) {
-        addLoot(new ItemStack(item), 1);
-      }
-      if (item.getClass().getSimpleName().equals("ItemPart")) {
-        addLoot(new ItemStack(item), 1);
-      }
-      if (item.getClass().getSimpleName().equals("ItemBullet")) {
-        addLoot(new ItemStack(item), rand.nextInt(32));
-      }
-    }
+    addLoot(new ItemStack(ModItems.gunMakarov), 7);
+    addLoot(new ItemStack(ModItems.gunGlock17), 7);
+    addLoot(new ItemStack(ModItems.ammoUsp), 7);
+    addLoot(new ItemStack(ModItems.gunMakarov), 5);
+    addLoot(new ItemStack(ModItems.gunGlock17), 5);
+    addLoot(new ItemStack(ModItems.gunUsp), 5);
+    addLoot(new ItemStack(ModItems.ammoAk74u), 5);
+    addLoot(new ItemStack(ModItems.ammoLeeEnfield), 5);
+    addLoot(new ItemStack(ModItems.ammoDoubleBarreledShotgun), 5);
+    addLoot(new ItemStack(ModItems.ammoRemington), 5);
+    addLoot(new ItemStack(ModItems.gunLeeEnfield), 1);
+    addLoot(new ItemStack(ModItems.gunDoubleBarreledShotgun), 1);
+    addLoot(new ItemStack(ModItems.gunAk74u), 1);
+    addLoot(new ItemStack(ModItems.gunRemington), 1);
   }
 
   public static void addLoot(ItemStack itemStack, int itemWorth) {
@@ -86,69 +58,69 @@ public class LootManager {
   }
 
   public static void registerAllItems() {
-    addLoot(new ItemStack(Blocks.barbedWire), 3);
-    addLoot(new ItemStack(Items.camoHelmet), 3);
-    addLoot(new ItemStack(Items.camoChest), 3);
-    addLoot(new ItemStack(Items.camoLegs), 3);
-    addLoot(new ItemStack(Items.camoBoots), 3);
-    addLoot(new ItemStack(Block.cake), 3);
-    addLoot(new ItemStack(Item.bow), 5);
-    addLoot(new ItemStack(Items.meleeBaseballBatNailed), 5);
-    addLoot(new ItemStack(Items.meleePipe), 5);
-    addLoot(new ItemStack(Items.meleePlankNailed), 5);
-    addLoot(new ItemStack(Items.meleeCrowbar), 5);
-    addLoot(new ItemStack(Items.meleeMachete), 5);
-    addLoot(new ItemStack(Item.map), 5);
-    addLoot(new ItemStack(Item.coal), 5);
-    addLoot(new ItemStack(Item.ingotIron), 5);
-    addLoot(new ItemStack(Item.writableBook), 5);
-    addLoot(new ItemStack(Item.arrow), 5);
-    addLoot(new ItemStack(Item.bone), 5);
-    addLoot(new ItemStack(Items.healBloodbag), 5);
-    addLoot(new ItemStack(Block.tripWireSource), 5);
-    addLoot(new ItemStack(Item.silk), 5);
-    addLoot(new ItemStack(Item.boat), 5);
-    addLoot(new ItemStack(Item.emerald), 5);
-    addLoot(new ItemStack(Items.healBandage), 7);
-    addLoot(new ItemStack(Items.meleeBaseballBat), 7);
-    addLoot(new ItemStack(Items.meleePlank), 7);
-    addLoot(new ItemStack(Items.drinkWhiskeyBottle), 7);
-    addLoot(new ItemStack(Items.drinkCiderBottle), 7);
-    addLoot(new ItemStack(Items.drinkVodkaBottle), 7);
-    addLoot(new ItemStack(Blocks.nailBlock), 7);
-    addLoot(new ItemStack(Item.beefRaw), 9);
-    addLoot(new ItemStack(Item.beefCooked), 9);
-    addLoot(new ItemStack(Item.porkRaw), 9);
-    addLoot(new ItemStack(Item.porkCooked), 9);
-    addLoot(new ItemStack(Item.fishRaw), 9);
-    addLoot(new ItemStack(Item.fishCooked), 9);
-    addLoot(new ItemStack(Item.appleRed), 9);
-    addLoot(new ItemStack(Item.bowlSoup), 9);
-    addLoot(new ItemStack(Item.melon), 9);
-    addLoot(new ItemStack(Item.cookie), 9);
-    addLoot(new ItemStack(Item.bakedPotato), 9);
-    addLoot(new ItemStack(Items.healAntibiotics), 9);
-    addLoot(new ItemStack(Items.cannedBeans), 9);
-    addLoot(new ItemStack(Items.cannedSoup), 9);
-    addLoot(new ItemStack(Items.cannedPasta), 9);
-    addLoot(new ItemStack(Items.cannedFish), 9);
-    addLoot(new ItemStack(Items.cannedPickles), 9);
-    addLoot(new ItemStack(Items.cannedFruit), 9);
-    addLoot(new ItemStack(Items.drinkCanBeer), 9);
-    addLoot(new ItemStack(Items.drinkCanLemonSoda), 9);
-    addLoot(new ItemStack(Items.drinkCanCola), 9);
-    addLoot(new ItemStack(Items.drinkCanEnergyDrink), 9);
-    addLoot(new ItemStack(Items.drinkCanOrangeSoda), 9);
-    addLoot(new ItemStack(Items.cannedBeans, 1, 1), 11);
-    addLoot(new ItemStack(Items.cannedSoup, 1, 1), 11);
-    addLoot(new ItemStack(Items.cannedPasta, 1, 1), 11);
-    addLoot(new ItemStack(Items.cannedFish, 1, 1), 11);
-    addLoot(new ItemStack(Items.cannedPickles, 1, 1), 11);
-    addLoot(new ItemStack(Items.cannedFruit, 1, 1), 11);
-    addLoot(new ItemStack(Items.drinkCanBeer, 1, 1), 11);
-    addLoot(new ItemStack(Items.drinkCanLemonSoda, 1, 1), 11);
-    addLoot(new ItemStack(Items.drinkCanCola, 1, 1), 11);
-    addLoot(new ItemStack(Items.drinkCanEnergyDrink, 1, 1), 11);
-    addLoot(new ItemStack(Items.drinkCanOrangeSoda, 1, 1), 11);
+    addLoot(new ItemStack(ModBlocks.barbedWire), 3);
+    addLoot(new ItemStack(ModItems.camoHelmet), 3);
+    addLoot(new ItemStack(ModItems.camoChest), 3);
+    addLoot(new ItemStack(ModItems.camoLegs), 3);
+    addLoot(new ItemStack(ModItems.camoBoots), 3);
+    addLoot(new ItemStack(Blocks.cake), 3);
+    addLoot(new ItemStack(Items.bow), 5);
+    addLoot(new ItemStack(ModItems.meleeBaseballBatNailed), 5);
+    addLoot(new ItemStack(ModItems.meleePipe), 5);
+    addLoot(new ItemStack(ModItems.meleePlankNailed), 5);
+    addLoot(new ItemStack(ModItems.meleeCrowbar), 5);
+    addLoot(new ItemStack(ModItems.meleeMachete), 5);
+    addLoot(new ItemStack(Items.map), 5);
+    addLoot(new ItemStack(Items.coal), 5);
+    addLoot(new ItemStack(Items.iron_ingot), 5);
+    addLoot(new ItemStack(Items.writable_book), 5);
+    addLoot(new ItemStack(Items.arrow), 5);
+    addLoot(new ItemStack(Items.bone), 5);
+    addLoot(new ItemStack(ModItems.healBloodbag), 5);
+    addLoot(new ItemStack(Blocks.tripwire_hook), 5);
+    addLoot(new ItemStack(Items.string), 5);
+    addLoot(new ItemStack(Items.boat), 5);
+    addLoot(new ItemStack(Items.emerald), 5);
+    addLoot(new ItemStack(ModItems.healBandage), 7);
+    addLoot(new ItemStack(ModItems.meleeBaseballBat), 7);
+    addLoot(new ItemStack(ModItems.meleePlank), 7);
+    addLoot(new ItemStack(ModItems.drinkWhiskeyBottle), 7);
+    addLoot(new ItemStack(ModItems.drinkCiderBottle), 7);
+    addLoot(new ItemStack(ModItems.drinkVodkaBottle), 7);
+    addLoot(new ItemStack(ModBlocks.nailBlock), 7);
+    addLoot(new ItemStack(Items.beef), 9);
+    addLoot(new ItemStack(Items.cooked_beef), 9);
+    addLoot(new ItemStack(Items.porkchop), 9);
+    addLoot(new ItemStack(Items.cooked_porkchop), 9);
+    addLoot(new ItemStack(Items.fish), 9);
+    addLoot(new ItemStack(Items.cooked_fished), 9);
+    addLoot(new ItemStack(Items.apple), 9);
+    addLoot(new ItemStack(Items.mushroom_stew), 9);
+    addLoot(new ItemStack(Items.melon), 9);
+    addLoot(new ItemStack(Items.cookie), 9);
+    addLoot(new ItemStack(Items.potato), 9);
+    addLoot(new ItemStack(ModItems.healAntibiotics), 9);
+    addLoot(new ItemStack(ModItems.cannedBeans), 9);
+    addLoot(new ItemStack(ModItems.cannedSoup), 9);
+    addLoot(new ItemStack(ModItems.cannedPasta), 9);
+    addLoot(new ItemStack(ModItems.cannedFish), 9);
+    addLoot(new ItemStack(ModItems.cannedPickles), 9);
+    addLoot(new ItemStack(ModItems.cannedFruit), 9);
+    addLoot(new ItemStack(ModItems.drinkCanBeer), 9);
+    addLoot(new ItemStack(ModItems.drinkCanLemonSoda), 9);
+    addLoot(new ItemStack(ModItems.drinkCanCola), 9);
+    addLoot(new ItemStack(ModItems.drinkCanEnergyDrink), 9);
+    addLoot(new ItemStack(ModItems.drinkCanOrangeSoda), 9);
+    addLoot(new ItemStack(ModItems.cannedBeans, 1, 1), 11);
+    addLoot(new ItemStack(ModItems.cannedSoup, 1, 1), 11);
+    addLoot(new ItemStack(ModItems.cannedPasta, 1, 1), 11);
+    addLoot(new ItemStack(ModItems.cannedFish, 1, 1), 11);
+    addLoot(new ItemStack(ModItems.cannedPickles, 1, 1), 11);
+    addLoot(new ItemStack(ModItems.cannedFruit, 1, 1), 11);
+    addLoot(new ItemStack(ModItems.drinkCanBeer, 1, 1), 11);
+    addLoot(new ItemStack(ModItems.drinkCanLemonSoda, 1, 1), 11);
+    addLoot(new ItemStack(ModItems.drinkCanCola, 1, 1), 11);
+    addLoot(new ItemStack(ModItems.drinkCanEnergyDrink, 1, 1), 11);
+    addLoot(new ItemStack(ModItems.drinkCanOrangeSoda, 1, 1), 11);
   }
 }

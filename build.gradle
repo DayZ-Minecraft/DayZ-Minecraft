@@ -9,24 +9,28 @@ buildscript {
       name = "forge"
       url = "http://files.minecraftforge.net/maven"
     }
+	maven {
+      name = "sonatype"
+      url = "https://oss.sonatype.org/content/repositories/snapshots/"
+    }
   }
   dependencies {
     classpath "com.github.hobos_taco.hoborelease:HoboRelease:1.1"
-    classpath "net.minecraftforge.gradle:ForgeGradle:1.0-SNAPSHOT"
+    classpath "net.minecraftforge.gradle:ForgeGradle:1.1-SNAPSHOT"
   }
 }
 
 apply plugin: "hoborelease"
 apply plugin: "forge"
 
-version = "1.6.4-8.10" + "." + System.getenv("TRAVIS_BUILD_NUMBER")
+version = "1.7.2-9.0" + "." + System.getenv("TRAVIS_BUILD_NUMBER")
 group= "com.github.dayzminecraft.dayz"
 archivesBaseName = "DayZ-Minecraft"
 targetCompatibility = '1.6'
 sourceCompatibility = '1.6'
 
 minecraft {
-  version = "1.6.4-9.11.1.964"
+  version = "1.7.2-10.12.0.997"
 }
 
 processResources
@@ -51,9 +55,9 @@ hoboRelease {
   ftpServer = "ftp.dayzminecraft.x10.mx"
   ftpPort = 21
   modJsonDirectory = "http://files.dayzminecraft.x10.mx"
-  downloadLocation = "http://files.dayzminecraft.x10.mx/files/"
+  downloadLocation = "http://files.dayzminecraft.x10.mx/files"
 }
 
 task wrapper(type: Wrapper) { 
-  gradleVersion = '1.8' 
+  gradleVersion = '1.10' 
 }

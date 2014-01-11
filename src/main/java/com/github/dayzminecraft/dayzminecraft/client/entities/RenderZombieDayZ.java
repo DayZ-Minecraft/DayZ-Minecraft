@@ -14,7 +14,7 @@ public class RenderZombieDayZ extends RenderLiving {
   }
 
   public void renderZombie(EntityZombieDayZ entityZombie, double x, double y, double z, float yaw, float partialTickTime) {
-    super.doRenderLiving(entityZombie, x, y, z, yaw, partialTickTime);
+    super.doRender(entityZombie, x, y, z, yaw, partialTickTime);
   }
 
   @Override

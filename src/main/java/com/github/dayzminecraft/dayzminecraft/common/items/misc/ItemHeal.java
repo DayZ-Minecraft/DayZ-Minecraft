@@ -11,8 +11,8 @@ public class ItemHeal extends ItemMod {
   private int healAmount;
   private Potion[] potionsToStop;
 
-  public ItemHeal(int itemId, int amountToHeal, Potion... potionsToStop) {
-    super(itemId);
+  public ItemHeal(int amountToHeal, Potion... potionsToStop) {
+    super();
     healAmount = amountToHeal;
     this.potionsToStop = potionsToStop;
   }

@@ -8,18 +8,15 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 
-import com.github.dayzminecraft.dayzminecraft.DayZ;
 import com.github.dayzminecraft.dayzminecraft.common.items.ItemMod;
-import com.github.dayzminecraft.dayzminecraft.common.items.Items;
 import com.github.dayzminecraft.dayzminecraft.common.thirst.PlayerData;
 
 public class ItemDrinkBottle extends ItemMod {
   private final int healAmount;
-
   private boolean isAlcohol;
 
-  public ItemDrinkBottle(int itemId, int healAmount, boolean isAlcohol) {
-    super(itemId);
+  public ItemDrinkBottle(int healAmount, boolean isAlcohol) {
+    super();
     this.healAmount = healAmount;
     this.isAlcohol = isAlcohol;
     setMaxDamage(3);

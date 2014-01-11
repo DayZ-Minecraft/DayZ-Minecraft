@@ -9,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
 import com.github.dayzminecraft.dayzminecraft.common.effects.Effect;
@@ -93,7 +94,7 @@ public class EntityCrawler extends EntityMob {
 
   @Override
   public boolean attackEntityAsMob(Entity entity) {
-    if (worldObj.difficultySetting == 1) {
+    if (worldObj.difficultySetting.equals(EnumDifficulty.EASY)) {
       int j = rand.nextInt(10);
       int k = rand.nextInt(20);
       if (j == 0) {
@@ -103,7 +104,7 @@ public class EntityCrawler extends EntityMob {
         ((EntityLivingBase)entity).addPotionEffect(new EnactEffect(Effect.zombification.getId(), 20 * 300, 1));
       }
       return entity.attackEntityFrom(DamageSource.causeMobDamage(this), 2);
-    } else if (worldObj.difficultySetting == 2) {
+    } else if (worldObj.difficultySetting.equals(EnumDifficulty.NORMAL)) {
       int j = rand.nextInt(5);
       int k = rand.nextInt(10);
       if (j == 0) {
@@ -113,7 +114,7 @@ public class EntityCrawler extends EntityMob {
         ((EntityLivingBase)entity).addPotionEffect(new EnactEffect(Effect.zombification.getId(), 20 * 300, 1));
       }
       return entity.attackEntityFrom(DamageSource.causeMobDamage(this), 3);
-    } else if (worldObj.difficultySetting == 3) {
+    } else if (worldObj.difficultySetting.equals(EnumDifficulty.HARD)) {
       int j = rand.nextInt(3);
       int k = rand.nextInt(6);
       if (j == 0) {

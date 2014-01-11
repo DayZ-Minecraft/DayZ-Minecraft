@@ -2,7 +2,6 @@ package com.github.dayzminecraft.dayzminecraft.common.world.biomes;
 
 import net.minecraft.entity.passive.*;
 import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.biome.SpawnListEntry;
 
 public class BiomePlains extends BiomeGenBase {
   @SuppressWarnings("unchecked")
@@ -22,7 +21,6 @@ public class BiomePlains extends BiomeGenBase {
     spawnableCreatureList.add(new SpawnListEntry(EntityCow.class, 4, 4, 4));
     spawnableCreatureList.add(new SpawnListEntry(EntityChicken.class, 4, 4, 4));
     spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 4, 4, 4));
-    theBiomeDecorator.biome.color = 1456435;
     theBiomeDecorator.flowersPerChunk = 4;
     theBiomeDecorator.deadBushPerChunk = 4;
     theBiomeDecorator.treesPerChunk = -999;

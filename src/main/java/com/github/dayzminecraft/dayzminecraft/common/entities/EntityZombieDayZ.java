@@ -1,5 +1,6 @@
 package com.github.dayzminecraft.dayzminecraft.common.entities;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.*;
@@ -9,6 +10,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
 import com.github.dayzminecraft.dayzminecraft.common.effects.Effect;
@@ -69,8 +71,8 @@ public class EntityZombieDayZ extends EntityMob {
   }
 
   @Override
-  protected void playStepSound(int par1, int par2, int par3, int par4) {
-    worldObj.playSoundAtEntity(this, "mob.zombie.step", 0.15F, 1.0F);
+  protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_) {
+    this.playSound("mob.zombie.step", 0.15F, 1.0F);
   }
 
   @Override
@@ -105,7 +107,7 @@ public class EntityZombieDayZ extends EntityMob {
 
   @Override
   public boolean attackEntityAsMob(Entity entity) {
-    if (worldObj.difficultySetting == 1) {
+    if (worldObj.difficultySetting.equals(EnumDifficulty.EASY)) {
       int j = rand.nextInt(10);
       int k = rand.nextInt(20);
       if (j == 0) {
@@ -115,7 +117,7 @@ public class EntityZombieDayZ extends EntityMob {
         ((EntityLivingBase)entity).addPotionEffect(new EnactEffect(Effect.zombification.getId(), 20 * 300, 1));
       }
       return entity.attackEntityFrom(DamageSource.causeMobDamage(this), 1);
-    } else if (worldObj.difficultySetting == 2) {
+    } else if (worldObj.difficultySetting.equals(EnumDifficulty.NORMAL)) {
       int j = rand.nextInt(5);
       int k = rand.nextInt(10);
       if (j == 0) {
@@ -125,7 +127,7 @@ public class EntityZombieDayZ extends EntityMob {
         ((EntityLivingBase)entity).addPotionEffect(new EnactEffect(Effect.zombification.getId(), 20 * 300, 1));
       }
       return entity.attackEntityFrom(DamageSource.causeMobDamage(this), 2);
-    } else if (worldObj.difficultySetting == 3) {
+    } else if (worldObj.difficultySetting.equals(EnumDifficulty.HARD)) {
       int j = rand.nextInt(3);
       int k = rand.nextInt(6);
       if (j == 0) {
@@ -144,7 +146,7 @@ public class EntityZombieDayZ extends EntityMob {
   public void onUpdate() {
     super.onUpdate();
 
-    if (!worldObj.isRemote && worldObj.difficultySetting == 0) {
+    if (!worldObj.isRemote && worldObj.difficultySetting.equals(EnumDifficulty.PEACEFUL)) {
       setDead();
     }
   }

@@ -1,17 +1,12 @@
 package com.github.dayzminecraft.dayzminecraft.common;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.WeightedRandomChestContent;
-import net.minecraft.world.WorldType;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.Event;
-import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
@@ -20,12 +15,12 @@ import net.minecraftforge.event.terraingen.WorldTypeEvent;
 import net.minecraftforge.event.world.WorldEvent;
 
 import com.github.dayzminecraft.dayzminecraft.DayZ;
-import com.github.dayzminecraft.dayzminecraft.common.blocks.Blocks;
+import com.github.dayzminecraft.dayzminecraft.common.blocks.ModBlocks;
 import com.github.dayzminecraft.dayzminecraft.common.effects.Effect;
 import com.github.dayzminecraft.dayzminecraft.common.entities.EntityBullet;
 import com.github.dayzminecraft.dayzminecraft.common.entities.EntityCrawler;
 import com.github.dayzminecraft.dayzminecraft.common.entities.EntityZombieDayZ;
-import com.github.dayzminecraft.dayzminecraft.common.items.Items;
+import com.github.dayzminecraft.dayzminecraft.common.items.ModItems;
 import com.github.dayzminecraft.dayzminecraft.common.misc.ChatHandler;
 import com.github.dayzminecraft.dayzminecraft.common.misc.Config;
 import com.github.dayzminecraft.dayzminecraft.common.misc.DamageType;
@@ -36,13 +31,13 @@ import com.github.dayzminecraft.dayzminecraft.common.world.biomes.Biomes;
 import com.github.dayzminecraft.dayzminecraft.common.world.generation.StructureHandler;
 import com.github.dayzminecraft.dayzminecraft.common.world.genlayer.GenLayerDayZ;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.event.*;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartedEvent;
+import cpw.mods.fml.common.eventhandler.Event;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.EntityRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.TickRegistry;
-import cpw.mods.fml.relauncher.Side;
 
 public class CommonProxy {
   public void preload(FMLPreInitializationEvent event) {
@@ -50,19 +45,16 @@ public class CommonProxy {
     MinecraftForge.EVENT_BUS.register(DayZ.proxy);
     MinecraftForge.TERRAIN_GEN_BUS.register(DayZ.proxy);
     Config.init(event);
-  }
 
-  public void load(FMLInitializationEvent event) {
-    Blocks.loadBlocks();
-    Items.loadItems();
+    ModBlocks.loadBlocks();
+    ModItems.loadItems();
     Biomes.loadBiomes();
     Biomes.addVillages();
     WorldTypes.loadWorldTypes();
     Effect.loadEffects();
     StructureHandler.addDefaultStructures();
     Effect.register();
-
-    EntityRegistry.registerGlobalEntityID(EntityZombieDayZ.class, "Zombie", EntityRegistry.findGlobalUniqueEntityId(), 1, 2);
+    EntityRegistry.registerGlobalEntityID(EntityZombieDayZ.class, "Walker", EntityRegistry.findGlobalUniqueEntityId(), 1, 2);
     EntityRegistry.registerGlobalEntityID(EntityCrawler.class, "Crawler", EntityRegistry.findGlobalUniqueEntityId(), 1, 2);
 
     EntityRegistry.registerModEntity(EntityBullet.class, "Bullet", 1, DayZ.INSTANCE, 250, 5, true);
@@ -70,39 +62,38 @@ public class CommonProxy {
     EntityRegistry.addSpawn(EntityZombieDayZ.class, 200, 1, 4, EnumCreatureType.creature, Biomes.biomeForest, Biomes.biomePlains, Biomes.biomeRiver, Biomes.biomeSnowMountains, Biomes.biomeSnowPlains);
     EntityRegistry.addSpawn(EntityCrawler.class, 100, 1, 4, EnumCreatureType.creature, Biomes.biomeForest, Biomes.biomePlains, Biomes.biomeRiver, Biomes.biomeSnowMountains, Biomes.biomeSnowPlains);
 
-    if (Config.canSpawnZombiesInDefaultWorld) {
-      EntityRegistry.addSpawn(EntityZombieDayZ.class, 200, 1, 4, EnumCreatureType.creature, WorldType.base12Biomes);
-      EntityRegistry.addSpawn(EntityCrawler.class, 100, 1, 4, EnumCreatureType.creature, WorldType.base12Biomes);
-    }
   }
+
+  public void load(FMLInitializationEvent event) {
+ }
 
   public void postload(FMLPostInitializationEvent event) {
     LootManager.init();
   }
 
   public void serverStarted(FMLServerStartedEvent event) {
-    MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
+    /*MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
     server.logInfo("Day Z " + DayZ.meta.version + " Loaded.");
     if (Config.showWorldTypeWarning && !server.worldServers[0].getWorldInfo().getTerrainType().getWorldTypeName().equals("DAYZBASE") && !server.worldServers[0].getWorldInfo().getTerrainType().getWorldTypeName().equals("DAYZBASE")) {
       server.logInfo("You have not generated a DayZ world! Make sure your server.properties has one of the following lines to generate a DayZ world:");
       server.logInfo("level-type=DAYZBASE - To create the original DayZ world.");
       server.logInfo("level-type=DAYZSNOW - To create snowy DayZ world.");
-    }
+    } */
   }
 
-  @ForgeSubscribe
+  @SubscribeEvent
   public void worldLoad(WorldEvent.Load event) {
-    for (Object obj : event.world.loadedTileEntityList) {
+    for (Object obj : event.world.field_147482_g) {
       if (obj instanceof TileEntityChest) {
         TileEntityChest chest = (TileEntityChest)obj;
-        if (event.world.getBlockId(chest.xCoord, chest.yCoord, chest.zCoord) == Blocks.chestLoot.blockID) {
+        if (event.world.func_147439_a(chest.field_145851_c, chest.field_145848_d, chest.field_145849_e) == ModBlocks.chestLoot) {
           boolean continueChecking = true;
           int slotNumber = 0;
           while (continueChecking) {
             if (chest.getStackInSlot(slotNumber) == null && slotNumber < 27) {
               if (slotNumber == 26) {
                 WeightedRandomChestContent.generateChestContents(event.world.rand, LootManager.loot, chest, event.world.rand.nextInt(5) + 1);
-                ChatHandler.logDebug("Refilled chest at " + chest.xCoord + ", " + chest.yCoord + ", " + chest.zCoord + ".");
+                ChatHandler.logDebug("Refilled chest at " + chest.field_145851_c + ", " + chest.field_145848_d + ", " + chest.field_145849_e + ".");
                 continueChecking = false;
               } else {
                 slotNumber++;
@@ -116,15 +107,15 @@ public class CommonProxy {
     }
   }
 
-  @ForgeSubscribe
+  @SubscribeEvent
   public void playerInteract(EntityInteractEvent event) {
-    if (event.target != null && event.target instanceof EntityPlayer && event.entityPlayer.getCurrentEquippedItem().itemID == Items.healBloodbag.itemID) {
+    if (event.target != null && event.target instanceof EntityPlayer && event.entityPlayer.getCurrentEquippedItem().getItem().equals(ModItems.healBloodbag)) {
       ((EntityPlayer)event.target).heal(20F);
       event.entityPlayer.getCurrentEquippedItem().stackSize--;
     }
   }
 
-  @ForgeSubscribe
+  @SubscribeEvent
   public void onEntityUpdate(LivingEvent.LivingUpdateEvent event) {
     if (event.entityLiving instanceof EntityPlayer && DayZ.isServer()) {
       PlayerData.get((EntityPlayer)event.entityLiving).handleThirst();
@@ -156,7 +147,7 @@ public class CommonProxy {
     }
   }
 
-  @ForgeSubscribe
+  @SubscribeEvent
   public void onEntityConstructing(EntityEvent.EntityConstructing event)
   {
     if (event.entity instanceof EntityPlayer && PlayerData.get((EntityPlayer)event.entity) == null) {
@@ -167,14 +158,14 @@ public class CommonProxy {
     }
   }
 
-  @ForgeSubscribe
+  @SubscribeEvent
   public void initBiomeGens(WorldTypeEvent.InitBiomeGens event) {
     if (event.worldType instanceof WorldTypes) {
       event.newBiomeGens = GenLayerDayZ.getGenLayers(event.seed, (WorldTypes)event.worldType);
     }
   }
 
-  @ForgeSubscribe
+  @SubscribeEvent
   public void populateChunk(PopulateChunkEvent.Populate event) {
     if (event.world.getWorldInfo().getTerrainType() instanceof WorldTypes) {
       if (event.type == PopulateChunkEvent.Populate.EventType.LAKE) {

@@ -26,7 +26,7 @@ public class GenLayerDayZMinorBiome extends GenLayer {
         if (nextInt(3) == 0) {
           int l = k;
 
-          BiomeGenBase biome = worldType.setMinorBiomes(BiomeGenBase.biomeList[k], this);
+          BiomeGenBase biome = worldType.setMinorBiomes(BiomeGenBase.func_150565_n()[k], this);
           if (biome != null) {
             l = biome.biomeID;
           }

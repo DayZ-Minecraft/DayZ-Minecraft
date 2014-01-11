@@ -7,28 +7,20 @@ import net.minecraft.world.biome.WorldChunkManager;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.ChunkProviderGenerate;
 import net.minecraft.world.gen.layer.GenLayer;
-import net.minecraftforge.common.Configuration;
 
 import com.github.dayzminecraft.dayzminecraft.common.world.biomes.Biomes;
 
 public class WorldTypes extends WorldType {
-  private static int DAYZ_ID;
-  public static WorldTypes DAYZ;
-  private static int SNOW_ID;
-  public static WorldTypes SNOW;
+  public static WorldType DAYZ;
+  public static WorldType SNOW;
 
-  public WorldTypes(int id, String worldName) {
-    super(id, worldName, 0);
+  public WorldTypes(String name) {
+    super(name);
   }
 
   public static void loadWorldTypes() {
-    DAYZ = (new WorldTypes(DAYZ_ID, "DAYZBASE"));
-    SNOW = (new WorldTypes(SNOW_ID, "DAYZSNOW"));
-  }
-
-  public static void worldTypeConfig(Configuration config) {
-    DAYZ_ID = config.get("worldtype", "dayzId", 12).getInt();
-    SNOW_ID = config.get("worldtype", "snowId", 13).getInt();
+    DAYZ = new WorldTypes("DAYZBASE");
+    SNOW = new WorldTypes("DAYZSNOW");
   }
 
   @Override

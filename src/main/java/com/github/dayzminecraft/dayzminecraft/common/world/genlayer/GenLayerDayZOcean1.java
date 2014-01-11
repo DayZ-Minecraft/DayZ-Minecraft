@@ -58,7 +58,7 @@ public class GenLayerDayZOcean1 extends GenLayer {
 
           BiomeGenBase ocean;
           if (i3 >= 0) {
-            ocean = worldType.setOceanBiomes(BiomeGenBase.biomeList[i3], this);
+            ocean = worldType.setOceanBiomes(BiomeGenBase.func_150565_n()[i3], this);
           } else {
             ocean = worldType.setOceanBiomes(null, this);
           }
@@ -71,7 +71,7 @@ public class GenLayerDayZOcean1 extends GenLayer {
 
         if (k2 > 0 && (k1 == 0 || l1 == 0 || i2 == 0 || j2 == 0)) {
           if (nextInt(5) == 0) {
-            BiomeGenBase ocean = worldType.setOceanBiomes(BiomeGenBase.biomeList[k2], this);
+            BiomeGenBase ocean = worldType.setOceanBiomes(BiomeGenBase.func_150565_n()[k2], this);
             if (ocean != null) {
               ai1[j1 + i1 * par3] = ocean.biomeID;
             }

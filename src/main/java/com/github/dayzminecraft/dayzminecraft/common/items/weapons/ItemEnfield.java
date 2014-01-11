@@ -2,7 +2,7 @@ package com.github.dayzminecraft.dayzminecraft.common.items.weapons;
 
 import net.minecraft.item.Item;
 
-import com.github.dayzminecraft.dayzminecraft.common.items.Items;
+import com.github.dayzminecraft.dayzminecraft.common.items.ModItems;
 
 public class ItemEnfield implements IGun {
   @Override
@@ -27,6 +27,6 @@ public class ItemEnfield implements IGun {
 
   @Override
   public Item getAmmo() {
-    return Items.ammoLeeEnfield;
+    return ModItems.ammoLeeEnfield;
   }
 }

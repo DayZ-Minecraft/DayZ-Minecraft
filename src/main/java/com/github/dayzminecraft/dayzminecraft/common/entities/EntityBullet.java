@@ -1,14 +1,14 @@
 package com.github.dayzminecraft.dayzminecraft.common.entities;
 
-import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumMovingObjectType;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
 import com.github.dayzminecraft.dayzminecraft.common.effects.Effect;
@@ -75,37 +75,37 @@ public class EntityBullet extends EntityThrowable {
       }
 
       if (movingObjectPosition.entityHit instanceof EntityPlayer) {
-        if (worldObj.difficultySetting == 1) {
+        if (worldObj.difficultySetting.equals(EnumDifficulty.EASY)) {
           int j = rand.nextInt(10);
           if (j == 0) {
             ((EntityLivingBase)movingObjectPosition.entityHit).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 300, 1));
           }
-        } else if (worldObj.difficultySetting == 2) {
+        } else if (worldObj.difficultySetting.equals(EnumDifficulty.NORMAL)) {
           int j = rand.nextInt(5);
           if (j == 0) {
             ((EntityLivingBase)movingObjectPosition.entityHit).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 300, 1));
           }
-        } else if (worldObj.difficultySetting == 3) {
+        } else if (worldObj.difficultySetting.equals(EnumDifficulty.HARD)) {
           int j = rand.nextInt(3);
           if (j == 0) {
             ((EntityLivingBase)movingObjectPosition.entityHit).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 300, 1));
           }
         }
       }
-    } else if (movingObjectPosition.typeOfHit == EnumMovingObjectType.TILE) {
+    } else if (movingObjectPosition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) {
       if (!worldObj.isRemote) {
         setDead();
       }
-      if (worldObj.getBlockId(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ) == Block.glass.blockID || worldObj.getBlockId(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ) == Block.thinGlass.blockID) {
-        worldObj.setBlock(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ, 0);
+      if (worldObj.func_147439_a(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ).equals(Blocks.glass_pane) || worldObj.func_147439_a(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ).equals(Blocks.glass)) {
+        worldObj.func_147468_f(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ);
         worldObj.playSoundEffect(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ, "random.glass", 1.0F, 1.0F);
         setDead();
-      } else if (worldObj.getBlockId(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ) == Block.tallGrass.blockID) {
-        worldObj.setBlock(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ, 0);
+      } else if (worldObj.func_147439_a(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ).equals(Blocks.tallgrass)) {
+        worldObj.func_147468_f(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ);
         worldObj.playSoundEffect(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ, "step.grass", 1.0F, 1.0F);
         setDead();
       } else {
-        String stepsound = Block.blocksList[worldObj.getBlockId(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ)].stepSound.getStepSound();
+        String stepsound = worldObj.func_147439_a(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ).field_149762_H.func_150498_e();
         worldObj.playSoundAtEntity(this, stepsound, 1.0F, 1.0F);
         setDead();
       }

@@ -1,0 +1,50 @@
+{
+  "gun.ak74u": {
+    "category": "neutral",
+    "sounds": [
+      "gun/ak74u"
+    ]
+  },
+  "gun.makarov": {
+    "category": "neutral",
+    "sounds": [
+      "gun/makarov"
+    ]
+  },
+  "gun.remington": {
+    "category": "neutral",
+    "sounds": [
+      "gun/remington"
+    ]
+  },
+  "gun.leeenfield": {
+    "category": "neutral",
+    "sounds": [
+      "gun/leeenfield"
+    ]
+  },
+  "gun.glock": {
+    "category": "neutral",
+    "sounds": [
+      "gun/glock"
+    ]
+  },
+  "gun.dbshotgun": {
+    "category": "neutral",
+    "sounds": [
+      "gun/dbshotgun"
+    ]
+  },
+  "gun.usp": {
+    "category": "neutral",
+    "sounds": [
+      "gun/usp"
+    ]
+  },
+  "gun.reload": {
+    "category": "neutral",
+    "sounds": [
+      "gun/reload"
+    ]
+  }
+}

@@ -12,7 +12,6 @@ public class BiomeRiver extends BiomeGenRiver {
     minHeight = -0.5F;
     maxHeight = 0.0F;
     theBiomeDecorator.treesPerChunk = -999;
-    theBiomeDecorator.biome.color = 1456435;
     theBiomeDecorator.flowersPerChunk = 0;
     theBiomeDecorator.grassPerChunk = 15;
     theBiomeDecorator.deadBushPerChunk = 0;

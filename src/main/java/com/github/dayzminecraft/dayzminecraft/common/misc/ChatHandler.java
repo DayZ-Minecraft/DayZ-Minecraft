@@ -4,27 +4,24 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.network.packet.Packet3Chat;
-import net.minecraft.util.ChatMessageComponent;
+import net.minecraft.network.play.client.C01PacketChatMessage;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.EnumChatFormatting;
-
-import cpw.mods.fml.common.network.PacketDispatcher;
-import cpw.mods.fml.common.network.Player;
 
 public final class ChatHandler {
   public static Logger log;
 
   @SuppressWarnings("unused")
   public static void chatError(EntityPlayer player, String msg) {
-    PacketDispatcher.sendPacketToPlayer(new Packet3Chat(ChatMessageComponent.createFromText(EnumChatFormatting.RED + msg)), (Player)player);
+    MinecraftServer.getServer().getConfigurationManager().getPlayerForUsername(player.getDisplayName()).playerNetServerHandler.func_147359_a(new C01PacketChatMessage(EnumChatFormatting.RED + msg));
   }
 
   public static void chatConfirmation(EntityPlayer player, String msg) {
-    PacketDispatcher.sendPacketToPlayer(new Packet3Chat(ChatMessageComponent.createFromText(EnumChatFormatting.GREEN + msg)), (Player)player);
+    MinecraftServer.getServer().getConfigurationManager().getPlayerForUsername(player.getDisplayName()).playerNetServerHandler.func_147359_a(new C01PacketChatMessage(EnumChatFormatting.GREEN + msg));
   }
 
   public static void chatWarning(EntityPlayer player, String msg) {
-    PacketDispatcher.sendPacketToPlayer(new Packet3Chat(ChatMessageComponent.createFromText(EnumChatFormatting.YELLOW + msg)), (Player)player);
+    MinecraftServer.getServer().getConfigurationManager().getPlayerForUsername(player.getDisplayName()).playerNetServerHandler.func_147359_a(new C01PacketChatMessage(EnumChatFormatting.YELLOW + msg));
   }
 
   @SuppressWarnings("unused")

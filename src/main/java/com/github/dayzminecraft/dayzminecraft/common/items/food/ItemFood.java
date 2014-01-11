@@ -1,11 +1,11 @@
 package com.github.dayzminecraft.dayzminecraft.common.items.food;
 
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 import com.github.dayzminecraft.dayzminecraft.DayZ;
@@ -14,25 +14,25 @@ import com.github.dayzminecraft.dayzminecraft.common.items.ItemMod;
 public class ItemFood extends ItemMod {
   private final int healAmount;
   private final float saturationModifier;
-  private Icon emptyCanIcon;
+  private IIcon emptyCanIcon;
 
-  public ItemFood(int itemId, int healAmount, float saturationModifier) {
-    super(itemId);
+  public ItemFood(int healAmount, float saturationModifier) {
+    super();
     this.healAmount = healAmount;
     this.saturationModifier = saturationModifier;
     setMaxDamage(1);
   }
 
-  public ItemFood(int itemId, int healAmount) {
-    this(itemId, healAmount, 0.6F);
+  public ItemFood(int healAmount) {
+    this(healAmount, 0.6F);
   }
 
-  public ItemFood(int itemId, Item returnItem) {
-    this(itemId, 4, 0.6F);
+  public ItemFood(Item returnItem) {
+    this(4, 0.6F);
   }
 
-  public ItemFood(int itemId) {
-    this(itemId, 4, 0.6F);
+  public ItemFood() {
+    this(4, 0.6F);
   }
 
   @Override
@@ -62,13 +62,13 @@ public class ItemFood extends ItemMod {
   }
 
   @Override
-  public Icon getIconFromDamage(int damage) {
+  public IIcon getIconFromDamage(int damage) {
     if (damage == 0) return this.itemIcon;
     else return emptyCanIcon;
   }
 
   @Override
-  public void registerIcons(IconRegister register) {
+  public void registerIcons(IIconRegister register) {
     itemIcon = register.registerIcon(DayZ.meta.modId + ":" + getUnlocalizedName().substring(getUnlocalizedName().indexOf(".") + 1));
     emptyCanIcon = register.registerIcon(DayZ.meta.modId + ":" + getUnlocalizedName().substring(getUnlocalizedName().indexOf(".") + 1) + "-empty");
   }

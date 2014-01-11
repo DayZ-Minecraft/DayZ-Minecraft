@@ -7,7 +7,6 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
 
-import com.github.dayzminecraft.dayzminecraft.common.items.Items;
 import com.github.dayzminecraft.dayzminecraft.common.misc.ChatHandler;
 import com.github.dayzminecraft.dayzminecraft.common.misc.Config;
 import com.github.dayzminecraft.dayzminecraft.common.misc.DamageType;
@@ -76,7 +75,7 @@ public class PlayerData implements IExtendedEntityProperties {
     } else {
       thirst++;
     }
-    ChatHandler.logDebug(player.username + " - " + String.valueOf(thirst));
+    ChatHandler.logDebug(player.getDisplayName() + " - " + String.valueOf(thirst));
   }
 
   public int getThirst() {

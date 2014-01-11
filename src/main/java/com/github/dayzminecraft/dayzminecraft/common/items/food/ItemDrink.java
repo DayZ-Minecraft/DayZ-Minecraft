@@ -1,12 +1,12 @@
 package com.github.dayzminecraft.dayzminecraft.common.items.food;
 
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 import com.github.dayzminecraft.dayzminecraft.DayZ;
@@ -16,21 +16,21 @@ import com.github.dayzminecraft.dayzminecraft.common.thirst.PlayerData;
 public class ItemDrink extends ItemMod {
   private final int healAmount;
   private final boolean isAlcohol;
-  private Icon emptyCanIcon;
+  private IIcon emptyCanIcon;
 
-  public ItemDrink(int itemId, int healAmount, boolean isAlcohol) {
-    super(itemId);
+  public ItemDrink(int healAmount, boolean isAlcohol) {
+    super();
     this.healAmount = healAmount;
     this.isAlcohol = isAlcohol;
     setMaxDamage(1);
   }
 
-  public ItemDrink(int itemId, int healAmount) {
-    this(itemId, healAmount, false);
+  public ItemDrink(int healAmount) {
+    this(healAmount, false);
   }
 
-  public ItemDrink(int itemId) {
-    this(itemId, 4000, false);
+  public ItemDrink() {
+    this(4000, false);
   }
 
   @Override
@@ -63,13 +63,13 @@ public class ItemDrink extends ItemMod {
   }
 
   @Override
-  public Icon getIconFromDamage(int damage) {
+  public IIcon getIconFromDamage(int damage) {
     if (damage != getMaxDamage()) return this.itemIcon;
     else return emptyCanIcon;
   }
 
   @Override
-  public void registerIcons(IconRegister register) {
+  public void registerIcons(IIconRegister register) {
     itemIcon = register.registerIcon(DayZ.meta.modId + ":" + getUnlocalizedName().substring(getUnlocalizedName().indexOf(".") + 1));
     emptyCanIcon = register.registerIcon(DayZ.meta.modId + ":" + getUnlocalizedName().substring(getUnlocalizedName().indexOf(".") + 1) + "-empty");
   }

@@ -2,7 +2,7 @@ package com.github.dayzminecraft.dayzminecraft.common.world.biomes;
 
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.BiomeManager;
-import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.config.Configuration;
 
 public class Biomes {
   public static BiomeGenBase biomeForest;
@@ -16,12 +16,16 @@ public class Biomes {
   public static BiomeGenBase biomeSnowMountains;
   private static int biomeSnowMountainsId;
 
+  private static final BiomeGenBase.Height biomeSnowPlainsHeight = new BiomeGenBase.Height(0.0F, 0.0F);
+  private static final BiomeGenBase.Height biomeSnowMountainsHeight = new BiomeGenBase.Height(0.0F, 0.5F);
+
+
   public static void loadBiomes() {
     biomeForest = (new BiomeForest(biomeForestId));
     biomePlains = (new BiomePlains(biomePlainsId));
     biomeRiver = (new BiomeRiver(biomeRiverId));
-    biomeSnowPlains = (new BiomeSnow(biomeSnowPlainsId).setMinMaxHeight(0.0F, 0.0F).setBiomeName("Snow Plains").setEnableSnow());
-    biomeSnowMountains = (new BiomeSnow(biomeSnowMountainsId).setMinMaxHeight(0.0F, 0.5F).setBiomeName("Snow Mountains").setEnableSnow());
+    biomeSnowPlains = (new BiomeSnow(biomeSnowPlainsId).func_150570_a(biomeSnowPlainsHeight).setBiomeName("Snow Plains").setEnableSnow());
+    biomeSnowMountains = (new BiomeSnow(biomeSnowMountainsId).func_150570_a(biomeSnowMountainsHeight).setBiomeName("Snow Mountains").setEnableSnow());
   }
 
   public static void biomeConfig(Configuration config) {

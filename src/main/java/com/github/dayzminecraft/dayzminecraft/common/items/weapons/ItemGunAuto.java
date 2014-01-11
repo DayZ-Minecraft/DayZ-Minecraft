@@ -12,8 +12,8 @@ import com.github.dayzminecraft.dayzminecraft.common.items.ItemMod;
 public class ItemGunAuto extends ItemMod {
   private IGun gun;
 
-  public ItemGunAuto(int itemId, IGun iGun) {
-    super(itemId);
+  public ItemGunAuto(IGun iGun) {
+    super();
     gun = iGun;
     maxStackSize = 1;
     setMaxDamage(gun.getRounds());
@@ -21,15 +21,15 @@ public class ItemGunAuto extends ItemMod {
 
   @Override
   public void onPlayerStoppedUsing(ItemStack itemstack, World world, EntityPlayer entityplayer, int i) {
-    if (itemstack.getItemDamage() >= gun.getRounds() && entityplayer.inventory.hasItem(gun.getAmmo().itemID)) {
+    if (itemstack.getItemDamage() >= gun.getRounds() && entityplayer.inventory.func_146028_b(gun.getAmmo())) {
       int j = getMaxItemUseDuration(itemstack) - i;
       float f = j / 20F;
       f = (f * f + f * 2.0F) / 3F;
 
       if (f >= 1.0F) {
-        world.playSoundAtEntity(entityplayer, DayZ.meta.modId + ":" + gun.getReloadSound(), 1.0F, 1.0F);
+        world.playSoundAtEntity(entityplayer, DayZ.meta.modId + ":" + "gun." + gun.getReloadSound(), 1.0F, 1.0F);
         itemstack.setItemDamage(0);
-        entityplayer.inventory.consumeInventoryItem(gun.getAmmo().itemID);
+        entityplayer.inventory.func_146026_a(gun.getAmmo());
       }
     } else {
       world.playSoundAtEntity(entityplayer, "random.click", 1.0F, 1.0F);
@@ -55,7 +55,7 @@ public class ItemGunAuto extends ItemMod {
   public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer entityplayer) {
     if (itemstack.getItemDamage() < gun.getRounds()) {
       EntityBullet entitybullet = new EntityBullet(world, entityplayer, gun.getDamage());
-      world.playSoundAtEntity(entityplayer, DayZ.meta.modId + ":" + gun.getShootSound(), 1.0F, 1.0F);
+      world.playSoundAtEntity(entityplayer, DayZ.meta.modId + ":" + "gun." + gun.getShootSound(), 1.0F, 1.0F);
       itemstack.damageItem(1, entityplayer);
 
       if (!world.isRemote) {

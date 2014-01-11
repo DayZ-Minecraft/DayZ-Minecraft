@@ -15,8 +15,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ItemMelee extends ItemMod {
   private float weaponDamage;
 
-  public ItemMelee(int itemId, float damage) {
-    super(itemId);
+  public ItemMelee(float damage) {
+    super();
     maxStackSize = 1;
     setMaxDamage(32);
     weaponDamage = damage;
