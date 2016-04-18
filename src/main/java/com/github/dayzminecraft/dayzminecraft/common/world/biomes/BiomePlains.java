@@ -10,8 +10,7 @@ public class BiomePlains extends BiomeGenBase {
     setBiomeName("Plains");
     temperature = BiomeGenBase.forest.temperature;
     rainfall = BiomeGenBase.forest.rainfall;
-    minHeight = 0.1F;
-    maxHeight = 0.1F;
+    setHeight(new Height(0.1F, 0.1F));
     spawnableMonsterList.clear();
     spawnableCreatureList.clear();
     spawnableWaterCreatureList.clear();

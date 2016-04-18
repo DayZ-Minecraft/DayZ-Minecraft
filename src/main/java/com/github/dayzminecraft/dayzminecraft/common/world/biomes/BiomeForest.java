@@ -18,8 +18,7 @@ public class BiomeForest extends BiomeGenBase {
     setBiomeName("Forest");
     temperature = BiomeGenBase.forest.temperature;
     rainfall = BiomeGenBase.forest.rainfall;
-    minHeight = 0.1F;
-    maxHeight = 0.2F;
+    setHeight(new Height(0.1F, 0.1F));
     spawnableMonsterList.clear();
     spawnableCreatureList.clear();
     spawnableWaterCreatureList.clear();

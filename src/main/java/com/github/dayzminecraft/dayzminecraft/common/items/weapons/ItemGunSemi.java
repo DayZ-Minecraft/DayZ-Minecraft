@@ -29,7 +29,7 @@ public class ItemGunSemi extends ItemMod {
       if (!world.isRemote) {
         world.spawnEntityInWorld(entitybullet);
       }
-    } else if (itemstack.getItemDamage() >= gun.getRounds() && entityplayer.inventory.func_146028_b(gun.getAmmo())) {
+    } else if (itemstack.getItemDamage() >= gun.getRounds() && entityplayer.inventory.hasItem(gun.getAmmo())) {
       int k = getMaxItemUseDuration(itemstack) - i;
       float f1 = k / 20F;
       f1 = (f1 * f1 + f1 * 2.0F) / 3F;
@@ -37,7 +37,7 @@ public class ItemGunSemi extends ItemMod {
       if (f1 >= 1.0F) {
         itemstack.setItemDamage(0);
         world.playSoundAtEntity(entityplayer, DayZ.meta.modId + ":" + "gun." + gun.getReloadSound(), 1.0F, 1.0F);
-        entityplayer.inventory.func_146026_a(gun.getAmmo());
+        entityplayer.inventory.consumeInventoryItem(gun.getAmmo());
       }
     } else {
       world.playSoundAtEntity(entityplayer, "random.click", 1.0F, 1.0F);

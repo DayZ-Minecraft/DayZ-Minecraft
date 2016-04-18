@@ -12,29 +12,29 @@ public class BlockNails extends BlockMod {
   }
 
   @Override
-  public void func_149670_a(World world, int xCoord, int yCoord, int zCoord, Entity entity) {
+  public void onEntityCollidedWithBlock(World world, int xCoord, int yCoord, int zCoord, Entity entity) {
     entity.attackEntityFrom(DamageSource.generic, 6);
     world.playSoundEffect(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, "random.break", 0.3F, 0.6F);
-    world.func_147468_f(xCoord, yCoord, zCoord);
+    world.setBlockToAir(xCoord, yCoord, zCoord);
   }
 
   @Override
-  public AxisAlignedBB func_149668_a(World world, int xCoord, int yCoord, int zCoord) {
+  public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int xCoord, int yCoord, int zCoord) {
     return null;
   }
 
   @Override
-  public boolean func_149662_c() {
+  public boolean isOpaqueCube() {
     return false;
   }
 
   @Override
-  public boolean func_149686_d() {
+  public boolean renderAsNormalBlock() {
     return false;
   }
 
   @Override
-  public int func_149645_b() {
+  public int getRenderType() {
     return 6;
   }
 }

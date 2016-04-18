@@ -13,15 +13,15 @@ public final class ChatHandler {
 
   @SuppressWarnings("unused")
   public static void chatError(EntityPlayer player, String msg) {
-    MinecraftServer.getServer().getConfigurationManager().getPlayerForUsername(player.getDisplayName()).playerNetServerHandler.func_147359_a(new C01PacketChatMessage(EnumChatFormatting.RED + msg));
+    MinecraftServer.getServer().getConfigurationManager().getPlayerForUsername(player.getDisplayName()).playerNetServerHandler.processChatMessage(new C01PacketChatMessage(EnumChatFormatting.RED + msg));
   }
 
   public static void chatConfirmation(EntityPlayer player, String msg) {
-    MinecraftServer.getServer().getConfigurationManager().getPlayerForUsername(player.getDisplayName()).playerNetServerHandler.func_147359_a(new C01PacketChatMessage(EnumChatFormatting.GREEN + msg));
+    MinecraftServer.getServer().getConfigurationManager().getPlayerForUsername(player.getDisplayName()).playerNetServerHandler.processChatMessage(new C01PacketChatMessage(EnumChatFormatting.GREEN + msg));
   }
 
   public static void chatWarning(EntityPlayer player, String msg) {
-    MinecraftServer.getServer().getConfigurationManager().getPlayerForUsername(player.getDisplayName()).playerNetServerHandler.func_147359_a(new C01PacketChatMessage(EnumChatFormatting.YELLOW + msg));
+    MinecraftServer.getServer().getConfigurationManager().getPlayerForUsername(player.getDisplayName()).playerNetServerHandler.processChatMessage(new C01PacketChatMessage(EnumChatFormatting.YELLOW + msg));
   }
 
   @SuppressWarnings("unused")

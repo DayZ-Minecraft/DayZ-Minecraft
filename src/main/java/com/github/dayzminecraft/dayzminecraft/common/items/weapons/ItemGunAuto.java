@@ -21,7 +21,7 @@ public class ItemGunAuto extends ItemMod {
 
   @Override
   public void onPlayerStoppedUsing(ItemStack itemstack, World world, EntityPlayer entityplayer, int i) {
-    if (itemstack.getItemDamage() >= gun.getRounds() && entityplayer.inventory.func_146028_b(gun.getAmmo())) {
+    if (itemstack.getItemDamage() >= gun.getRounds() && entityplayer.inventory.hasItem(gun.getAmmo())) {
       int j = getMaxItemUseDuration(itemstack) - i;
       float f = j / 20F;
       f = (f * f + f * 2.0F) / 3F;
@@ -29,7 +29,7 @@ public class ItemGunAuto extends ItemMod {
       if (f >= 1.0F) {
         world.playSoundAtEntity(entityplayer, DayZ.meta.modId + ":" + "gun." + gun.getReloadSound(), 1.0F, 1.0F);
         itemstack.setItemDamage(0);
-        entityplayer.inventory.func_146026_a(gun.getAmmo());
+        entityplayer.inventory.consumeInventoryItem(gun.getAmmo());
       }
     } else {
       world.playSoundAtEntity(entityplayer, "random.click", 1.0F, 1.0F);

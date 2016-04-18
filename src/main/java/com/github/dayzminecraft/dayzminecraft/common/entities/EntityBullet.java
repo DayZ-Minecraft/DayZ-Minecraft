@@ -97,16 +97,16 @@ public class EntityBullet extends EntityThrowable {
       if (!worldObj.isRemote) {
         setDead();
       }
-      if (worldObj.func_147439_a(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ).equals(Blocks.glass_pane) || worldObj.func_147439_a(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ).equals(Blocks.glass)) {
-        worldObj.func_147468_f(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ);
+      if (worldObj.getBlock(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ).equals(Blocks.glass_pane) || worldObj.getBlock(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ).equals(Blocks.glass)) {
+        worldObj.getBlock(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ);
         worldObj.playSoundEffect(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ, "random.glass", 1.0F, 1.0F);
         setDead();
-      } else if (worldObj.func_147439_a(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ).equals(Blocks.tallgrass)) {
-        worldObj.func_147468_f(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ);
+      } else if (worldObj.getBlock(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ).equals(Blocks.tallgrass)) {
+        worldObj.getBlock(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ);
         worldObj.playSoundEffect(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ, "step.grass", 1.0F, 1.0F);
         setDead();
       } else {
-        String stepsound = worldObj.func_147439_a(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ).field_149762_H.func_150498_e();
+        String stepsound = worldObj.getBlock(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ).stepSound.getBreakSound();
         worldObj.playSoundAtEntity(this, stepsound, 1.0F, 1.0F);
         setDead();
       }

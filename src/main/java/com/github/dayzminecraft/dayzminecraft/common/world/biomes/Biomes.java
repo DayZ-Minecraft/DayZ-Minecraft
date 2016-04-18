@@ -28,8 +28,8 @@ public class Biomes {
     biomeForest = (new BiomeForest(biomeForestId));
     biomePlains = (new BiomePlains(biomePlainsId));
     biomeRiver = (new BiomeRiver(biomeRiverId));
-    biomeSnowPlains = (new BiomeSnow(biomeSnowPlainsId).func_150570_a(biomeSnowPlainsHeight).setBiomeName("Snow Plains").setEnableSnow());
-    biomeSnowMountains = (new BiomeSnow(biomeSnowMountainsId).func_150570_a(biomeSnowMountainsHeight).setBiomeName("Snow Mountains").setEnableSnow());
+    biomeSnowPlains = (new BiomeSnow(biomeSnowPlainsId).setHeight(biomeSnowPlainsHeight).setBiomeName("Snow Plains").setEnableSnow());
+    biomeSnowMountains = (new BiomeSnow(biomeSnowMountainsId).setHeight(biomeSnowMountainsHeight).setBiomeName("Snow Mountains").setEnableSnow());
   }
 
   public static void biomeConfig(Configuration config) {

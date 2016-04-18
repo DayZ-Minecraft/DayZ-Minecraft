@@ -15,15 +15,15 @@ public class ModBlocks {
   public static Block nailBlock;
 
   public static void loadBlocks() {
-    barbedWire = new BlockBarbedWire().func_149663_c("barbedWire").func_149711_c(3F).func_149752_b(2F);
+    barbedWire = new BlockBarbedWire().setBlockName("barbedWire").setHardness(3F).setResistance(2F);
     GameRegistry.registerBlock(barbedWire, "barbedWire");
-    chestLoot = new BlockChestDayZ(0).func_149663_c("chestLoot");
+    chestLoot = new BlockChestDayZ(0).setBlockName("chestLoot");
     GameRegistry.registerBlock(chestLoot, "chestLoot");
-    chainFence = new BlockFence("chainFence", Material.field_151573_f).func_149711_c(5.0F).func_149752_b(10.0F).func_149672_a(Block.field_149777_j).func_149663_c("chainFence");
+    chainFence = new BlockFence("chainFence", Material.iron).setHardness(5.0F).setResistance(10.0F).setStepSound(Block.soundTypeMetal).setBlockName("chainFence");
     GameRegistry.registerBlock(chainFence, "chainFence");
-    sandbagBlock = new BlockMod(Material.field_151595_p).func_149711_c(2.0F).func_149752_b(10.0F).func_149672_a(Block.field_149776_m).func_149663_c("sandbagBlock");
+    sandbagBlock = new BlockMod(Material.clay).setHardness(2.0F).setResistance(10.0F).setStepSound(Block.soundTypeSand).setBlockName("sandbagBlock");
     GameRegistry.registerBlock(sandbagBlock, "sandbagBlock");
-    nailBlock = new BlockNails(Material.field_151594_q).func_149663_c("nailBlock").func_149711_c(1F).func_149752_b(1F);
+    nailBlock = new BlockNails(Material.circuits).setBlockName("nailBlock").setHardness(1F).setResistance(1F);
     GameRegistry.registerBlock(nailBlock, "nailBlock");
     GameRegistry.addRecipe(new ItemStack(nailBlock, 8), "#", "#", '#', Items.iron_ingot);
   }

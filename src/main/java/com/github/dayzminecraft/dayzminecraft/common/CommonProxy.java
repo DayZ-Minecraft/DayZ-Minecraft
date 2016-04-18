@@ -83,17 +83,17 @@ public class CommonProxy {
 
   @SubscribeEvent
   public void worldLoad(WorldEvent.Load event) {
-    for (Object obj : event.world.field_147482_g) {
+    for (Object obj : event.world.loadedTileEntityList) {
       if (obj instanceof TileEntityChest) {
         TileEntityChest chest = (TileEntityChest)obj;
-        if (event.world.func_147439_a(chest.field_145851_c, chest.field_145848_d, chest.field_145849_e) == ModBlocks.chestLoot) {
+        if (event.world.getBlock(chest.xCoord, chest.yCoord, chest.zCoord) == ModBlocks.chestLoot) {
           boolean continueChecking = true;
           int slotNumber = 0;
           while (continueChecking) {
             if (chest.getStackInSlot(slotNumber) == null && slotNumber < 27) {
               if (slotNumber == 26) {
                 WeightedRandomChestContent.generateChestContents(event.world.rand, LootManager.loot, chest, event.world.rand.nextInt(5) + 1);
-                ChatHandler.logDebug("Refilled chest at " + chest.field_145851_c + ", " + chest.field_145848_d + ", " + chest.field_145849_e + ".");
+                ChatHandler.logDebug("Refilled chest at " + chest.xCoord + ", " + chest.yCoord + ", " + chest.zCoord + ".");
                 continueChecking = false;
               } else {
                 slotNumber++;

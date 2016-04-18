@@ -9,11 +9,11 @@ import com.github.dayzminecraft.dayzminecraft.DayZ;
 public class BlockMod extends Block {
   public BlockMod(Material material) {
     super(material);
-    func_149647_a(DayZ.creativeTab);
+    setCreativeTab(DayZ.creativeTab);
   }
 
   @Override
-  public void func_149651_a(IIconRegister register) {
-    field_149761_L = register.registerIcon(DayZ.meta.modId + ":" + func_149739_a().substring(func_149739_a ().indexOf(".") + 1));
+  public void registerBlockIcons(IIconRegister register) {
+    blockIcon = register.registerIcon(DayZ.meta.modId + ":" + getUnlocalizedName().substring(getUnlocalizedName().indexOf(".") + 1));
   }
 }

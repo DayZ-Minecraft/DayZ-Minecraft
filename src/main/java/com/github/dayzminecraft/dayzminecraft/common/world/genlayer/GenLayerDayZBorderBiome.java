@@ -28,10 +28,10 @@ public class GenLayerDayZBorderBiome extends GenLayer {
         int j2 = ai[((j + 1) - 1) + (i + 1) * (par3 + 2)];
         int i3 = ai[j + 1 + (i + 1 + 1) * (par3 + 2)];
 
-        BiomeGenBase biome1 = worldType.setBorderBiomes(BiomeGenBase.func_150565_n()[k], BiomeGenBase.func_150565_n()[l], this);
-        BiomeGenBase biome2 = worldType.setBorderBiomes(BiomeGenBase.func_150565_n()[k], BiomeGenBase.func_150565_n()[k1], this);
-        BiomeGenBase biome3 = worldType.setBorderBiomes(BiomeGenBase.func_150565_n()[k], BiomeGenBase.func_150565_n()[j2], this);
-        BiomeGenBase biome4 = worldType.setBorderBiomes(BiomeGenBase.func_150565_n()[k], BiomeGenBase.func_150565_n()[i3], this);
+        BiomeGenBase biome1 = worldType.setBorderBiomes(BiomeGenBase.getBiomeGenArray()[k], BiomeGenBase.getBiomeGenArray()[l], this);
+        BiomeGenBase biome2 = worldType.setBorderBiomes(BiomeGenBase.getBiomeGenArray()[k], BiomeGenBase.getBiomeGenArray()[k1], this);
+        BiomeGenBase biome3 = worldType.setBorderBiomes(BiomeGenBase.getBiomeGenArray()[k], BiomeGenBase.getBiomeGenArray()[j2], this);
+        BiomeGenBase biome4 = worldType.setBorderBiomes(BiomeGenBase.getBiomeGenArray()[k], BiomeGenBase.getBiomeGenArray()[i3], this);
         if (biome1 != null) {
           ai1[j + i * par3] = biome1.biomeID;
         } else if (biome2 != null) {

@@ -43,11 +43,11 @@ public class ItemFirestarter extends ItemMod {
     if (!entityPlayer.canPlayerEdit(xCoord, yCoord, zCoord, blockSide, itemStack)) {
       return false;
     } else {
-      Block targetBlock = world.func_147439_a(xCoord, yCoord, zCoord);
+      Block targetBlock = world.getBlock(xCoord, yCoord, zCoord);
 
       if (targetBlock.equals(Blocks.air)) {
         world.playSoundEffect(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, "fire.ignite", 1.0F, itemRand.nextFloat() * 0.4F + 0.8F);
-        world.func_147449_b(xCoord, yCoord, zCoord, Blocks.fire);
+        world.setBlock(xCoord, yCoord, zCoord, Blocks.fire);
       }
 
       itemStack.damageItem(1, entityPlayer);

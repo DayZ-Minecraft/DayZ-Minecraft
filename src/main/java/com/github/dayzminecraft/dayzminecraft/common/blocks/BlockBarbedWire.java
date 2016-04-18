@@ -11,37 +11,37 @@ import net.minecraft.world.World;
 
 public class BlockBarbedWire extends BlockMod {
   public BlockBarbedWire() {
-    super(Material.field_151573_f );
+    super(Material.iron );
   }
 
   @Override
-  public void func_149670_a(World world, int xCoord, int yCoord, int zCoord, Entity entity) {
+  public void onEntityCollidedWithBlock(World world, int xCoord, int yCoord, int zCoord, Entity entity) {
     entity.attackEntityFrom(DamageSource.generic, 1);
     entity.setInWeb();
   }
 
   @Override
-  public boolean func_149662_c() {
+  public boolean isOpaqueCube() {
     return false;
   }
 
   @Override
-  public AxisAlignedBB func_149668_a(World world, int xCoord, int yCoord, int zCoord) {
+  public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int xCoord, int yCoord, int zCoord) {
     return null;
   }
 
   @Override
-  public int func_149645_b() {
+  public int getRenderType() {
     return 6;
   }
 
   @Override
-  public boolean func_149686_d() {
+  public boolean renderAsNormalBlock() {
     return false;
   }
 
   @Override
-  public Item func_149650_a(int metadata, Random rand, int fortune) {
-    return Item.func_150898_a(ModBlocks.barbedWire);
+  public Item getItemDropped(int metadata, Random rand, int fortune) {
+    return Item.getItemFromBlock(ModBlocks.barbedWire);
   }
 }

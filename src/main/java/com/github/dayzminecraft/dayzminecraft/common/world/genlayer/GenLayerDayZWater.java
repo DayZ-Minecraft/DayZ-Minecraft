@@ -36,7 +36,7 @@ public class GenLayerDayZWater extends GenLayer {
       }
 
       if (ai1[i] >= 0) {
-        BiomeGenBase river = worldType.setRiverBiomes(BiomeGenBase.func_150565_n()[ai[i]], this);
+        BiomeGenBase river = worldType.setRiverBiomes(BiomeGenBase.getBiomeGenArray()[ai[i]], this);
         if (river != null) {
           ai2[i] = river.biomeID;
         } else {
