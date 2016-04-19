@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.play.client.C01PacketChatMessage;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 
 public final class ChatHandler {
@@ -13,15 +14,15 @@ public final class ChatHandler {
 
   @SuppressWarnings("unused")
   public static void chatError(EntityPlayer player, String msg) {
-    MinecraftServer.getServer().getConfigurationManager().getPlayerForUsername(player.getDisplayName()).playerNetServerHandler.processChatMessage(new C01PacketChatMessage(EnumChatFormatting.RED + msg));
+    player.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.RED + msg));
   }
 
   public static void chatConfirmation(EntityPlayer player, String msg) {
-    MinecraftServer.getServer().getConfigurationManager().getPlayerForUsername(player.getDisplayName()).playerNetServerHandler.processChatMessage(new C01PacketChatMessage(EnumChatFormatting.GREEN + msg));
+    player.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.GREEN + msg));
   }
 
   public static void chatWarning(EntityPlayer player, String msg) {
-    MinecraftServer.getServer().getConfigurationManager().getPlayerForUsername(player.getDisplayName()).playerNetServerHandler.processChatMessage(new C01PacketChatMessage(EnumChatFormatting.YELLOW + msg));
+    player.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.YELLOW + msg));
   }
 
   @SuppressWarnings("unused")
