@@ -78,8 +78,8 @@ thirst.thirdwarning=Ich sollte etwas Wasser bald finden...
 thirst.secondwarning=Ich glaube ich bin jetzt ziemlich durstig geworden...
 thirst.firstwarning=Mein Mund fühlt sich ein wenig trocken an...
 
-entity.Crawler.name=Kriecher
-entity.DayZZombie.name=zombie
+entity.DayZ.Crawler.name=Kriecher
+entity.DayZ.Walker.name=zombie
 generator.DAYZBASE=Day Z Original
 generator.DAYZSNOW=Day Z Schnee
 itemGroup.creativeTabDayZ=Day Z

@@ -10,8 +10,7 @@ import net.minecraftforge.common.IExtendedEntityProperties;
 import com.github.dayzminecraft.dayzminecraft.common.misc.ChatHandler;
 import com.github.dayzminecraft.dayzminecraft.common.misc.Config;
 import com.github.dayzminecraft.dayzminecraft.common.misc.DamageType;
-
-import cpw.mods.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 
 public class PlayerData implements IExtendedEntityProperties {
   public final static String EXT_PROP_NAME = "DayZPlayerData";

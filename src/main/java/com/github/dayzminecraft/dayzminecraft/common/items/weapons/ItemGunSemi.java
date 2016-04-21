@@ -54,7 +54,7 @@ public class ItemGunSemi extends ItemMod {
     if (itemstack.getItemDamage() < gun.getRounds()) {
       return null;
     } else {
-      return EnumAction.block;
+      return EnumAction.BLOCK;
     }
   }
 

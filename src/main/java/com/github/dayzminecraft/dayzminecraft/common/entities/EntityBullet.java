@@ -1,5 +1,7 @@
 package com.github.dayzminecraft.dayzminecraft.common.entities;
 
+import com.github.dayzminecraft.dayzminecraft.common.effects.Effect;
+import com.github.dayzminecraft.dayzminecraft.common.effects.EnactEffect;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,17 +14,9 @@ import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
-import com.github.dayzminecraft.dayzminecraft.common.effects.Effect;
-import com.github.dayzminecraft.dayzminecraft.common.effects.EnactEffect;
-
 public class EntityBullet extends EntityThrowable {
   private int bulletdamage;
   public Entity shootingEntity;
-
-  public EntityBullet(World world) {
-    super(world);
-    setSize(0.1F, 0.1F);
-  }
 
   public EntityBullet(World world, EntityLivingBase entityLivingBase, int damage) {
     super(world, entityLivingBase);
@@ -34,15 +28,10 @@ public class EntityBullet extends EntityThrowable {
     posY -= 0.10000000149011612D;
     posZ -= MathHelper.sin(rotationYaw / 180.0F * (float)Math.PI) * 0.16F;
     setPosition(posX, posY, posZ);
-    yOffset = 0.0F;
     motionX = -MathHelper.sin(rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(rotationPitch / 180.0F * (float)Math.PI);
     motionZ = MathHelper.cos(rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(rotationPitch / 180.0F * (float)Math.PI);
     motionY = (-MathHelper.sin(rotationPitch / 180.0F * (float)Math.PI));
     setThrowableHeading(motionX, motionY, motionZ, 1.5F, 1.0F);
-  }
-
-  public EntityBullet(World world, double xCoord, double yCoord, double zCoord) {
-    super(world, xCoord, yCoord, zCoord);
   }
 
   @Override
@@ -76,17 +65,17 @@ public class EntityBullet extends EntityThrowable {
       }
 
       if (movingObjectPosition.entityHit instanceof EntityPlayer) {
-        if (worldObj.difficultySetting.equals(EnumDifficulty.EASY)) {
+        if (worldObj.getDifficulty().equals(EnumDifficulty.EASY)) {
           int j = rand.nextInt(10);
           if (j == 0) {
             ((EntityLivingBase)movingObjectPosition.entityHit).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 300, 1));
           }
-        } else if (worldObj.difficultySetting.equals(EnumDifficulty.NORMAL)) {
+        } else if (worldObj.getDifficulty().equals(EnumDifficulty.NORMAL)) {
           int j = rand.nextInt(5);
           if (j == 0) {
             ((EntityLivingBase)movingObjectPosition.entityHit).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 300, 1));
           }
-        } else if (worldObj.difficultySetting.equals(EnumDifficulty.HARD)) {
+        } else if (worldObj.getDifficulty().equals(EnumDifficulty.HARD)) {
           int j = rand.nextInt(3);
           if (j == 0) {
             ((EntityLivingBase)movingObjectPosition.entityHit).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 300, 1));
@@ -97,16 +86,16 @@ public class EntityBullet extends EntityThrowable {
       if (!worldObj.isRemote) {
         setDead();
       }
-      if (worldObj.getBlock(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ).equals(Blocks.glass_pane) || worldObj.getBlock(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ).equals(Blocks.glass)) {
-        worldObj.getBlock(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ);
-        worldObj.playSoundEffect(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ, "random.glass", 1.0F, 1.0F);
+      if (worldObj.getBlockState(movingObjectPosition.getBlockPos()).getBlock().equals(Blocks.glass_pane) || worldObj.getBlockState(movingObjectPosition.getBlockPos()).getBlock().equals(Blocks.glass)) {
+        worldObj.getBlockState(movingObjectPosition.getBlockPos()).getBlock();
+        worldObj.playSoundEffect(movingObjectPosition.getBlockPos().getX(), movingObjectPosition.getBlockPos().getY(), movingObjectPosition.getBlockPos().getZ(), "random.glass", 1.0F, 1.0F);
         setDead();
-      } else if (worldObj.getBlock(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ).equals(Blocks.tallgrass)) {
-        worldObj.getBlock(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ);
-        worldObj.playSoundEffect(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ, "step.grass", 1.0F, 1.0F);
+      } else if (worldObj.getBlockState(movingObjectPosition.getBlockPos()).getBlock().equals(Blocks.tallgrass)) {
+        worldObj.getBlockState(movingObjectPosition.getBlockPos()).getBlock();
+        worldObj.playSoundEffect(movingObjectPosition.getBlockPos().getX(), movingObjectPosition.getBlockPos().getY(), movingObjectPosition.getBlockPos().getZ(), "step.grass", 1.0F, 1.0F);
         setDead();
       } else {
-        String stepsound = worldObj.getBlock(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ).stepSound.getBreakSound();
+        String stepsound = worldObj.getBlockState(movingObjectPosition.getBlockPos()).getBlock().stepSound.getBreakSound();
         worldObj.playSoundAtEntity(this, stepsound, 1.0F, 1.0F);
         setDead();
       }

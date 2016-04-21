@@ -1,5 +1,7 @@
 package com.github.dayzminecraft.dayzminecraft.common.entities;
 
+import com.github.dayzminecraft.dayzminecraft.common.effects.Effect;
+import com.github.dayzminecraft.dayzminecraft.common.effects.EnactEffect;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -9,26 +11,25 @@ import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.pathfinding.PathNavigateGround;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
-import com.github.dayzminecraft.dayzminecraft.common.effects.Effect;
-import com.github.dayzminecraft.dayzminecraft.common.effects.EnactEffect;
-
-public class EntityZombieDayZ extends EntityMob {
+public class EntityWalker extends EntityMob {
   public String texture;
 
-  public EntityZombieDayZ(World par1World) {
+  public EntityWalker(World par1World) {
     super(par1World);
     texture = getRandomZombieTexture();
     setHealth(16F);
     float moveSpeed = 0.4F;
-    getNavigator().setBreakDoors(true);
+    ((PathNavigateGround)this.getNavigator()).setBreakDoors(true);
     tasks.addTask(0, new EntityAISwimming(this));
     tasks.addTask(1, new EntityAIAttackOnCollide(this, EntityPlayerMP.class, moveSpeed, false));
     tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, moveSpeed, false));
-    tasks.addTask(3, new EntityAIAttackOnCollide(this, EntityZombieDayZ.class, moveSpeed, true));
+    tasks.addTask(3, new EntityAIAttackOnCollide(this, EntityWalker.class, moveSpeed, true));
     tasks.addTask(4, new EntityAIAttackOnCollide(this, EntityVillager.class, moveSpeed, true));
     tasks.addTask(5, new EntityAIMoveThroughVillage(this, moveSpeed, false));
     tasks.addTask(6, new EntityAIWander(this, 0.3F));
@@ -36,9 +37,9 @@ public class EntityZombieDayZ extends EntityMob {
     tasks.addTask(8, new EntityAILookIdle(this));
     tasks.addTask(9, new AIBreakDoors(this));
     targetTasks.addTask(10, new EntityAIHurtByTarget(this, false));
-    targetTasks.addTask(11, new EntityAINearestAttackableTarget(this, EntityPlayerMP.class, 0, true));
-    targetTasks.addTask(12, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
-    targetTasks.addTask(13, new EntityAINearestAttackableTarget(this, EntityVillager.class, 0, false));
+    targetTasks.addTask(11, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
+    targetTasks.addTask(12, new EntityAINearestAttackableTarget(this, EntityVillager.class, false));
+    targetTasks.addTask(13, new EntityAINearestAttackableTarget(this, EntityPlayerMP.class, true));
   }
 
   private String getRandomZombieTexture() {
@@ -48,11 +49,6 @@ public class EntityZombieDayZ extends EntityMob {
   @Override
   protected boolean canDespawn() {
     return false;
-  }
-
-  @Override
-  protected boolean isAIEnabled() {
-    return true;
   }
 
   @Override
@@ -71,20 +67,21 @@ public class EntityZombieDayZ extends EntityMob {
   }
 
   @Override
-  protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_) {
+  protected void playStepSound(BlockPos pos, Block blockIn) {
     this.playSound("mob.zombie.step", 0.15F, 1.0F);
   }
 
+  /*
   @Override
   protected Entity findPlayerToAttack() {
-    EntityPlayer entityplayer = worldObj.getClosestVulnerablePlayerToEntity(this, 16D);
+    EntityPlayer entityplayer = worldObj.getClosestPlayerToEntity(this, 16D);
 
     if (entityplayer != null && canEntityBeSeen(entityplayer)) {
       return entityplayer;
     } else {
       return null;
     }
-  }
+  }*/
 
   @Override
   public boolean attackEntityFrom(DamageSource damageSource, float damage) {
@@ -95,8 +92,8 @@ public class EntityZombieDayZ extends EntityMob {
         return true;
       }
 
-      if (entity != this) {
-        entityToAttack = entity;
+      if (entity != this && entity instanceof EntityLivingBase) {
+        setAttackTarget((EntityLivingBase) entity);
       }
 
       return true;
@@ -107,7 +104,7 @@ public class EntityZombieDayZ extends EntityMob {
 
   @Override
   public boolean attackEntityAsMob(Entity entity) {
-    if (worldObj.difficultySetting.equals(EnumDifficulty.EASY)) {
+    if (worldObj.getDifficulty().equals(EnumDifficulty.EASY)) {
       int j = rand.nextInt(10);
       int k = rand.nextInt(20);
       if (j == 0) {
@@ -117,7 +114,7 @@ public class EntityZombieDayZ extends EntityMob {
         ((EntityLivingBase)entity).addPotionEffect(new EnactEffect(Effect.zombification.getId(), 20 * 300, 1));
       }
       return entity.attackEntityFrom(DamageSource.causeMobDamage(this), 1);
-    } else if (worldObj.difficultySetting.equals(EnumDifficulty.NORMAL)) {
+    } else if (worldObj.getDifficulty().equals(EnumDifficulty.NORMAL)) {
       int j = rand.nextInt(5);
       int k = rand.nextInt(10);
       if (j == 0) {
@@ -127,7 +124,7 @@ public class EntityZombieDayZ extends EntityMob {
         ((EntityLivingBase)entity).addPotionEffect(new EnactEffect(Effect.zombification.getId(), 20 * 300, 1));
       }
       return entity.attackEntityFrom(DamageSource.causeMobDamage(this), 2);
-    } else if (worldObj.difficultySetting.equals(EnumDifficulty.HARD)) {
+    } else if (worldObj.getDifficulty().equals(EnumDifficulty.HARD)) {
       int j = rand.nextInt(3);
       int k = rand.nextInt(6);
       if (j == 0) {
@@ -146,22 +143,14 @@ public class EntityZombieDayZ extends EntityMob {
   public void onUpdate() {
     super.onUpdate();
 
-    if (!worldObj.isRemote && worldObj.difficultySetting.equals(EnumDifficulty.PEACEFUL)) {
+    if (!worldObj.isRemote && worldObj.getDifficulty().equals(EnumDifficulty.PEACEFUL)) {
       setDead();
     }
   }
 
   @Override
-  protected void attackEntity(Entity entity, float distanceToEntity) {
-    if (attackTime <= 0 && distanceToEntity < 2.0F && entity.boundingBox.maxY > boundingBox.minY && entity.boundingBox.minY < boundingBox.maxY) {
-      attackTime = 20;
-      attackEntityAsMob(entity);
-    }
-  }
-
-  @Override
-  public float getBlockPathWeight(int xCoord, int yCoord, int zCoord) {
-    return 0.5F - worldObj.getLightBrightness(xCoord, yCoord, zCoord);
+  public float getBlockPathWeight(BlockPos pos) {
+    return 0.5F - worldObj.getLightBrightness(pos);
   }
 
   @Override

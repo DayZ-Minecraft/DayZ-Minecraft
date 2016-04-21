@@ -30,7 +30,7 @@ public class WorldTypes extends WorldType {
 
   @Override
   public IChunkProvider getChunkGenerator(World world, String generatorOptions) {
-    return new ChunkProviderGenerate(world, world.getSeed(), world.getWorldInfo().isMapFeaturesEnabled());
+    return new ChunkProviderGenerate(world, world.getSeed(), world.getWorldInfo().isMapFeaturesEnabled(), generatorOptions);
   }
 
   /** Returns an array of large, "major" biomes, such as forest, desert, or taiga in the overworld. */

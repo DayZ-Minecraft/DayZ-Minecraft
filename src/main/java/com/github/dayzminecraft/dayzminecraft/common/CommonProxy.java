@@ -1,25 +1,11 @@
 package com.github.dayzminecraft.dayzminecraft.common;
 
-import java.util.logging.Logger;
-
-import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntityChest;
-import net.minecraft.util.WeightedRandomChestContent;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.EntityEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.player.EntityInteractEvent;
-import net.minecraftforge.event.terraingen.PopulateChunkEvent;
-import net.minecraftforge.event.terraingen.WorldTypeEvent;
-import net.minecraftforge.event.world.WorldEvent;
-
 import com.github.dayzminecraft.dayzminecraft.DayZ;
 import com.github.dayzminecraft.dayzminecraft.common.blocks.ModBlocks;
 import com.github.dayzminecraft.dayzminecraft.common.effects.Effect;
 import com.github.dayzminecraft.dayzminecraft.common.entities.EntityBullet;
 import com.github.dayzminecraft.dayzminecraft.common.entities.EntityCrawler;
-import com.github.dayzminecraft.dayzminecraft.common.entities.EntityZombieDayZ;
+import com.github.dayzminecraft.dayzminecraft.common.entities.EntityWalker;
 import com.github.dayzminecraft.dayzminecraft.common.items.ModItems;
 import com.github.dayzminecraft.dayzminecraft.common.misc.ChatHandler;
 import com.github.dayzminecraft.dayzminecraft.common.misc.Config;
@@ -30,14 +16,27 @@ import com.github.dayzminecraft.dayzminecraft.common.world.WorldTypes;
 import com.github.dayzminecraft.dayzminecraft.common.world.biomes.Biomes;
 import com.github.dayzminecraft.dayzminecraft.common.world.generation.StructureHandler;
 import com.github.dayzminecraft.dayzminecraft.common.world.genlayer.GenLayerDayZ;
+import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.WeightedRandomChestContent;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.EntityEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.player.EntityInteractEvent;
+import net.minecraftforge.event.terraingen.PopulateChunkEvent;
+import net.minecraftforge.event.terraingen.WorldTypeEvent;
+import net.minecraftforge.event.world.WorldEvent;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
+import net.minecraftforge.fml.common.eventhandler.Event;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartedEvent;
-import cpw.mods.fml.common.eventhandler.Event;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.registry.EntityRegistry;
+import java.util.logging.Logger;
 
 public class CommonProxy {
   public void preload(FMLPreInitializationEvent event) {
@@ -53,14 +52,13 @@ public class CommonProxy {
     WorldTypes.loadWorldTypes();
     Effect.loadEffects();
     StructureHandler.addDefaultStructures();
-    Effect.register();
-    EntityRegistry.registerGlobalEntityID(EntityZombieDayZ.class, "Walker", EntityRegistry.findGlobalUniqueEntityId(), 1, 2);
-    EntityRegistry.registerGlobalEntityID(EntityCrawler.class, "Crawler", EntityRegistry.findGlobalUniqueEntityId(), 1, 2);
 
-    EntityRegistry.registerModEntity(EntityBullet.class, "Bullet", 1, DayZ.INSTANCE, 250, 5, true);
+    EntityRegistry.registerModEntity(EntityWalker.class, "Walker", 1, DayZ.INSTANCE, 250, 5, true, 1 , 1);
+    EntityRegistry.registerModEntity(EntityCrawler.class, "Crawler", 2, DayZ.INSTANCE, 250, 5, true, 1 , 1);
+    EntityRegistry.registerModEntity(EntityBullet.class, "Bullet", 3, DayZ.INSTANCE, 250, 5, true);
 
-    EntityRegistry.addSpawn(EntityZombieDayZ.class, 200, 1, 4, EnumCreatureType.creature, Biomes.biomeForest, Biomes.biomePlains, Biomes.biomeRiver, Biomes.biomeSnowMountains, Biomes.biomeSnowPlains);
-    EntityRegistry.addSpawn(EntityCrawler.class, 100, 1, 4, EnumCreatureType.creature, Biomes.biomeForest, Biomes.biomePlains, Biomes.biomeRiver, Biomes.biomeSnowMountains, Biomes.biomeSnowPlains);
+    EntityRegistry.addSpawn(EntityWalker.class, 200, 1, 4, EnumCreatureType.CREATURE, Biomes.biomeForest, Biomes.biomePlains, Biomes.biomeRiver, Biomes.biomeSnowMountains, Biomes.biomeSnowPlains);
+    EntityRegistry.addSpawn(EntityCrawler.class, 200, 1, 4, EnumCreatureType.CREATURE, Biomes.biomeForest, Biomes.biomePlains, Biomes.biomeRiver, Biomes.biomeSnowMountains, Biomes.biomeSnowPlains);
 
   }
 
@@ -83,17 +81,18 @@ public class CommonProxy {
 
   @SubscribeEvent
   public void worldLoad(WorldEvent.Load event) {
+    /*
     for (Object obj : event.world.loadedTileEntityList) {
       if (obj instanceof TileEntityChest) {
         TileEntityChest chest = (TileEntityChest)obj;
-        if (event.world.getBlock(chest.xCoord, chest.yCoord, chest.zCoord) == ModBlocks.chestLoot) {
+        if (event.world.getBlockState(chest.getPos()).getBlock() == ModBlocks.chestLoot) {
           boolean continueChecking = true;
           int slotNumber = 0;
           while (continueChecking) {
             if (chest.getStackInSlot(slotNumber) == null && slotNumber < 27) {
               if (slotNumber == 26) {
                 WeightedRandomChestContent.generateChestContents(event.world.rand, LootManager.loot, chest, event.world.rand.nextInt(5) + 1);
-                ChatHandler.logDebug("Refilled chest at " + chest.xCoord + ", " + chest.yCoord + ", " + chest.zCoord + ".");
+                ChatHandler.logDebug("Refilled chest at " + chest.getPos().toString() + ".");
                 continueChecking = false;
               } else {
                 slotNumber++;
@@ -104,7 +103,7 @@ public class CommonProxy {
           }
         }
       }
-    }
+    }*/
   }
 
   @SubscribeEvent
@@ -138,7 +137,7 @@ public class CommonProxy {
         if (event.entityLiving.getHealth() > 1.0F) {
           event.entityLiving.attackEntityFrom(DamageType.zombieInfection, 1.0F);
         } else {
-          EntityZombieDayZ var2 = new EntityZombieDayZ(event.entityLiving.worldObj);
+          EntityWalker var2 = new EntityWalker(event.entityLiving.worldObj);
           var2.setLocationAndAngles(event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ, event.entityLiving.rotationYaw, event.entityLiving.rotationPitch);
           event.entityLiving.worldObj.spawnEntityInWorld(var2);
           event.entityLiving.attackEntityFrom(DamageType.zombieInfection, 1.0F);
@@ -185,7 +184,7 @@ public class CommonProxy {
         int y = event.rand.nextInt(128);
         int z = event.chunkZ * 16 + event.rand.nextInt(16) + 8;
 
-        StructureHandler.generateStructure(event.world, event.rand, x, y, z);
+        StructureHandler.generateStructure(event.world, event.rand, new BlockPos(x, y, z));
       }
     }
   }

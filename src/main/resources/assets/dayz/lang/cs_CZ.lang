@@ -78,8 +78,8 @@ thirst.thirdwarning=Mìl bych zaèít hledat vodu...
 thirst.secondwarning=Cítím se žíznivím...
 thirst.firstwarning=Moje pusa je trošku vyschlá...
 
-entity.Crawler.name=Plaziè
-entity.DayZZombie.name=Zombie
+entity.DayZ.Crawler.name=Plaziè
+entity.DayZ.Walker.name=Zombie
 generator.DAYZBASE=Day Z Originál
 generator.DAYZSNOW=Day Z Plánì Snìhu
 itemGroup.creativeTabDayZ=Day Z

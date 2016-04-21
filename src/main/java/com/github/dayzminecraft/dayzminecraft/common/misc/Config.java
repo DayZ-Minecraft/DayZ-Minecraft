@@ -1,13 +1,10 @@
 package com.github.dayzminecraft.dayzminecraft.common.misc;
 
-import java.io.File;
-
-import net.minecraftforge.common.config.Configuration;
-
-import com.github.dayzminecraft.dayzminecraft.common.effects.Effect;
 import com.github.dayzminecraft.dayzminecraft.common.world.biomes.Biomes;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import java.io.File;
 
 public class Config {
   public static boolean debug;
@@ -22,7 +19,6 @@ public class Config {
     config.load();
 
     Biomes.biomeConfig(config);
-    Effect.effectConfig(config);
 
     debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false, "Should DayZ log extra information?").getBoolean(false);
     showWorldTypeWarning = config.get(Configuration.CATEGORY_GENERAL, "show-world-type-warning", true, "Should DayZ warn if the worldtype is not DayZ?").getBoolean(true);

@@ -1,22 +1,17 @@
 package com.github.dayzminecraft.dayzminecraft.common.items.food;
 
-import net.minecraft.client.renderer.texture.IIconRegister;
+import com.github.dayzminecraft.dayzminecraft.common.items.ItemMod;
+import com.github.dayzminecraft.dayzminecraft.common.thirst.PlayerData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-
-import com.github.dayzminecraft.dayzminecraft.DayZ;
-import com.github.dayzminecraft.dayzminecraft.common.items.ItemMod;
-import com.github.dayzminecraft.dayzminecraft.common.thirst.PlayerData;
 
 public class ItemDrink extends ItemMod {
   private final int healAmount;
   private final boolean isAlcohol;
-  private IIcon emptyCanIcon;
 
   public ItemDrink(int healAmount, boolean isAlcohol) {
     super();
@@ -34,7 +29,8 @@ public class ItemDrink extends ItemMod {
   }
 
   @Override
-  public ItemStack onEaten(ItemStack itemStack, World world, EntityPlayer entityPlayer) {
+  public ItemStack onItemUseFinish(ItemStack itemStack, World world, EntityPlayer entityPlayer)
+  {
     PlayerData.get(entityPlayer).drink(healAmount);
     if (isAlcohol) {
       entityPlayer.addPotionEffect(new PotionEffect(Potion.confusion.id, 30 * 20, 1));
@@ -46,7 +42,7 @@ public class ItemDrink extends ItemMod {
 
   @Override
   public EnumAction getItemUseAction(ItemStack itemStack) {
-    return EnumAction.drink;
+    return EnumAction.DRINK;
   }
 
   @Override
@@ -60,18 +56,6 @@ public class ItemDrink extends ItemMod {
       entityPlayer.setItemInUse(itemStack, getMaxItemUseDuration(itemStack));
     }
     return itemStack;
-  }
-
-  @Override
-  public IIcon getIconFromDamage(int damage) {
-    if (damage != getMaxDamage()) return this.itemIcon;
-    else return emptyCanIcon;
-  }
-
-  @Override
-  public void registerIcons(IIconRegister register) {
-    itemIcon = register.registerIcon(DayZ.meta.modId + ":" + getUnlocalizedName().substring(getUnlocalizedName().indexOf(".") + 1));
-    emptyCanIcon = register.registerIcon(DayZ.meta.modId + ":" + getUnlocalizedName().substring(getUnlocalizedName().indexOf(".") + 1) + "-empty");
   }
 
   @Override

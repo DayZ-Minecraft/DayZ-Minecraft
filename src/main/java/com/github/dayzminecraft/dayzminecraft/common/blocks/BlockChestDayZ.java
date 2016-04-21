@@ -20,13 +20,13 @@ public class BlockChestDayZ extends BlockChest {
     setTickRandomly(true);
   }
 
-  public void updateTick(World world, int x, int y, int z, Random random) {
+  public void updateTick(World world, int x, int y, int z, Random random) {/*
     if (world.getClosestPlayer(x, y, z, 32) == null) {
       TileEntity tileEntity = world.getTileEntity(x, y, z);
       if (tileEntity != null && (isEmpty((TileEntityChest)tileEntity))) {
         WeightedRandomChestContent.generateChestContents(random, LootManager.loot, (TileEntityChest)tileEntity, random.nextInt(5) + 1);
       }
-    }
+    }*/
   }
 
   private boolean isEmpty(TileEntityChest tileEntityChest) {

@@ -8,9 +8,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
 import com.github.dayzminecraft.dayzminecraft.common.items.ItemMod;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemMelee extends ItemMod {
   private float weaponDamage;
@@ -36,7 +35,7 @@ public class ItemMelee extends ItemMod {
 
   @Override
   public EnumAction getItemUseAction(ItemStack itemStack) {
-    return EnumAction.block;
+    return EnumAction.BLOCK;
   }
 
   @Override

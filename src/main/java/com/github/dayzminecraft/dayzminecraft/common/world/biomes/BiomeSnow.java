@@ -28,7 +28,7 @@ public class BiomeSnow extends BiomeGenBase {
   }
 
   @Override
-  public WorldGenAbstractTree func_150567_a(Random p_150567_1_) {
-    return (p_150567_1_.nextInt(3) == 0 ? taiga1 : taiga2);
+  public WorldGenAbstractTree genBigTreeChance(Random rand) {
+    return rand.nextInt(3) == 0 ? this.worldGeneratorBigTree : this.worldGeneratorTrees;
   }
 }

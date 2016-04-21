@@ -7,6 +7,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemDoor;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 
@@ -15,7 +16,7 @@ import com.github.dayzminecraft.dayzminecraft.common.misc.ChatHandler;
 import com.github.dayzminecraft.dayzminecraft.common.misc.LootManager;
 
 public class StructureFort implements IStructure {
-  @Override
+  /*@Override
   public boolean generate(World world, Random rand, int xCoord, int yCoord, int zCoord) {
     Block baseBlock = Blocks.grass;
     Block airBlock = Blocks.air;
@@ -391,5 +392,10 @@ public class StructureFort implements IStructure {
     world.setBlock(xCoord + 6, yCoord + 12, zCoord + 2, Blocks.torch);
     world.setBlock(xCoord + 6, yCoord + 12, zCoord, Blocks.torch);
     return true;
+  }*/
+
+  @Override
+  public boolean generate(World world, Random rand, BlockPos pos) {
+    return false;
   }
 }

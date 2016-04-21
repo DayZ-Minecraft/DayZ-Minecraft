@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
 import com.github.dayzminecraft.dayzminecraft.common.world.generation.structures.IStructure;
@@ -13,8 +14,8 @@ import com.github.dayzminecraft.dayzminecraft.common.world.generation.structures
 public class StructureHandler {
   private static List<IStructure> structures = new ArrayList<IStructure>();
 
-  public static boolean generateStructure(World world, Random rand, int xCoord, int yCoord, int zCoord) {
-    return structures.get(rand.nextInt(structures.size())).generate(world, rand, xCoord, yCoord, zCoord);
+  public static boolean generateStructure(World world, Random rand, BlockPos pos) {
+    return structures.get(rand.nextInt(structures.size())).generate(world, rand, pos);
   }
 
   public static void addStructure(IStructure structure) {

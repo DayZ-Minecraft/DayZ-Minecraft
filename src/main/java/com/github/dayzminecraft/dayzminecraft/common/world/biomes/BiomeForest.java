@@ -11,7 +11,6 @@ public class BiomeForest extends BiomeGenBase {
   private static final WorldGenTaiga1 taiga1 = new WorldGenTaiga1();
   private static final WorldGenTaiga2 taiga2 = new WorldGenTaiga2(false);
 
-  @SuppressWarnings("unchecked")
   public BiomeForest(int id) {
     super(id);
     setColor(747097);
@@ -30,8 +29,8 @@ public class BiomeForest extends BiomeGenBase {
   }
 
   @Override
-  public WorldGenAbstractTree func_150567_a(Random p_150567_1_) {
-    return (p_150567_1_.nextInt(3) == 0 ? taiga1 : taiga2);
+  public WorldGenAbstractTree genBigTreeChance(Random rand) {
+    return rand.nextInt(3) == 0 ? this.worldGeneratorBigTree : this.worldGeneratorTrees;
   }
 
 }

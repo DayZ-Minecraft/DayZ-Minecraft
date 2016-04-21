@@ -1,19 +1,15 @@
 package com.github.dayzminecraft.dayzminecraft.common.blocks;
 
-import java.util.Random;
-
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.Entity;
-import net.minecraft.item.Item;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.DamageSource;
-import net.minecraft.world.World;
 
 public class BlockBarbedWire extends BlockMod {
+
+  private final String name = "";
+
   public BlockBarbedWire() {
     super(Material.iron );
   }
-
+/*
   @Override
   public void onEntityCollidedWithBlock(World world, int xCoord, int yCoord, int zCoord, Entity entity) {
     entity.attackEntityFrom(DamageSource.generic, 1);
@@ -43,5 +39,5 @@ public class BlockBarbedWire extends BlockMod {
   @Override
   public Item getItemDropped(int metadata, Random rand, int fortune) {
     return Item.getItemFromBlock(ModBlocks.barbedWire);
-  }
+  }*/
 }

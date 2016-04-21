@@ -2,8 +2,9 @@ package com.github.dayzminecraft.dayzminecraft.common.world.generation.structure
 
 import java.util.Random;
 
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
 public interface IStructure {
-  public boolean generate(World world, Random rand, int xCoord, int yCoord, int zCoord);
+  boolean generate(World world, Random rand, BlockPos pos);
 }

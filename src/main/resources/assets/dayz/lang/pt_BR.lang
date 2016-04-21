@@ -78,8 +78,8 @@ thirst.thirdwarning=Preciso achar agua e rápido...
 thirst.secondwarning=Um drinque cairia bem...
 thirst.firstwarning=Minha garganta esta começando a ficar seca...
  
-entity.Crawler.name=Rastejador
-entity.DayZZombie.name=Zumbi
+entity.DayZ.Crawler.name=Rastejador
+entity.DayZ.Walker.name=Zumbi
 generator.DAYZBASE=Day Z Original
 generator.DAYZSNOW=Day Z Neve
 itemGroup.creativeTabDayZ=Day Z

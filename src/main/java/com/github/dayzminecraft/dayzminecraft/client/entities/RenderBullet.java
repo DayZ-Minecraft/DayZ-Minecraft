@@ -1,26 +1,31 @@
 package com.github.dayzminecraft.dayzminecraft.client.entities;
 
+import com.github.dayzminecraft.dayzminecraft.DayZ;
+import com.github.dayzminecraft.dayzminecraft.common.entities.EntityBullet;
 import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.entity.Entity;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
-
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import com.github.dayzminecraft.dayzminecraft.DayZ;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class RenderBullet extends Render {
-  private ModelBullet modelBullet;
+public class RenderBullet extends Render<EntityBullet> {
 
-  public RenderBullet(ModelBullet modelBase) {
-    modelBullet = modelBase;
+  public RenderBullet(RenderManager manager) {
+    super(manager);
   }
 
-  public void renderBullet(Entity entity, double x, double y, double z) {
+  @Override
+  protected ResourceLocation getEntityTexture(EntityBullet entity) {
+    return new ResourceLocation(DayZ.meta.modId + ":textures/entities/bullet.png");
+  }
+
+  @Override
+  public void doRender(EntityBullet entity, double x, double y, double z, float entityYaw, float partialTicks)
+  {
     GL11.glPushMatrix();
     GL11.glDisable(GL11.GL_CULL_FACE);
     GL11.glTranslatef((float)x, (float)y, (float)z);
@@ -29,19 +34,7 @@ public class RenderBullet extends Render {
     GL11.glScalef(-1.0F, -1.0F, 1.0F);
     GL11.glEnable(GL11.GL_ALPHA_TEST);
     bindEntityTexture(entity);
-    modelBullet.render(entity, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, f2);
+    new ModelCrawler().render(entity, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, f2);
     GL11.glPopMatrix();
   }
-
-  @Override
-  protected ResourceLocation getEntityTexture(Entity par1Entity) {
-    return new ResourceLocation(DayZ.meta.modId + ":textures/entities/bullet.png");
-  }
-
-  @Override
-  public void doRender(Entity entity, double x, double y, double z, float yaw, float partialTickTime) {
-    renderBullet(entity, x, y, z);
-  }
-
-
 }
