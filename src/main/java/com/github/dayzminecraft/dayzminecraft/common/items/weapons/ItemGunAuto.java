@@ -38,7 +38,7 @@ public class ItemGunAuto extends ItemMod {
 
   @Override
   public int getMaxItemUseDuration(ItemStack itemstack) {
-    return 0x11940;
+    return 60;
   }
 
   @Override

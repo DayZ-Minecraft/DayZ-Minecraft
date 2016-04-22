@@ -4,6 +4,7 @@ import com.github.dayzminecraft.dayzminecraft.client.entities.RenderBullet;
 import com.github.dayzminecraft.dayzminecraft.client.entities.RenderCrawler;
 import com.github.dayzminecraft.dayzminecraft.client.entities.RenderWalker;
 import com.github.dayzminecraft.dayzminecraft.common.CommonProxy;
+import com.github.dayzminecraft.dayzminecraft.common.blocks.ModBlocks;
 import com.github.dayzminecraft.dayzminecraft.common.entities.EntityBullet;
 import com.github.dayzminecraft.dayzminecraft.common.entities.EntityCrawler;
 import com.github.dayzminecraft.dayzminecraft.common.entities.EntityWalker;
@@ -47,6 +48,7 @@ public class ClientProxy extends CommonProxy {
   public void load(FMLInitializationEvent event) {
     super.load(event);
     ModItems.registerClient(Minecraft.getMinecraft().getRenderItem());
+    ModBlocks.registerClient(Minecraft.getMinecraft().getRenderItem());
   }
 
   @Override

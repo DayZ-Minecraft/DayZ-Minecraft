@@ -4,7 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
@@ -16,9 +15,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
-public class BlockNails extends Block {
-  public BlockNails() {
-    super(Material.circuits);
+public class BlockBarbed extends Block {
+
+  public BlockBarbed() {
+    super(Material.iron);
   }
 
   /**
@@ -35,9 +35,8 @@ public class BlockNails extends Block {
   @Override
   public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
   {
-    entity.attackEntityFrom(DamageSource.generic, 6);
-    world.playSoundEffect(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, "random.break", 0.3F, 0.6F);
-    world.setBlockToAir(pos);
+    entity.attackEntityFrom(DamageSource.generic, 1);
+    entity.setInWeb();
   }
 
   @Override

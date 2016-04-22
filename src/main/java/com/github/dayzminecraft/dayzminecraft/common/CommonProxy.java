@@ -18,6 +18,7 @@ import com.github.dayzminecraft.dayzminecraft.common.world.generation.StructureH
 import com.github.dayzminecraft.dayzminecraft.common.world.genlayer.GenLayerDayZ;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.WeightedRandomChestContent;
@@ -28,6 +29,7 @@ import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.event.terraingen.WorldTypeEvent;
 import net.minecraftforge.event.world.WorldEvent;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -62,26 +64,26 @@ public class CommonProxy {
 
   }
 
-  public void load(FMLInitializationEvent event) {
- }
+  public void load(FMLInitializationEvent event) {}
 
   public void postload(FMLPostInitializationEvent event) {
     LootManager.init();
   }
 
   public void serverStarted(FMLServerStartedEvent event) {
-    /*MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
-    server.logInfo("Day Z " + DayZ.meta.version + " Loaded.");
-    if (Config.showWorldTypeWarning && !server.worldServers[0].getWorldInfo().getTerrainType().getWorldTypeName().equals("DAYZBASE") && !server.worldServers[0].getWorldInfo().getTerrainType().getWorldTypeName().equals("DAYZBASE")) {
-      server.logInfo("You have not generated a DayZ world! Make sure your server.properties has one of the following lines to generate a DayZ world:");
-      server.logInfo("level-type=DAYZBASE - To create the original DayZ world.");
-      server.logInfo("level-type=DAYZSNOW - To create snowy DayZ world.");
-    } */
+    if (FMLCommonHandler.instance().getSide().isServer()) {
+      MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
+      server.logInfo("Day Z " + DayZ.meta.version + " Loaded.");
+      if (Config.showWorldTypeWarning && !server.worldServers[0].getWorldInfo().getTerrainType().getWorldTypeName().equals("DAYZBASE") && !server.worldServers[0].getWorldInfo().getTerrainType().getWorldTypeName().equals("DAYZBASE")) {
+        server.logInfo("You have not generated a DayZ world! Make sure your server.properties has one of the following lines to generate a DayZ world:");
+        server.logInfo("level-type=DAYZBASE - To create the original DayZ world.");
+        server.logInfo("level-type=DAYZSNOW - To create snowy DayZ world.");
+      }
+    }
   }
 
   @SubscribeEvent
   public void worldLoad(WorldEvent.Load event) {
-    /*
     for (Object obj : event.world.loadedTileEntityList) {
       if (obj instanceof TileEntityChest) {
         TileEntityChest chest = (TileEntityChest)obj;
@@ -103,7 +105,7 @@ public class CommonProxy {
           }
         }
       }
-    }*/
+    }
   }
 
   @SubscribeEvent
@@ -178,14 +180,12 @@ public class CommonProxy {
       }
     }
 
-    if (event.world.getWorldInfo().getTerrainType() instanceof WorldTypes && event.world.rand.nextInt(Config.structureGenerationChance) == 0) {
-      for (int i = 0; i < 12; ++i) {
-        int x = event.chunkX * 16 + event.rand.nextInt(16) + 8;
-        int y = event.rand.nextInt(128);
-        int z = event.chunkZ * 16 + event.rand.nextInt(16) + 8;
-
-        StructureHandler.generateStructure(event.world, event.rand, new BlockPos(x, y, z));
-      }
+    if (event.world.getWorldInfo().getTerrainType() instanceof WorldTypes &&
+        event.rand.nextInt(80) == 1) {
+      int x = event.chunkX * 16 + event.rand.nextInt(16);
+      int z = event.chunkZ * 16 + event.rand.nextInt(16);
+      BlockPos pos = event.world.getTopSolidOrLiquidBlock(new BlockPos(x, 0, z));
+      StructureHandler.generateStructure(event.world, event.rand, pos);
     }
   }
 }

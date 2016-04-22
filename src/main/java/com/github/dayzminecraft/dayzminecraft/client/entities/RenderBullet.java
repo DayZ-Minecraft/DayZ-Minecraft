@@ -34,7 +34,7 @@ public class RenderBullet extends Render<EntityBullet> {
     GL11.glScalef(-1.0F, -1.0F, 1.0F);
     GL11.glEnable(GL11.GL_ALPHA_TEST);
     bindEntityTexture(entity);
-    new ModelCrawler().render(entity, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, f2);
+    new ModelBullet().render(entity, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, f2);
     GL11.glPopMatrix();
   }
 }

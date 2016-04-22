@@ -2,48 +2,17 @@ package com.github.dayzminecraft.dayzminecraft.common.world.generation.structure
 
 import java.util.Random;
 
-import net.minecraft.block.Block;
+import com.github.dayzminecraft.dayzminecraft.common.misc.ChatHandler;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemDoor;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 
-import com.github.dayzminecraft.dayzminecraft.common.blocks.ModBlocks;
-import com.github.dayzminecraft.dayzminecraft.common.misc.ChatHandler;
-import com.github.dayzminecraft.dayzminecraft.common.misc.LootManager;
+public class StructureHouse extends Structure {
 
-public class StructureHouse implements IStructure {
   @Override
   public boolean generate(World world, Random rand, BlockPos pos) {
-    Block baseBlock = Blocks.grass;
-    Block airBlock = Blocks.air;
-
-    if (world.getBlockState(pos.add(0, 0, 0)).getBlock() != baseBlock ||
-      world.getBlockState(pos.add(0, 1, 0)).getBlock() != airBlock ||
-      world.getBlockState(pos.add(7, 0, 0)).getBlock() != baseBlock ||
-      world.getBlockState(pos.add(7, 0, 7)).getBlock() != baseBlock ||
-      world.getBlockState(pos.add(0, 0, 7)).getBlock() != baseBlock ||
-      world.getBlockState(pos.add(7, 1, 0)).getBlock() != airBlock ||
-      world.getBlockState(pos.add(7, 1, 7)).getBlock() != airBlock ||
-      world.getBlockState(pos.add(0, 1, 7)).getBlock() != airBlock) {
-      return false;
-    }
-
-    if (world.getBlockState(pos.add(0, 0, 0)).getBlock() != baseBlock ||
-        world.getBlockState(pos.add(0, 1, 0)).getBlock() != airBlock ||
-        world.getBlockState(pos.add(7, 0, 0)).getBlock() != baseBlock ||
-        world.getBlockState(pos.add(7, 0, 7)).getBlock() != baseBlock ||
-        world.getBlockState(pos.add(0, 0, 7)).getBlock() != baseBlock ||
-        world.getBlockState(pos.add(7, 1, 0)).getBlock() != airBlock ||
-        world.getBlockState(pos.add(7, 1, 7)).getBlock() != airBlock ||
-        world.getBlockState(pos.add(0, 1, 7)).getBlock() != airBlock) {
-      return false;
-    }
-
     world.setBlockState(pos.add(1, 0, 9), Blocks.cobblestone.getDefaultState());
     world.setBlockState(pos.add(1, 0, 9), Blocks.cobblestone.getDefaultState());
     world.setBlockState(pos.add(1, 0, 8), Blocks.cobblestone.getDefaultState());
@@ -193,15 +162,9 @@ public class StructureHouse implements IStructure {
     world.setBlockState(pos.add(8, 1, 8), Blocks.bookshelf.getDefaultState());
     world.setBlockState(pos.add(8, 1, 7), Blocks.furnace.getDefaultState());
     world.setBlockState(pos.add(8, 1, 6), Blocks.furnace.getDefaultState());
-/*
-    Block chest = ModBlocks.chestLoot;
-    world.setBlockState(pos.add(8, 1, 5, chest.getDefaultState());
-    TileEntity tileentitychest = world.getTileEntity(8, 1, 5.getDefaultState());
-    if (tileentitychest != null) {
-      WeightedRandomChestContent.generateChestContents(rand, LootManager.loot, (TileEntityChest)tileentitychest, rand.nextInt(5) + 1.getDefaultState());
-    }
-    ChatHandler.logDebug("Day Z House Chest Created At " + (8) + ", " + (1) + ", " + (5) + ".".getDefaultState());
-*/
+
+    generateChest(world, pos.add(8, 1, 5), 5);
+
     world.setBlockState(pos.add(8, 1, 4), Blocks.crafting_table.getDefaultState());
     world.setBlockToAir(pos.add(8, 1, 3));
     world.setBlockState(pos.add(8, 1, 2), Blocks.bookshelf.getDefaultState());

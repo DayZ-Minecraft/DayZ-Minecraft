@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ItemMod extends Item {
   public List<String> subNames;
-  public String name;
+  private String name;
 
   public ItemMod() {
     super();
