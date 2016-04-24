@@ -9,7 +9,6 @@
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <link rel="stylesheet" href="cover.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -17,28 +16,62 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style>
+    .center-block {
+        display: block;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    </style>
 </head>
 <body>
-    <div id="app">
-        <div class="container">
-            <br>
+    <div class="container">
+
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand">DayZ Minecraft Downloads</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Downloads<span class="sr-only">(current)</span></a></li>
+                        <li><a href="old.html">Downloads (MC 1.6)</a></li>
+                        <li><a href="https://github.com/DayZ-Minecraft/DayZ-Minecraft">Github</a></li>
+                        <li><a href="http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/1290149">Minecraft Forums</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+
+        <div id="app">
+            <img src="http://i.imgur.com/NobOM0t.png" class="img-responsive center-block" alt="Responsive image">
             <div v-for="download in downloads" class="panel panel-default panel-transparent">
                 <div class="panel-body">
                     <h4>{{ download.name }}</h4>
                     <p>{{ download.published_at | formatDate }} - {{ download.assets[0].download_count }} Downloads</p>
-                    <a href="{{ download.assets[0].browser_download_url }}" type="button" class="btn btn-default">
+                    <a href="{{ download.assets[0].browser_download_url | adfly}}" type="button" class="btn btn-default">
                         <span class="glyphicon glyphicon-download" aria-hidden="true"></span>JAR
                     </a>
-                    <a href="{{ download.zipball_url }}" type="button" class="btn btn-default">ZIP</a>
-                    <a href="{{ download.tarball_url }}" type="button" class="btn btn-default">TAR.GZ</a>
+                    <a href="{{ download.zipball_url | adfly}}" type="button" class="btn btn-default">ZIP</a>
+                    <a href="{{ download.tarball_url | adfly}}" type="button" class="btn btn-default">TAR.GZ</a>
                     <br>
                     <div v-html="download.body | marked"></div>
                 </div>
             </div>
-            <a href="old.html">Older Versions</a>
-            <br>
         </div>
     </div>
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->

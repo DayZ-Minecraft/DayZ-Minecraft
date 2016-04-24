@@ -15,6 +15,9 @@ new Vue({
         marked: marked,
         formatDate: function (v) {
             return v.replace(/T|Z/g, ' ')
+        },
+        adfly: function (v) {
+            return 'http://adf.ly/5078838/' + v.replace('https://', '');
         }
     }
 })
