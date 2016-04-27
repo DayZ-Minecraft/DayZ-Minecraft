@@ -1,6 +1,5 @@
 package com.github.dayzminecraft.dayzminecraft.common.world.generation.structures;
 
-import com.github.dayzminecraft.dayzminecraft.common.misc.ChatHandler;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemDoor;
 import net.minecraft.util.BlockPos;

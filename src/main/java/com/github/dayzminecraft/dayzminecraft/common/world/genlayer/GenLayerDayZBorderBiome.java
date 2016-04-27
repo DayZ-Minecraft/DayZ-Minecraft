@@ -1,16 +1,17 @@
 package com.github.dayzminecraft.dayzminecraft.common.world.genlayer;
 
+import com.github.dayzminecraft.dayzminecraft.common.world.IWorldType;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 
-import com.github.dayzminecraft.dayzminecraft.common.world.WorldTypes;
-
 public class GenLayerDayZBorderBiome extends GenLayer {
-  public GenLayerDayZBorderBiome(long l, GenLayer genlayer, WorldTypes worldproviderbase) {
+  private IWorldType worldType;
+
+  public GenLayerDayZBorderBiome(long l, GenLayer genlayer, IWorldType worldType) {
     super(l);
     parent = genlayer;
-    worldType = worldproviderbase;
+    this.worldType = worldType;
   }
 
   @Override
@@ -48,6 +49,4 @@ public class GenLayerDayZBorderBiome extends GenLayer {
 
     return ai1;
   }
-
-  private WorldTypes worldType;
 }

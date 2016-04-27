@@ -29,8 +29,7 @@ public class ItemDrink extends ItemMod {
   }
 
   @Override
-  public ItemStack onItemUseFinish(ItemStack itemStack, World world, EntityPlayer entityPlayer)
-  {
+  public ItemStack onItemUseFinish(ItemStack itemStack, World world, EntityPlayer entityPlayer) {
     PlayerData.get(entityPlayer).drink(healAmount);
     if (isAlcohol) {
       entityPlayer.addPotionEffect(new PotionEffect(Potion.confusion.id, 30 * 20, 1));
@@ -59,10 +58,9 @@ public class ItemDrink extends ItemMod {
   }
 
   @Override
-  public String getUnlocalizedName(ItemStack itemStack)
-  {
+  public String getUnlocalizedName(ItemStack itemStack) {
     if (itemStack.getItemDamage() == itemStack.getMaxDamage()) {
-      return getUnlocalizedName() + "-empty";
+      return getUnlocalizedName() + "_empty";
     }
     return getUnlocalizedName();
   }

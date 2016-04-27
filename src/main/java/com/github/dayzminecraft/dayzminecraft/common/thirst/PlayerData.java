@@ -1,15 +1,14 @@
 package com.github.dayzminecraft.dayzminecraft.common.thirst;
 
+import com.github.dayzminecraft.dayzminecraft.common.misc.ChatHandler;
+import com.github.dayzminecraft.dayzminecraft.common.misc.Config;
+import com.github.dayzminecraft.dayzminecraft.common.misc.DamageType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
-
-import com.github.dayzminecraft.dayzminecraft.common.misc.ChatHandler;
-import com.github.dayzminecraft.dayzminecraft.common.misc.Config;
-import com.github.dayzminecraft.dayzminecraft.common.misc.DamageType;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
 public class PlayerData implements IExtendedEntityProperties {
@@ -29,7 +28,7 @@ public class PlayerData implements IExtendedEntityProperties {
   }
 
   public static PlayerData get(EntityPlayer player) {
-    return (PlayerData)player.getExtendedProperties(EXT_PROP_NAME);
+    return (PlayerData) player.getExtendedProperties(EXT_PROP_NAME);
   }
 
   @Override
@@ -42,12 +41,13 @@ public class PlayerData implements IExtendedEntityProperties {
 
   @Override
   public void loadNBTData(NBTTagCompound compound) {
-    NBTTagCompound properties = (NBTTagCompound)compound.getTag(EXT_PROP_NAME);
+    NBTTagCompound properties = (NBTTagCompound) compound.getTag(EXT_PROP_NAME);
     thirst = properties.getInteger("thirstLevel");
   }
 
   @Override
-  public void init(Entity entity, World world) {}
+  public void init(Entity entity, World world) {
+  }
 
   public void drink(int amount) {
     thirst = thirst - amount;

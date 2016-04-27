@@ -1,0 +1,6 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "dayz:blocks/block_barbed"
+  }
+}

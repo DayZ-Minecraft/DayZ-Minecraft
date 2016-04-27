@@ -50,7 +50,9 @@ public class ItemGunSemi extends ItemMod {
     }
   }
 
-  /** Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer */
+  /**
+   * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
+   */
   @Override
   public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer entityplayer) {
     if (itemstack.getItemDamage() < gun.getRounds()) {

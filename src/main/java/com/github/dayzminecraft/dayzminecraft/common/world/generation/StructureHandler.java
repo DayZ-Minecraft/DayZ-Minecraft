@@ -15,7 +15,7 @@ public class StructureHandler {
 
   public static boolean generateStructure(World world, Random rand, BlockPos pos) {
     Structure structure = structures.get(rand.nextInt(structures.size()));
-    return structure.canGenerate(world, pos) && structure.generate(world, rand, pos);
+    return structure.canGenerate(world, pos) && structure.generate(world, rand, pos.down());
   }
 
   public static void addStructure(Structure structure) {

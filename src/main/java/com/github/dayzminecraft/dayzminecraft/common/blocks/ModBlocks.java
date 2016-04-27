@@ -24,10 +24,10 @@ public class ModBlocks {
     sandbagBlock = new Block(Material.clay).setHardness(2.0F).setResistance(10.0F).setStepSound(Block.soundTypeSand);
     nailBlock = new BlockNails().setHardness(1F).setResistance(1F);
 
-    registerBlock(barbedWire, "barbedWire");
-    registerBlock(chestLoot, "chestLoot");
-    registerBlock(sandbagBlock, "sandbagBlock");
-    registerBlock(nailBlock, "nailBlock");
+    registerBlock(barbedWire, "block_barbed");
+    registerBlock(chestLoot, "block_chest");
+    registerBlock(sandbagBlock, "block_sandbag");
+    registerBlock(nailBlock, "block_nail");
 
     GameRegistry.addRecipe(new ItemStack(nailBlock, 8), "#", "#", '#', Items.iron_ingot);
   }
@@ -39,8 +39,9 @@ public class ModBlocks {
   }
 
   public static void registerClient(RenderItem renderItem) {
-    renderItem.getItemModelMesher().register(Item.getItemFromBlock(nailBlock   ), 0, new ModelResourceLocation(DayZ.meta.modId + ":" +    "nailBlock", "inventory"));
-    renderItem.getItemModelMesher().register(Item.getItemFromBlock(barbedWire  ), 0, new ModelResourceLocation(DayZ.meta.modId + ":" +   "barbedWire", "inventory"));
-    renderItem.getItemModelMesher().register(Item.getItemFromBlock(sandbagBlock), 0, new ModelResourceLocation(DayZ.meta.modId + ":" + "sandbagBlock", "inventory"));
+    renderItem.getItemModelMesher().register(Item.getItemFromBlock(chestLoot), 0, new ModelResourceLocation(DayZ.meta.modId + ":" + "block_chest", "inventory"));
+    renderItem.getItemModelMesher().register(Item.getItemFromBlock(nailBlock), 0, new ModelResourceLocation(DayZ.meta.modId + ":" + "block_nail", "inventory"));
+    renderItem.getItemModelMesher().register(Item.getItemFromBlock(barbedWire), 0, new ModelResourceLocation(DayZ.meta.modId + ":" + "block_barbed", "inventory"));
+    renderItem.getItemModelMesher().register(Item.getItemFromBlock(sandbagBlock), 0, new ModelResourceLocation(DayZ.meta.modId + ":" + "block_sandbag", "inventory"));
   }
 }

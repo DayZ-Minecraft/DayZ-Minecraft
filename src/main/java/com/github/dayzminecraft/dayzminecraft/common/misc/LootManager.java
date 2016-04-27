@@ -1,6 +1,5 @@
 package com.github.dayzminecraft.dayzminecraft.common.misc;
 
-import com.github.dayzminecraft.dayzminecraft.common.blocks.ModBlocks;
 import com.github.dayzminecraft.dayzminecraft.common.items.ModItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -54,7 +53,7 @@ public class LootManager {
   }
 
   public static void registerAllItems() {
-   // addLoot(new ItemStack(ModBlocks.barbedWire), 3);
+    // addLoot(new ItemStack(ModBlocks.barbedWire), 3);
   /*addLoot(new ItemStack(ModItems.camoHelmet), 3);
     addLoot(new ItemStack(ModItems.camoChest), 3);
     addLoot(new ItemStack(ModItems.camoLegs), 3);

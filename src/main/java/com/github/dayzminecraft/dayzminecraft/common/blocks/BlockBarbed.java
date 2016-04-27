@@ -33,35 +33,30 @@ public class BlockBarbed extends Block {
    * Called When an Entity Collided with the Block
    */
   @Override
-  public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
-  {
+  public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
     entity.attackEntityFrom(DamageSource.generic, 1);
     entity.setInWeb();
   }
 
   @Override
-  public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state)
-  {
+  public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state) {
     return null;
   }
 
   @Override
-  public boolean isFullCube()
-  {
+  public boolean isFullCube() {
     return false;
   }
 
   /**
    * Get the Item that this Block should drop when harvested.
    */
-  public Item getItemDropped(IBlockState state, Random rand, int fortune)
-  {
-    return Item.getItemFromBlock(ModBlocks.nailBlock);
+  public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+    return Item.getItemFromBlock(ModBlocks.barbedWire);
   }
 
   @SideOnly(Side.CLIENT)
-  public EnumWorldBlockLayer getBlockLayer()
-  {
+  public EnumWorldBlockLayer getBlockLayer() {
     return EnumWorldBlockLayer.CUTOUT;
   }
 }

@@ -1,13 +1,12 @@
 package com.github.dayzminecraft.dayzminecraft.common.world.generation.structures;
 
-import java.util.Random;
-
-import com.github.dayzminecraft.dayzminecraft.common.misc.ChatHandler;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemDoor;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class StructureHouse extends Structure {
 

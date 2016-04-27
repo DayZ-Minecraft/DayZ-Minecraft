@@ -18,7 +18,7 @@ public class RenderWalker extends RenderBiped<EntityWalker> {
   }
 
   @Override
-  protected ResourceLocation getEntityTexture(EntityWalker entity){
+  protected ResourceLocation getEntityTexture(EntityWalker entity) {
     return new ResourceLocation(DayZ.meta.modId + ":textures/entities/" + entity.texture);
   }
 }

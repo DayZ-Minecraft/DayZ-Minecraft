@@ -20,15 +20,14 @@ public class RenderBullet extends Render<EntityBullet> {
 
   @Override
   protected ResourceLocation getEntityTexture(EntityBullet entity) {
-    return new ResourceLocation(DayZ.meta.modId + ":textures/entities/bullet.png");
+    return new ResourceLocation(DayZ.meta.modId + ":textures/entities/entity_bullet.png");
   }
 
   @Override
-  public void doRender(EntityBullet entity, double x, double y, double z, float entityYaw, float partialTicks)
-  {
+  public void doRender(EntityBullet entity, double x, double y, double z, float entityYaw, float partialTicks) {
     GL11.glPushMatrix();
     GL11.glDisable(GL11.GL_CULL_FACE);
-    GL11.glTranslatef((float)x, (float)y, (float)z);
+    GL11.glTranslatef((float) x, (float) y, (float) z);
     float f2 = 0.0625F;
     GL11.glEnable(GL12.GL_RESCALE_NORMAL);
     GL11.glScalef(-1.0F, -1.0F, 1.0F);

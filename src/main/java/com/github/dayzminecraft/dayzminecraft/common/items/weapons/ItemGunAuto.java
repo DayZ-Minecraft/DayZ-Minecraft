@@ -1,13 +1,12 @@
 package com.github.dayzminecraft.dayzminecraft.common.items.weapons;
 
+import com.github.dayzminecraft.dayzminecraft.DayZ;
+import com.github.dayzminecraft.dayzminecraft.common.entities.EntityBullet;
+import com.github.dayzminecraft.dayzminecraft.common.items.ItemMod;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-
-import com.github.dayzminecraft.dayzminecraft.DayZ;
-import com.github.dayzminecraft.dayzminecraft.common.entities.EntityBullet;
-import com.github.dayzminecraft.dayzminecraft.common.items.ItemMod;
 
 public class ItemGunAuto extends ItemMod {
   private IGun gun;
@@ -50,7 +49,9 @@ public class ItemGunAuto extends ItemMod {
     }
   }
 
-  /** Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer */
+  /**
+   * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
+   */
   @Override
   public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer entityplayer) {
     if (itemstack.getItemDamage() < gun.getRounds()) {

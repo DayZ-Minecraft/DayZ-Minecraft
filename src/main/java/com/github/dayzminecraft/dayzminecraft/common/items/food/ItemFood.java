@@ -32,12 +32,12 @@ public class ItemFood extends ItemMod {
   }
 
   @Override
-  public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityPlayer playerIn)
-  {
+  public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityPlayer playerIn) {
     --stack.stackSize;
     playerIn.getFoodStats().addStats(healAmount, saturationModifier);
     worldIn.playSoundAtEntity(playerIn, "random.burp", 0.5F, worldIn.rand.nextFloat() * 0.1F + 0.9F);
     playerIn.triggerAchievement(StatList.objectUseStats[Item.getIdFromItem(this)]);
+    stack.damageItem(1, playerIn);
     return stack;
   }
 
@@ -60,10 +60,9 @@ public class ItemFood extends ItemMod {
   }
 
   @Override
-  public String getUnlocalizedName(ItemStack itemStack)
-  {
+  public String getUnlocalizedName(ItemStack itemStack) {
     if (itemStack.getItemDamage() == itemStack.getMaxDamage()) {
-      return getUnlocalizedName() + "-empty";
+      return getUnlocalizedName() + "_empty";
     }
     return getUnlocalizedName();
   }

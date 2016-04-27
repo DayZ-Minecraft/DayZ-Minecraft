@@ -23,7 +23,7 @@ public class EntityCrawler extends EntityMob {
     super(par1World);
     setHealth(12F);
     float moveSpeed = 0.3F;
-    ((PathNavigateGround)this.getNavigator()).setBreakDoors(true);
+    ((PathNavigateGround) this.getNavigator()).setBreakDoors(true);
     tasks.addTask(0, new EntityAISwimming(this));
     tasks.addTask(1, new EntityAIAttackOnCollide(this, EntityPlayerMP.class, moveSpeed, false));
     tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, moveSpeed, false));
@@ -102,30 +102,30 @@ public class EntityCrawler extends EntityMob {
       int j = rand.nextInt(10);
       int k = rand.nextInt(20);
       if (j == 0) {
-        ((EntityLivingBase)entity).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 300, 1));
+        ((EntityLivingBase) entity).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 300, 1));
       }
       if (k == 0) {
-        ((EntityLivingBase)entity).addPotionEffect(new EnactEffect(Effect.zombification.getId(), 20 * 300, 1));
+        ((EntityLivingBase) entity).addPotionEffect(new EnactEffect(Effect.zombification.getId(), 20 * 300, 1));
       }
       return entity.attackEntityFrom(DamageSource.causeMobDamage(this), 1);
     } else if (worldObj.getDifficulty().equals(EnumDifficulty.NORMAL)) {
       int j = rand.nextInt(5);
       int k = rand.nextInt(10);
       if (j == 0) {
-        ((EntityLivingBase)entity).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 300, 1));
+        ((EntityLivingBase) entity).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 300, 1));
       }
       if (k == 0) {
-        ((EntityLivingBase)entity).addPotionEffect(new EnactEffect(Effect.zombification.getId(), 20 * 300, 1));
+        ((EntityLivingBase) entity).addPotionEffect(new EnactEffect(Effect.zombification.getId(), 20 * 300, 1));
       }
       return entity.attackEntityFrom(DamageSource.causeMobDamage(this), 2);
     } else if (worldObj.getDifficulty().equals(EnumDifficulty.HARD)) {
       int j = rand.nextInt(3);
       int k = rand.nextInt(6);
       if (j == 0) {
-        ((EntityLivingBase)entity).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 300, 1));
+        ((EntityLivingBase) entity).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 300, 1));
       }
       if (k == 0) {
-        ((EntityLivingBase)entity).addPotionEffect(new EnactEffect(Effect.zombification.getId(), 20 * 300, 1));
+        ((EntityLivingBase) entity).addPotionEffect(new EnactEffect(Effect.zombification.getId(), 20 * 300, 1));
       }
       return entity.attackEntityFrom(DamageSource.causeMobDamage(this), 4);
     } else {

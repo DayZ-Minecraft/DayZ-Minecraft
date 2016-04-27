@@ -1,13 +1,11 @@
 package com.github.dayzminecraft.dayzminecraft.common.misc;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.network.play.client.C01PacketChatMessage;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public final class ChatHandler {
   public static Logger log;

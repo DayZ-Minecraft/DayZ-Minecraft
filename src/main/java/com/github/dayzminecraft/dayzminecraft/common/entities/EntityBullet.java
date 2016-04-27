@@ -50,22 +50,7 @@ public class EntityBullet extends EntityThrowable {
    * Called when this EntityBullet hits a block or entity.
    */
   @Override
-  protected void onImpact(MovingObjectPosition position) {/*
-    if (position.entityHit != null) {
-      position.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), (float) bulletdamage);
-    }
-
-    for (int j = 0; j < 8; ++j) {
-      this.worldObj.spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D, new int[0]);
-    }
-
-    if (!this.worldObj.isRemote) {
-      this.setDead();
-    }
-*/
-
-
-
+  protected void onImpact(MovingObjectPosition position) {
     if (position.entityHit != null) {
       if (position.entityHit instanceof EntityLivingBase) {
         position.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), bulletdamage);
@@ -75,24 +60,21 @@ public class EntityBullet extends EntityThrowable {
         if (worldObj.getDifficulty().equals(EnumDifficulty.EASY)) {
           int j = rand.nextInt(10);
           if (j == 0) {
-            ((EntityLivingBase)position.entityHit).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 300, 1));
+            ((EntityLivingBase) position.entityHit).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 300, 1));
           }
         } else if (worldObj.getDifficulty().equals(EnumDifficulty.NORMAL)) {
           int j = rand.nextInt(5);
           if (j == 0) {
-            ((EntityLivingBase)position.entityHit).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 300, 1));
+            ((EntityLivingBase) position.entityHit).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 300, 1));
           }
         } else if (worldObj.getDifficulty().equals(EnumDifficulty.HARD)) {
           int j = rand.nextInt(3);
           if (j == 0) {
-            ((EntityLivingBase)position.entityHit).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 300, 1));
+            ((EntityLivingBase) position.entityHit).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 300, 1));
           }
         }
       }
     } else if (position.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) {
-      if (!worldObj.isRemote) {
-        setDead();
-      }
       if (worldObj.getBlockState(position.getBlockPos()).getBlock().equals(Blocks.glass_pane) || worldObj.getBlockState(position.getBlockPos()).getBlock().equals(Blocks.glass)) {
         worldObj.setBlockToAir(position.getBlockPos());
         worldObj.playSoundAtEntity(this, "random.glass", 1.0F, 1.0F);

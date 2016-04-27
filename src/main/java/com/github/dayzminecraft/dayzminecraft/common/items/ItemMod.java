@@ -19,7 +19,8 @@ public class ItemMod extends Item {
     setCreativeTab(DayZ.creativeTab);
   }
 
-  @SuppressWarnings({"unchecked", "rawtypes"}) @Override
+  @SuppressWarnings({"unchecked", "rawtypes"})
+  @Override
   public void addInformation(ItemStack itemStack, EntityPlayer entityPlayer, List informationList, boolean advancedItemTooltips) {
     if (subNames == null) {
       return;

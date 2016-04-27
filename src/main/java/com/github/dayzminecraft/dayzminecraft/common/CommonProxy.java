@@ -12,7 +12,9 @@ import com.github.dayzminecraft.dayzminecraft.common.misc.Config;
 import com.github.dayzminecraft.dayzminecraft.common.misc.DamageType;
 import com.github.dayzminecraft.dayzminecraft.common.misc.LootManager;
 import com.github.dayzminecraft.dayzminecraft.common.thirst.PlayerData;
-import com.github.dayzminecraft.dayzminecraft.common.world.WorldTypes;
+import com.github.dayzminecraft.dayzminecraft.common.world.IWorldType;
+import com.github.dayzminecraft.dayzminecraft.common.world.WorldTypeOriginal;
+import com.github.dayzminecraft.dayzminecraft.common.world.WorldTypeSnow;
 import com.github.dayzminecraft.dayzminecraft.common.world.biomes.Biomes;
 import com.github.dayzminecraft.dayzminecraft.common.world.generation.StructureHandler;
 import com.github.dayzminecraft.dayzminecraft.common.world.genlayer.GenLayerDayZ;
@@ -51,12 +53,11 @@ public class CommonProxy {
     ModItems.loadItems();
     Biomes.loadBiomes();
     Biomes.addVillages();
-    WorldTypes.loadWorldTypes();
     Effect.loadEffects();
     StructureHandler.addDefaultStructures();
 
-    EntityRegistry.registerModEntity(EntityWalker.class, "Walker", 1, DayZ.INSTANCE, 250, 5, true, 1 , 1);
-    EntityRegistry.registerModEntity(EntityCrawler.class, "Crawler", 2, DayZ.INSTANCE, 250, 5, true, 1 , 1);
+    EntityRegistry.registerModEntity(EntityWalker.class, "Walker", 1, DayZ.INSTANCE, 250, 5, true, 1, 1);
+    EntityRegistry.registerModEntity(EntityCrawler.class, "Crawler", 2, DayZ.INSTANCE, 250, 5, true, 1, 1);
     EntityRegistry.registerModEntity(EntityBullet.class, "Bullet", 3, DayZ.INSTANCE, 250, 5, true);
 
     EntityRegistry.addSpawn(EntityWalker.class, 200, 1, 4, EnumCreatureType.CREATURE, Biomes.biomeForest, Biomes.biomePlains, Biomes.biomeRiver, Biomes.biomeSnowMountains, Biomes.biomeSnowPlains);
@@ -64,7 +65,8 @@ public class CommonProxy {
 
   }
 
-  public void load(FMLInitializationEvent event) {}
+  public void load(FMLInitializationEvent event) {
+  }
 
   public void postload(FMLPostInitializationEvent event) {
     LootManager.init();
@@ -76,8 +78,8 @@ public class CommonProxy {
       server.logInfo("Day Z " + DayZ.meta.version + " Loaded.");
       if (Config.showWorldTypeWarning && !server.worldServers[0].getWorldInfo().getTerrainType().getWorldTypeName().equals("DAYZBASE") && !server.worldServers[0].getWorldInfo().getTerrainType().getWorldTypeName().equals("DAYZBASE")) {
         server.logInfo("You have not generated a DayZ world! Make sure your server.properties has one of the following lines to generate a DayZ world:");
-        server.logInfo("level-type=DAYZBASE - To create the original DayZ world.");
-        server.logInfo("level-type=DAYZSNOW - To create snowy DayZ world.");
+        server.logInfo("level-type=dayz-original - To create the original DayZ world.");
+        server.logInfo("level-type=dayz-snow - To create the snowy DayZ world.");
       }
     }
   }
@@ -86,7 +88,7 @@ public class CommonProxy {
   public void worldLoad(WorldEvent.Load event) {
     for (Object obj : event.world.loadedTileEntityList) {
       if (obj instanceof TileEntityChest) {
-        TileEntityChest chest = (TileEntityChest)obj;
+        TileEntityChest chest = (TileEntityChest) obj;
         if (event.world.getBlockState(chest.getPos()).getBlock() == ModBlocks.chestLoot) {
           boolean continueChecking = true;
           int slotNumber = 0;
@@ -111,7 +113,7 @@ public class CommonProxy {
   @SubscribeEvent
   public void playerInteract(EntityInteractEvent event) {
     if (event.target != null && event.target instanceof EntityPlayer && event.entityPlayer.getCurrentEquippedItem().getItem().equals(ModItems.healBloodbag)) {
-      ((EntityPlayer)event.target).heal(20F);
+      ((EntityPlayer) event.target).heal(20F);
       event.entityPlayer.getCurrentEquippedItem().stackSize--;
     }
   }
@@ -119,7 +121,7 @@ public class CommonProxy {
   @SubscribeEvent
   public void onEntityUpdate(LivingEvent.LivingUpdateEvent event) {
     if (event.entityLiving instanceof EntityPlayer && DayZ.isServer()) {
-      PlayerData.get((EntityPlayer)event.entityLiving).handleThirst();
+      PlayerData.get((EntityPlayer) event.entityLiving).handleThirst();
     }
     if (event.entityLiving.isPotionActive(Effect.bleeding)) {
       if (event.entityLiving.getActivePotionEffect(Effect.bleeding).getDuration() == 0) {
@@ -149,9 +151,8 @@ public class CommonProxy {
   }
 
   @SubscribeEvent
-  public void onEntityConstructing(EntityEvent.EntityConstructing event)
-  {
-    if (event.entity instanceof EntityPlayer && PlayerData.get((EntityPlayer)event.entity) == null) {
+  public void onEntityConstructing(EntityEvent.EntityConstructing event) {
+    if (event.entity instanceof EntityPlayer && PlayerData.get((EntityPlayer) event.entity) == null) {
       PlayerData.register((EntityPlayer) event.entity);
     }
     if (event.entity instanceof EntityPlayer && event.entity.getExtendedProperties(PlayerData.EXT_PROP_NAME) == null) {
@@ -161,14 +162,15 @@ public class CommonProxy {
 
   @SubscribeEvent
   public void initBiomeGens(WorldTypeEvent.InitBiomeGens event) {
-    if (event.worldType instanceof WorldTypes) {
-      event.newBiomeGens = GenLayerDayZ.getGenLayers(event.seed, (WorldTypes)event.worldType);
+    if (event.worldType instanceof WorldTypeOriginal || event.worldType instanceof WorldTypeSnow) {
+      event.newBiomeGens = GenLayerDayZ.getGenLayers(event.seed, (IWorldType) event.worldType);
     }
   }
 
   @SubscribeEvent
   public void populateChunk(PopulateChunkEvent.Populate event) {
-    if (event.world.getWorldInfo().getTerrainType() instanceof WorldTypes) {
+    if (event.world.getWorldInfo().getTerrainType() instanceof WorldTypeOriginal ||
+        event.world.getWorldInfo().getTerrainType() instanceof WorldTypeSnow) {
       if (event.type == PopulateChunkEvent.Populate.EventType.LAKE) {
         event.setResult(Event.Result.DENY);
       }
@@ -179,9 +181,9 @@ public class CommonProxy {
         event.setResult(Event.Result.DENY);
       }
     }
-
-    if (event.world.getWorldInfo().getTerrainType() instanceof WorldTypes &&
-        event.rand.nextInt(80) == 1) {
+    if ((event.world.getWorldInfo().getTerrainType() instanceof WorldTypeOriginal ||
+        event.world.getWorldInfo().getTerrainType() instanceof WorldTypeSnow) &&
+        event.rand.nextInt(Config.structureGenerationChance) == 1) {
       int x = event.chunkX * 16 + event.rand.nextInt(16);
       int z = event.chunkZ * 16 + event.rand.nextInt(16);
       BlockPos pos = event.world.getTopSolidOrLiquidBlock(new BlockPos(x, 0, z));

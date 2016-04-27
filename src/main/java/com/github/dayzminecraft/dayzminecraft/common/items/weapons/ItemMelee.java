@@ -1,13 +1,12 @@
 package com.github.dayzminecraft.dayzminecraft.common.items.weapons;
 
+import com.github.dayzminecraft.dayzminecraft.common.items.ItemMod;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-
-import com.github.dayzminecraft.dayzminecraft.common.items.ItemMod;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -23,12 +22,13 @@ public class ItemMelee extends ItemMod {
 
   @Override
   public boolean hitEntity(ItemStack itemStack, EntityLivingBase attackedEntity, EntityLivingBase attackerEntity) {
-    attackedEntity.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer)attackerEntity), weaponDamage);
+    attackedEntity.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) attackerEntity), weaponDamage);
     itemStack.damageItem(1, attackerEntity);
     return true;
   }
 
-  @SideOnly(Side.CLIENT) @Override
+  @SideOnly(Side.CLIENT)
+  @Override
   public boolean isFull3D() {
     return true;
   }
