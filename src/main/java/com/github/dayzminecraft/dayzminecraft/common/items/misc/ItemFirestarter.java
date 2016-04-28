@@ -1,12 +1,12 @@
 package com.github.dayzminecraft.dayzminecraft.common.items.misc;
 
-import net.minecraft.block.Block;
+import com.github.dayzminecraft.dayzminecraft.common.items.ItemMod;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
-
-import com.github.dayzminecraft.dayzminecraft.common.items.ItemMod;
 
 public class ItemFirestarter extends ItemMod {
   public ItemFirestarter(int numOfUses) {
@@ -15,42 +15,18 @@ public class ItemFirestarter extends ItemMod {
   }
 
   @Override
-  public boolean onItemUse(ItemStack itemStack, EntityPlayer entityPlayer, World world, int xCoord, int yCoord, int zCoord, int blockSide, float xHitCoord, float yHitCoord, float zHitCoord) {
-    if (blockSide == 0) {
-      --yCoord;
-    }
+  public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ) {
+    pos = pos.offset(side);
 
-    if (blockSide == 1) {
-      ++yCoord;
-    }
-
-    if (blockSide == 2) {
-      --zCoord;
-    }
-
-    if (blockSide == 3) {
-      ++zCoord;
-    }
-
-    if (blockSide == 4) {
-      --xCoord;
-    }
-
-    if (blockSide == 5) {
-      ++xCoord;
-    }
-
-    if (!entityPlayer.canPlayerEdit(xCoord, yCoord, zCoord, blockSide, itemStack)) {
+    if (!playerIn.canPlayerEdit(pos, side, stack)) {
       return false;
     } else {
-      Block targetBlock = world.getBlock(xCoord, yCoord, zCoord);
-
-      if (targetBlock.equals(Blocks.air)) {
-        world.playSoundEffect(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, "fire.ignite", 1.0F, itemRand.nextFloat() * 0.4F + 0.8F);
-        world.setBlock(xCoord, yCoord, zCoord, Blocks.fire);
+      if (worldIn.isAirBlock(pos)) {
+        worldIn.playSoundEffect((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, "fire.ignite", 1.0F, itemRand.nextFloat() * 0.4F + 0.8F);
+        worldIn.setBlockState(pos, Blocks.fire.getDefaultState());
       }
 
-      itemStack.damageItem(1, entityPlayer);
+      stack.damageItem(1, playerIn);
       return true;
     }
   }

@@ -1,23 +1,24 @@
 package com.github.dayzminecraft.dayzminecraft.common.world.generation;
 
+import com.github.dayzminecraft.dayzminecraft.common.world.generation.structures.Structure;
+import com.github.dayzminecraft.dayzminecraft.common.world.generation.structures.StructureFort;
+import com.github.dayzminecraft.dayzminecraft.common.world.generation.structures.StructureHouse;
+import net.minecraft.util.BlockPos;
+import net.minecraft.world.World;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import net.minecraft.world.World;
-
-import com.github.dayzminecraft.dayzminecraft.common.world.generation.structures.IStructure;
-import com.github.dayzminecraft.dayzminecraft.common.world.generation.structures.StructureFort;
-import com.github.dayzminecraft.dayzminecraft.common.world.generation.structures.StructureHouse;
-
 public class StructureHandler {
-  private static List<IStructure> structures = new ArrayList<IStructure>();
+  private static List<Structure> structures = new ArrayList<Structure>();
 
-  public static boolean generateStructure(World world, Random rand, int xCoord, int yCoord, int zCoord) {
-    return structures.get(rand.nextInt(structures.size())).generate(world, rand, xCoord, yCoord, zCoord);
+  public static boolean generateStructure(World world, Random rand, BlockPos pos) {
+    Structure structure = structures.get(rand.nextInt(structures.size()));
+    return structure.canGenerate(world, pos) && structure.generate(world, rand, pos.down());
   }
 
-  public static void addStructure(IStructure structure) {
+  public static void addStructure(Structure structure) {
     structures.add(structure);
   }
 

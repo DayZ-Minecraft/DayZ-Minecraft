@@ -1,30 +1,47 @@
 package com.github.dayzminecraft.dayzminecraft.common.blocks;
 
+import com.github.dayzminecraft.dayzminecraft.DayZ;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-
-import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ModBlocks {
+
   public static Block barbedWire;
   public static Block chestLoot;
-  public static Block chainFence;
   public static Block sandbagBlock;
   public static Block nailBlock;
 
   public static void loadBlocks() {
-    barbedWire = new BlockBarbedWire().setBlockName("barbedWire").setHardness(3F).setResistance(2F);
-    GameRegistry.registerBlock(barbedWire, "barbedWire");
-    chestLoot = new BlockChestDayZ(0).setBlockName("chestLoot");
-    GameRegistry.registerBlock(chestLoot, "chestLoot");
-    chainFence = new BlockFence("chainFence", Material.iron).setHardness(5.0F).setResistance(10.0F).setStepSound(Block.soundTypeMetal).setBlockName("chainFence");
-    GameRegistry.registerBlock(chainFence, "chainFence");
-    sandbagBlock = new BlockMod(Material.clay).setHardness(2.0F).setResistance(10.0F).setStepSound(Block.soundTypeSand).setBlockName("sandbagBlock");
-    GameRegistry.registerBlock(sandbagBlock, "sandbagBlock");
-    nailBlock = new BlockNails(Material.circuits).setBlockName("nailBlock").setHardness(1F).setResistance(1F);
-    GameRegistry.registerBlock(nailBlock, "nailBlock");
+
+    barbedWire = new BlockBarbed().setHardness(3F).setResistance(2F);
+    chestLoot = new BlockChestDayZ();
+    sandbagBlock = new Block(Material.clay).setHardness(2.0F).setResistance(10.0F).setStepSound(Block.soundTypeSand);
+    nailBlock = new BlockNails().setHardness(1F).setResistance(1F);
+
+    registerBlock(barbedWire, "block_barbed");
+    registerBlock(chestLoot, "block_chest");
+    registerBlock(sandbagBlock, "block_sandbag");
+    registerBlock(nailBlock, "block_nail");
+
     GameRegistry.addRecipe(new ItemStack(nailBlock, 8), "#", "#", '#', Items.iron_ingot);
+  }
+
+  private static void registerBlock(Block block, String name) {
+    block.setCreativeTab(DayZ.creativeTab);
+    block.setUnlocalizedName(name);
+    GameRegistry.registerBlock(block, name);
+  }
+
+  public static void registerClient(RenderItem renderItem) {
+    renderItem.getItemModelMesher().register(Item.getItemFromBlock(chestLoot), 0, new ModelResourceLocation(DayZ.meta.modId + ":" + "block_chest", "inventory"));
+    renderItem.getItemModelMesher().register(Item.getItemFromBlock(nailBlock), 0, new ModelResourceLocation(DayZ.meta.modId + ":" + "block_nail", "inventory"));
+    renderItem.getItemModelMesher().register(Item.getItemFromBlock(barbedWire), 0, new ModelResourceLocation(DayZ.meta.modId + ":" + "block_barbed", "inventory"));
+    renderItem.getItemModelMesher().register(Item.getItemFromBlock(sandbagBlock), 0, new ModelResourceLocation(DayZ.meta.modId + ":" + "block_sandbag", "inventory"));
   }
 }

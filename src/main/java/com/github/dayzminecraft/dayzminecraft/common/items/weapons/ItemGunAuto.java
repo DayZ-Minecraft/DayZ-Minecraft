@@ -1,13 +1,12 @@
 package com.github.dayzminecraft.dayzminecraft.common.items.weapons;
 
+import com.github.dayzminecraft.dayzminecraft.DayZ;
+import com.github.dayzminecraft.dayzminecraft.common.entities.EntityBullet;
+import com.github.dayzminecraft.dayzminecraft.common.items.ItemMod;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-
-import com.github.dayzminecraft.dayzminecraft.DayZ;
-import com.github.dayzminecraft.dayzminecraft.common.entities.EntityBullet;
-import com.github.dayzminecraft.dayzminecraft.common.items.ItemMod;
 
 public class ItemGunAuto extends ItemMod {
   private IGun gun;
@@ -38,19 +37,21 @@ public class ItemGunAuto extends ItemMod {
 
   @Override
   public int getMaxItemUseDuration(ItemStack itemstack) {
-    return 0x11940;
+    return 60;
   }
 
   @Override
   public EnumAction getItemUseAction(ItemStack itemstack) {
     if (itemstack.getItemDamage() < gun.getRounds()) {
-      return null;
+      return EnumAction.NONE;
     } else {
-      return EnumAction.block;
+      return EnumAction.BLOCK;
     }
   }
 
-  /** Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer */
+  /**
+   * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
+   */
   @Override
   public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer entityplayer) {
     if (itemstack.getItemDamage() < gun.getRounds()) {

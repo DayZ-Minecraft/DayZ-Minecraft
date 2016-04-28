@@ -1,15 +1,14 @@
 package com.github.dayzminecraft.dayzminecraft.common.world.genlayer;
 
+import com.github.dayzminecraft.dayzminecraft.common.world.IWorldType;
 import net.minecraft.world.gen.layer.*;
-
-import com.github.dayzminecraft.dayzminecraft.common.world.WorldTypes;
 
 public abstract class GenLayerDayZ extends GenLayer {
   public GenLayerDayZ(long seed) {
     super(seed);
   }
 
-  public static GenLayer[] getGenLayers(long l, WorldTypes worldtype) {
+  public static GenLayer[] getGenLayers(long l, IWorldType worldtype) {
     GenLayer genlayer = new GenLayerIsland(1L);
     genlayer = new GenLayerFuzzyZoom(2000L, genlayer);
     genlayer = new GenLayerDayZOcean1(1L, genlayer, worldtype);
@@ -43,11 +42,11 @@ public abstract class GenLayerDayZ extends GenLayer {
     }
     genlayer2 = new GenLayerSmooth(1000L, genlayer2);
     genlayer2 = new GenLayerDayZWater(100L, genlayer2, genlayer1, worldtype);
-    GenLayerDayZWater genlayerdimensionwater = ((GenLayerDayZWater)(genlayer2));
+    GenLayerDayZWater genlayerdimensionwater = ((GenLayerDayZWater) (genlayer2));
     GenLayerVoronoiZoom genlayervoronoizoom = new GenLayerVoronoiZoom(10L, genlayer2);
     genlayer2.initWorldGenSeed(l);
     genlayervoronoizoom.initWorldGenSeed(l);
     GenLayer genlayer3 = genlayer2;
-    return (new GenLayer[] {genlayer3, genlayervoronoizoom, genlayerdimensionwater});
+    return (new GenLayer[]{genlayer3, genlayervoronoizoom, genlayerdimensionwater});
   }
 }

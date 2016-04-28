@@ -108,6 +108,6 @@ public class ModelCrawler extends ModelBase {
   public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
     super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
     Left_arm.rotateAngleY = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
-    Right_arm.rotateAngleY = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 1.4F * f1;
+    Right_arm.rotateAngleY = MathHelper.cos(f * 0.6662F + (float) Math.PI) * 1.4F * f1;
   }
 }

@@ -1,15 +1,13 @@
 package com.github.dayzminecraft.dayzminecraft.common.items.food;
 
+import com.github.dayzminecraft.dayzminecraft.common.items.ItemMod;
+import com.github.dayzminecraft.dayzminecraft.common.thirst.PlayerData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
-
-import com.github.dayzminecraft.dayzminecraft.common.items.ItemMod;
-import com.github.dayzminecraft.dayzminecraft.common.thirst.PlayerData;
 
 public class ItemDrinkBottle extends ItemMod {
   private final int healAmount;
@@ -23,7 +21,7 @@ public class ItemDrinkBottle extends ItemMod {
   }
 
   @Override
-  public ItemStack onEaten(ItemStack itemStack, World world, EntityPlayer entityPlayer) {
+  public ItemStack onItemUseFinish(ItemStack itemStack, World world, EntityPlayer entityPlayer) {
     PlayerData.get(entityPlayer).drink(healAmount);
     itemStack.damageItem(1, entityPlayer);
     if (isAlcohol) {
@@ -35,7 +33,7 @@ public class ItemDrinkBottle extends ItemMod {
 
   @Override
   public EnumAction getItemUseAction(ItemStack itemStack) {
-    return EnumAction.drink;
+    return EnumAction.DRINK;
   }
 
   @Override
@@ -51,7 +49,7 @@ public class ItemDrinkBottle extends ItemMod {
     return itemStack;
   }
 
-  public Item isAlcohol(boolean isAlcohol) {
+  public ItemMod isAlcohol(boolean isAlcohol) {
     this.isAlcohol = isAlcohol;
     return this;
   }

@@ -7,7 +7,7 @@ import net.minecraft.world.EnumDifficulty;
 
 public class AIBreakDoors extends EntityAIBreakDoor {
   private int breakingTime;
-  private int field_75358_j = -1;
+  private int previousBreakProgress = -1;
 
   public AIBreakDoors(EntityLiving entityLiving) {
     super(entityLiving);
@@ -18,21 +18,21 @@ public class AIBreakDoors extends EntityAIBreakDoor {
     super.updateTask();
 
     if (this.theEntity.getRNG().nextInt(20) == 0) {
-      this.theEntity.worldObj.playAuxSFX(1010, this.entityPosX, this.entityPosY, this.entityPosZ, 0);
+      this.theEntity.worldObj.playAuxSFX(1010, this.doorPosition, 0);
     }
 
     ++this.breakingTime;
-    int i = (int)((float)this.breakingTime / 240.0F * 10.0F);
+    int i = (int) ((float) this.breakingTime / 240.0F * 10.0F);
 
-    if (i != this.field_75358_j) {
-      this.theEntity.worldObj.destroyBlockInWorldPartially(this.theEntity.getEntityId(), this.entityPosX, this.entityPosY, this.entityPosZ, i);
-      this.field_75358_j = i;
+    if (i != this.previousBreakProgress) {
+      this.theEntity.worldObj.sendBlockBreakProgress(this.theEntity.getEntityId(), this.doorPosition, i);
+      this.previousBreakProgress = i;
     }
 
-    if (this.breakingTime == 240 && this.theEntity.worldObj.difficultySetting == EnumDifficulty.HARD) {
-      this.theEntity.worldObj.setBlockToAir(this.entityPosX, this.entityPosY, this.entityPosZ);
-      this.theEntity.worldObj.playAuxSFX(1012, this.entityPosX, this.entityPosY, this.entityPosZ, 0);
-      this.theEntity.worldObj.playAuxSFX(2001, this.entityPosX, this.entityPosY, this.entityPosZ, Block.getIdFromBlock(this.field_151504_e));
+    if (this.breakingTime == 240 && this.theEntity.worldObj.getDifficulty() == EnumDifficulty.HARD) {
+      this.theEntity.worldObj.setBlockToAir(this.doorPosition);
+      this.theEntity.worldObj.playAuxSFX(1012, this.doorPosition, 0);
+      this.theEntity.worldObj.playAuxSFX(2001, this.doorPosition, Block.getIdFromBlock(this.doorBlock));
     }
   }
 }

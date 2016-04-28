@@ -9,7 +9,7 @@ public class BiomeRiver extends BiomeGenRiver {
     setBiomeName("DayZ River");
     spawnableMonsterList.clear();
     spawnableCreatureList.clear();
-    setHeight(new Height(-0.5F, 0.0F));
+    setHeight(height_ShallowWaters);
     theBiomeDecorator.treesPerChunk = -999;
     theBiomeDecorator.flowersPerChunk = 0;
     theBiomeDecorator.grassPerChunk = 15;

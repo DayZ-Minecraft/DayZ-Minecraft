@@ -1,13 +1,14 @@
 package com.github.dayzminecraft.dayzminecraft.common.world.genlayer;
 
+import com.github.dayzminecraft.dayzminecraft.common.world.IWorldType;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 
-import com.github.dayzminecraft.dayzminecraft.common.world.WorldTypes;
-
 public class GenLayerDayZOcean2 extends GenLayer {
-  public GenLayerDayZOcean2(long l, GenLayer genlayer, WorldTypes worldtype) {
+  private IWorldType worldType;
+
+  public GenLayerDayZOcean2(long l, GenLayer genlayer, IWorldType worldtype) {
     super(l);
     parent = genlayer;
     worldType = worldtype;
@@ -30,6 +31,4 @@ public class GenLayerDayZOcean2 extends GenLayer {
     }
     return ai1;
   }
-
-  private WorldTypes worldType;
 }

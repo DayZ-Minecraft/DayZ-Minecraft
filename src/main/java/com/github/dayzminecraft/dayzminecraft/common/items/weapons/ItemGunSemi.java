@@ -1,13 +1,12 @@
 package com.github.dayzminecraft.dayzminecraft.common.items.weapons;
 
+import com.github.dayzminecraft.dayzminecraft.DayZ;
+import com.github.dayzminecraft.dayzminecraft.common.entities.EntityBullet;
+import com.github.dayzminecraft.dayzminecraft.common.items.ItemMod;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-
-import com.github.dayzminecraft.dayzminecraft.DayZ;
-import com.github.dayzminecraft.dayzminecraft.common.entities.EntityBullet;
-import com.github.dayzminecraft.dayzminecraft.common.items.ItemMod;
 
 public class ItemGunSemi extends ItemMod {
   private IGun gun;
@@ -46,15 +45,15 @@ public class ItemGunSemi extends ItemMod {
 
   @Override
   public int getMaxItemUseDuration(ItemStack itemstack) {
-    return 0x11940;
+    return 80;
   }
 
   @Override
   public EnumAction getItemUseAction(ItemStack itemstack) {
     if (itemstack.getItemDamage() < gun.getRounds()) {
-      return null;
+      return EnumAction.NONE;
     } else {
-      return EnumAction.block;
+      return EnumAction.BLOCK;
     }
   }
 

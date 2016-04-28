@@ -1,11 +1,10 @@
 package com.github.dayzminecraft.dayzminecraft.common.items.misc;
 
+import com.github.dayzminecraft.dayzminecraft.common.items.ItemMod;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.world.World;
-
-import com.github.dayzminecraft.dayzminecraft.common.items.ItemMod;
 
 public class ItemHeal extends ItemMod {
   private int healAmount;

@@ -1,112 +1,87 @@
 package com.github.dayzminecraft.dayzminecraft.common.entities;
 
-import net.minecraft.entity.Entity;
+import com.github.dayzminecraft.dayzminecraft.common.effects.Effect;
+import com.github.dayzminecraft.dayzminecraft.common.effects.EnactEffect;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
-import com.github.dayzminecraft.dayzminecraft.common.effects.Effect;
-import com.github.dayzminecraft.dayzminecraft.common.effects.EnactEffect;
-
 public class EntityBullet extends EntityThrowable {
-  private int bulletdamage;
-  public Entity shootingEntity;
+  private int bulletdamage = 0;
 
-  public EntityBullet(World world) {
-    super(world);
+  public EntityBullet(World worldIn) {
+    super(worldIn);
     setSize(0.1F, 0.1F);
   }
 
-  public EntityBullet(World world, EntityLivingBase entityLivingBase, int damage) {
-    super(world, entityLivingBase);
+  public EntityBullet(World worldIn, EntityLivingBase throwerIn) {
+    super(worldIn, throwerIn);
+    setSize(0.1F, 0.1F);
+  }
+
+  public EntityBullet(World worldIn, double x, double y, double z) {
+    super(worldIn, x, y, z);
+    setSize(0.1F, 0.1F);
+  }
+
+
+  public EntityBullet(World world, EntityPlayer player, int damage) {
+    super(world, player);
+    setSize(0.1F, 0.1F);
     bulletdamage = damage;
-    shootingEntity = entityLivingBase;
-    setSize(0.5F, 0.5F);
-    setLocationAndAngles(entityLivingBase.posX, entityLivingBase.posY + entityLivingBase.getEyeHeight(), entityLivingBase.posZ, entityLivingBase.rotationYaw, entityLivingBase.rotationPitch);
-    posX -= MathHelper.cos(rotationYaw / 180.0F * (float)Math.PI) * 0.16F;
-    posY -= 0.10000000149011612D;
-    posZ -= MathHelper.sin(rotationYaw / 180.0F * (float)Math.PI) * 0.16F;
-    setPosition(posX, posY, posZ);
-    yOffset = 0.0F;
-    motionX = -MathHelper.sin(rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(rotationPitch / 180.0F * (float)Math.PI);
-    motionZ = MathHelper.cos(rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(rotationPitch / 180.0F * (float)Math.PI);
-    motionY = (-MathHelper.sin(rotationPitch / 180.0F * (float)Math.PI));
-    setThrowableHeading(motionX, motionY, motionZ, 1.5F, 1.0F);
-  }
-
-  public EntityBullet(World world, double xCoord, double yCoord, double zCoord) {
-    super(world, xCoord, yCoord, zCoord);
   }
 
   @Override
+  protected float getVelocity() {
+    return 3F;
+  }
+
   protected float getGravityVelocity() {
-    return 0.001F;
+    return 0.01F;
   }
 
+
+  /**
+   * Called when this EntityBullet hits a block or entity.
+   */
   @Override
-  public void setVelocity(double motionX, double motionY, double motionZ) {
-    this.motionX = motionX;
-    this.motionY = motionY;
-    this.motionZ = motionZ;
-
-    if (prevRotationPitch == 0.0F && prevRotationYaw == 0.0F) {
-      float f = MathHelper.sqrt_double(motionX * motionX + motionZ * motionZ);
-      prevRotationYaw = rotationYaw = (float)((Math.atan2(motionX, motionZ) * 180D) / Math.PI);
-      prevRotationPitch = rotationPitch = (float)((Math.atan2(motionY, f) * 180D) / Math.PI);
-      prevRotationPitch = rotationPitch;
-      prevRotationYaw = rotationYaw;
-      setLocationAndAngles(posX, posY, posZ, rotationYaw, rotationPitch);
-    }
-  }
-
-  @Override
-  protected void onImpact(MovingObjectPosition movingObjectPosition) {
-    if (movingObjectPosition.entityHit != null) {
-      int var2 = bulletdamage;
-
-      if (movingObjectPosition.entityHit instanceof EntityLivingBase) {
-        movingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, shootingEntity), var2);
+  protected void onImpact(MovingObjectPosition position) {
+    if (position.entityHit != null) {
+      if (position.entityHit instanceof EntityLivingBase) {
+        position.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), bulletdamage);
       }
 
-      if (movingObjectPosition.entityHit instanceof EntityPlayer) {
-        if (worldObj.difficultySetting.equals(EnumDifficulty.EASY)) {
+      if (position.entityHit instanceof EntityPlayer) {
+        if (worldObj.getDifficulty().equals(EnumDifficulty.EASY)) {
           int j = rand.nextInt(10);
           if (j == 0) {
-            ((EntityLivingBase)movingObjectPosition.entityHit).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 300, 1));
+            ((EntityLivingBase) position.entityHit).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 300, 1));
           }
-        } else if (worldObj.difficultySetting.equals(EnumDifficulty.NORMAL)) {
+        } else if (worldObj.getDifficulty().equals(EnumDifficulty.NORMAL)) {
           int j = rand.nextInt(5);
           if (j == 0) {
-            ((EntityLivingBase)movingObjectPosition.entityHit).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 300, 1));
+            ((EntityLivingBase) position.entityHit).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 300, 1));
           }
-        } else if (worldObj.difficultySetting.equals(EnumDifficulty.HARD)) {
+        } else if (worldObj.getDifficulty().equals(EnumDifficulty.HARD)) {
           int j = rand.nextInt(3);
           if (j == 0) {
-            ((EntityLivingBase)movingObjectPosition.entityHit).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 300, 1));
+            ((EntityLivingBase) position.entityHit).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 300, 1));
           }
         }
       }
-    } else if (movingObjectPosition.typeOfHit == MovingObjectType.BLOCK) {
-      if (!worldObj.isRemote) {
-        setDead();
-      }
-      if (worldObj.getBlock(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ).equals(Blocks.glass_pane) || worldObj.getBlock(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ).equals(Blocks.glass)) {
-        worldObj.getBlock(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ);
-        worldObj.playSoundEffect(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ, "random.glass", 1.0F, 1.0F);
-        setDead();
-      } else if (worldObj.getBlock(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ).equals(Blocks.tallgrass)) {
-        worldObj.getBlock(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ);
-        worldObj.playSoundEffect(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ, "step.grass", 1.0F, 1.0F);
-        setDead();
+    } else if (position.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) {
+      if (worldObj.getBlockState(position.getBlockPos()).getBlock().equals(Blocks.glass_pane) || worldObj.getBlockState(position.getBlockPos()).getBlock().equals(Blocks.glass)) {
+        worldObj.setBlockToAir(position.getBlockPos());
+        worldObj.playSoundAtEntity(this, "random.glass", 1.0F, 1.0F);
+      } else if (worldObj.getBlockState(position.getBlockPos()).getBlock().equals(Blocks.tallgrass)) {
+        worldObj.playSoundAtEntity(this, "step.grass", 1.0F, 1.0F);
       } else {
-        String stepsound = worldObj.getBlock(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ).stepSound.getBreakSound();
+        String stepsound = worldObj.getBlockState(position.getBlockPos()).getBlock().stepSound.getBreakSound();
         worldObj.playSoundAtEntity(this, stepsound, 1.0F, 1.0F);
         setDead();
       }

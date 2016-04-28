@@ -1,28 +1,25 @@
 package com.github.dayzminecraft.dayzminecraft.common.misc;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
+import com.github.dayzminecraft.dayzminecraft.common.items.ModItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
-import net.minecraft.world.WorldServer;
-import net.minecraft.world.gen.structure.StructureVillagePieces;
 import net.minecraftforge.common.ChestGenHooks;
 
-import com.github.dayzminecraft.dayzminecraft.common.blocks.ModBlocks;
-import com.github.dayzminecraft.dayzminecraft.common.items.ModItems;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class LootManager {
-  public static WeightedRandomChestContent[] loot = new WeightedRandomChestContent[] {};
+  public static List<WeightedRandomChestContent> loot = new ArrayList<WeightedRandomChestContent>();
 
   public static void init() {
-    for (WeightedRandomChestContent content : StructureVillagePieces.House2.villageBlacksmithChestContents) {
+    for (WeightedRandomChestContent content : ChestGenHooks.getInfo(ChestGenHooks.VILLAGE_BLACKSMITH).getItems(new Random())) {
       ChestGenHooks.removeItem(ChestGenHooks.VILLAGE_BLACKSMITH, content.theItemId);
     }
 
-    for (WeightedRandomChestContent content : WorldServer.bonusChestContent) {
+    for (WeightedRandomChestContent content : ChestGenHooks.getInfo(ChestGenHooks.BONUS_CHEST).getItems(new Random())) {
       ChestGenHooks.removeItem(ChestGenHooks.BONUS_CHEST, content.theItemId);
     }
 
@@ -49,16 +46,14 @@ public class LootManager {
   }
 
   public static void addLoot(ItemStack itemStack, int itemWorth) {
-    ArrayList<WeightedRandomChestContent> contents = new ArrayList<WeightedRandomChestContent>(Arrays.asList(loot));
-    contents.add(new WeightedRandomChestContent(itemStack, 1, 1, itemWorth));
-    loot = contents.toArray(new WeightedRandomChestContent[contents.size()]);
+    loot.add(new WeightedRandomChestContent(itemStack, 1, 1, itemWorth));
 
     ChestGenHooks.addItem(ChestGenHooks.BONUS_CHEST, new WeightedRandomChestContent(itemStack, 1, 1, itemWorth));
     ChestGenHooks.addItem(ChestGenHooks.VILLAGE_BLACKSMITH, new WeightedRandomChestContent(itemStack, 1, 1, itemWorth));
   }
 
   public static void registerAllItems() {
-    addLoot(new ItemStack(ModBlocks.barbedWire), 3);
+    // addLoot(new ItemStack(ModBlocks.barbedWire), 3);
   /*addLoot(new ItemStack(ModItems.camoHelmet), 3);
     addLoot(new ItemStack(ModItems.camoChest), 3);
     addLoot(new ItemStack(ModItems.camoLegs), 3);
@@ -87,13 +82,13 @@ public class LootManager {
     addLoot(new ItemStack(ModItems.drinkWhiskeyBottle), 7);
     addLoot(new ItemStack(ModItems.drinkCiderBottle), 7);
     addLoot(new ItemStack(ModItems.drinkVodkaBottle), 7);
-    addLoot(new ItemStack(ModBlocks.nailBlock), 7);
+    //addLoot(new ItemStack(ModBlocks.nailBlock), 7);
     addLoot(new ItemStack(Items.beef), 9);
     addLoot(new ItemStack(Items.cooked_beef), 9);
     addLoot(new ItemStack(Items.porkchop), 9);
     addLoot(new ItemStack(Items.cooked_porkchop), 9);
     addLoot(new ItemStack(Items.fish), 9);
-    addLoot(new ItemStack(Items.cooked_fished), 9);
+    addLoot(new ItemStack(Items.cooked_fish), 9);
     addLoot(new ItemStack(Items.apple), 9);
     addLoot(new ItemStack(Items.mushroom_stew), 9);
     addLoot(new ItemStack(Items.melon), 9);

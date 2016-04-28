@@ -1,19 +1,17 @@
 package com.github.dayzminecraft.dayzminecraft.common.items;
 
+import com.github.dayzminecraft.dayzminecraft.DayZ;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-
-import com.github.dayzminecraft.dayzminecraft.DayZ;
-
 public class ItemMod extends Item {
   public List<String> subNames;
+  private String name;
 
   public ItemMod() {
     super();
@@ -21,17 +19,8 @@ public class ItemMod extends Item {
     setCreativeTab(DayZ.creativeTab);
   }
 
+  @SuppressWarnings({"unchecked", "rawtypes"})
   @Override
-  public void registerIcons(IIconRegister register) {
-    itemIcon = register.registerIcon(DayZ.meta.modId + ":" + getUnlocalizedName().substring(getUnlocalizedName().indexOf(".") + 1));
-  }
-
-  @Override
-  public IIcon getIcon(ItemStack stack, int pass) {
-    return itemIcon;
-  }
-
-  @SuppressWarnings({"unchecked", "rawtypes"}) @Override
   public void addInformation(ItemStack itemStack, EntityPlayer entityPlayer, List informationList, boolean advancedItemTooltips) {
     if (subNames == null) {
       return;
@@ -41,11 +30,22 @@ public class ItemMod extends Item {
     }
   }
 
-  public Item subNames(String... strings) {
+
+  public ItemMod subNames(String... strings) {
     if (subNames == null) {
       subNames = new ArrayList<String>();
     }
     Collections.addAll(subNames, strings);
+    return this;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public ItemMod setName(String name) {
+    this.name = name;
+    setUnlocalizedName(name);
     return this;
   }
 }

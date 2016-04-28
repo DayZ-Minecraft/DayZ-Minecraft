@@ -10,7 +10,6 @@ public class ModelBullet extends ModelBase {
   public ModelBullet() {
     textureWidth = 32;
     textureHeight = 32;
-
     bullet = new ModelRenderer(this, 0, 0);
     bullet.addBox(0F, 0F, 0F, 1, 1, 1);
     bullet.setRotationPoint(0.05F, 0F, 0F);
