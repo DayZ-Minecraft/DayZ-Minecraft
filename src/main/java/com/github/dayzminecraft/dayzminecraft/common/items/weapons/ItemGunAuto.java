@@ -43,7 +43,7 @@ public class ItemGunAuto extends ItemMod {
   @Override
   public EnumAction getItemUseAction(ItemStack itemstack) {
     if (itemstack.getItemDamage() < gun.getRounds()) {
-      return null;
+      return EnumAction.NONE;
     } else {
       return EnumAction.BLOCK;
     }
