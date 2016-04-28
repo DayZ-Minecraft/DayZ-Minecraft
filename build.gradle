@@ -81,4 +81,11 @@ processResources
     }
 }
 
-idea { module { inheritOutputDirs = true } }
+idea {
+    module {
+        inheritOutputDirs = true
+    }
+    project {
+        languageLevel = '1.8'
+    }
+}
